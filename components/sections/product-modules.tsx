@@ -17,7 +17,7 @@ const modules = [
       "Inventario básico con alertas",
       "Roles de usuario (admin, cajero, mesero)",
       "Programa de lealtad con QR cliente",
-      "Soporte de pagos EVM (Ethereum, Polygon, BSC)",
+      "Soporte de pagos EVM (Ethereum, Arbitrum, Optimism)",
       "Lightning Network de Bitcoin integrado",
       "Predicciones de inventario con ML",
       "Forecasting de ventas con algoritmos avanzados",
@@ -47,8 +47,8 @@ const modules = [
       "Ve quién tomó tu pedido en vivo",
       "Detalles de transacción y método de pago",
       "Navegación guiada por categorías",
-      "Compartir pedidos a mensajería",
-      "Descarga de comprobantes",
+      "Comparte QRs en apps de mensajería",
+      "Descarga comprobantes y QRs",
       "Cifrado AES-GCM para datos",
     ],
     color: "primary",
@@ -142,8 +142,8 @@ export function ProductModules() {
                   </div>
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Acepta pagos en Ethereum, Polygon, BSC y Bitcoin Lightning Network directamente en el POS. Conversión
-                  automática a MXN para reportes.
+                  Acepta pagos en Ethereum, Arbitrum, Optimism y Bitcoin Lightning Network directamente en el POS.
+                  Conversión automática a MXN para reportes.
                 </p>
               </div>
             </div>

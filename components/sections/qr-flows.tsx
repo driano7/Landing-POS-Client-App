@@ -138,8 +138,9 @@ export function QRFlows() {
               <h3 className="text-xl font-bold text-foreground mb-3">Integración completa</h3>
               <p className="text-muted-foreground leading-relaxed text-pretty">
                 Todos los QRs se conectan automáticamente: cuando un cliente escanea su QR de lealtad, el sistema
-                vincula el pedido; cuando genera un QR de ticket, puede compartirlo; y las reservaciones se sincronizan
-                con el POS en tiempo real.
+                vincula el pedido; cuando genera un QR de ticket, puede compartirlo en apps de mensajería o descargarlo;
+                y las reservaciones se sincronizan con el POS en tiempo real. El scanner del POS es inteligente y
+                autodetecta cada tipo de QR automáticamente sin que el usuario necesite hacer nada más.
               </p>
             </div>
           </div>
