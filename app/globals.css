@@ -1,0 +1,176 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated theme to use brown/coffee as primary and green as accent for COFEPRIS */
+  --background: oklch(0.99 0.002 85.87);
+  --foreground: oklch(0.27 0.015 34.39);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.27 0.015 34.39);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.27 0.015 34.39);
+
+  /* Coffee/Brown as primary brand color (#795548 and variations) */
+  --primary: oklch(0.47 0.055 43.17); /* #795548 */
+  --primary-foreground: oklch(0.99 0.002 85.87);
+  --primary-light: oklch(0.6 0.045 43.17); /* Lighter coffee */
+  --primary-lighter: oklch(0.88 0.02 43.17); /* Very light coffee for backgrounds */
+
+  --secondary: oklch(0.95 0.008 85.87);
+  --secondary-foreground: oklch(0.27 0.015 34.39);
+  --muted: oklch(0.96 0.005 85.87);
+  --muted-foreground: oklch(0.52 0.015 34.39);
+  --accent: oklch(0.96 0.005 85.87);
+  --accent-foreground: oklch(0.27 0.015 34.39);
+
+  /* Green only for COFEPRIS/compliance accents */
+  --success: oklch(0.55 0.15 145); /* Green for compliance badges */
+  --success-foreground: oklch(0.99 0.002 85.87);
+  --success-light: oklch(0.92 0.08 145);
+
+  --info: oklch(0.6 0.15 240);
+  --info-foreground: oklch(0.99 0.002 85.87);
+
+  --warning: oklch(0.75 0.15 75);
+  --warning-foreground: oklch(0.27 0.015 34.39);
+
+  --danger: oklch(0.55 0.22 25);
+  --danger-foreground: oklch(0.99 0.002 85.87);
+
+  --border: oklch(0.9 0.005 85.87);
+  --input: oklch(0.9 0.005 85.87);
+  --ring: oklch(0.47 0.055 43.17);
+
+  /* Gradients using coffee tones */
+  --gradient-start: oklch(0.47 0.055 43.17);
+  --gradient-end: oklch(0.37 0.045 43.17);
+
+  --radius: 0.5rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  /* Made dark mode 5% lighter/softer for better visual appeal */
+  --background: oklch(0.17 0.01 34.39); /* Was 0.12, now 0.17 - 5% lighter */
+  --foreground: oklch(0.98 0.005 85.87);
+  --card: oklch(0.2 0.01 34.39); /* Was 0.15, now 0.20 - 5% lighter */
+  --card-foreground: oklch(0.98 0.005 85.87);
+  --popover: oklch(0.2 0.01 34.39); /* Was 0.15, now 0.20 - 5% lighter */
+  --popover-foreground: oklch(0.98 0.005 85.87);
+  --primary: oklch(0.6 0.045 43.17);
+  --primary-foreground: oklch(0.17 0.01 34.39); /* Updated to match new background */
+  --primary-light: oklch(0.47 0.055 43.17);
+  --primary-lighter: oklch(0.27 0.025 43.17); /* Was 0.22, now 0.27 - 5% lighter */
+  --secondary: oklch(0.27 0.015 34.39); /* Was 0.22, now 0.27 - 5% lighter */
+  --secondary-foreground: oklch(0.98 0.005 85.87);
+  --muted: oklch(0.27 0.015 34.39); /* Was 0.22, now 0.27 - 5% lighter */
+  --muted-foreground: oklch(0.65 0.015 34.39);
+  --accent: oklch(0.27 0.015 34.39); /* Was 0.22, now 0.27 - 5% lighter */
+  --accent-foreground: oklch(0.98 0.005 85.87);
+  --success: oklch(0.6 0.15 145);
+  --success-foreground: oklch(0.98 0.005 85.87);
+  --success-light: oklch(0.27 0.08 145); /* Was 0.22, now 0.27 - 5% lighter */
+  --info: oklch(0.65 0.15 240);
+  --info-foreground: oklch(0.98 0.005 85.87);
+  --warning: oklch(0.75 0.15 75);
+  --warning-foreground: oklch(0.17 0.01 34.39); /* Updated to match new background */
+  --danger: oklch(0.6 0.22 25);
+  --danger-foreground: oklch(0.98 0.005 85.87);
+  --border: oklch(0.32 0.015 34.39); /* Was 0.27, now 0.32 - 5% lighter */
+  --input: oklch(0.32 0.015 34.39); /* Was 0.27, now 0.32 - 5% lighter */
+  --ring: oklch(0.6 0.045 43.17);
+  --gradient-start: oklch(0.6 0.045 43.17);
+  --gradient-end: oklch(0.47 0.055 43.17);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  /* Changed to Lato font family */
+  --font-sans: "Lato", "system-ui", "sans-serif";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-light: var(--primary-light);
+  --color-primary-lighter: var(--primary-lighter);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-light: var(--success-light);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Enhanced smooth theme transition with gradient effect */
+  html {
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  html.dark {
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Apply theme transition to all sections and cards */
+  section,
+  [class*="Card"] {
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
