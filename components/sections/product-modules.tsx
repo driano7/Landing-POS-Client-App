@@ -1,7 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { ShoppingCart, BarChart3, Smartphone, Check, Brain, Coins } from "lucide-react"
+import { ShoppingCart, BarChart3, Check, Brain, Coins } from "lucide-react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
@@ -9,49 +9,30 @@ import { useRef } from "react"
 const modules = [
   {
     icon: ShoppingCart,
-    title: "POS Operativo (Básico)",
-    description: "Sistema punto de venta completo para operación diaria",
+    title: "Básico — POS Operativo",
+    description:
+      "Todo lo que necesitas para operar tu restaurante día a día: caja, mesas, inventario básico y programa de lealtad.",
     features: [
-      "Ventas rápidas con interfaz optimizada",
-      "Flujo de preparación por estados",
-      "Inventario básico con alertas",
-      "Roles de usuario (admin, cajero, mesero)",
-      "Programa de lealtad con QR cliente",
-      "Soporte de pagos EVM (Ethereum, Arbitrum, Optimism)",
-      "Lightning Network de Bitcoin integrado",
-      "Predicciones de inventario con ML",
-      "Forecasting de ventas con algoritmos avanzados",
+      "Toma de órdenes, tickets y flujo de preparación en tiempo real.",
+      "Control de mesas y roles de usuario (caja, cocina, administración).",
+      "Inventario básico con alertas de stock.",
+      "Programa de lealtad mediante QR de cliente.",
     ],
     color: "primary",
   },
   {
     icon: BarChart3,
-    title: "Métricas y Cumplimiento (Premium)",
-    description: "Analytics avanzados y panel COFEPRIS integrado",
+    title: "Premium — Métricas, Cumplimiento y App Cliente",
+    description:
+      "Lleva tu operación al siguiente nivel con analítica avanzada, panel sanitario configurable y una app de cliente integrada para pedidos y reservaciones.",
     features: [
-      "Panel COFEPRIS (higiene, plagas, residuos)",
-      "Dashboards de ventas en tiempo real",
-      "Tiempos de preparación por producto",
-      "Desempeño por horas y productos",
-      "Exportación CSV/XLSX para auditorías",
+      "Dashboards avanzados de ventas, tiempos de preparación y desempeño por producto/hora.",
+      "Panel sanitario configurable: COFEPRIS (MX), Health Depts/FDA (US) y ANVISA (BR), con checklists de higiene, plagas, inventario alimentario y residuos, más exportación CSV/XLSX para auditorías.",
+      "App Cliente (móvil y desktop) para pedidos y reservaciones, con soporte para compartir o descargar tickets y reservas.",
+      "Soporte de 3 tipos de QR: ID cliente (lealtad), tickets/pedidos (productos y propinas) y reservaciones.",
+      "Cifrado AES-GCM y gestión de datos inspirada en GDPR para proteger la información de tus clientes.",
     ],
     color: "success",
-    premium: true,
-  },
-  {
-    icon: Smartphone,
-    title: "App Cliente (Premium)",
-    description: "Experiencia de cliente desde móvil y desktop",
-    features: [
-      "Pedidos y reservaciones en tiempo real (async)",
-      "Ve quién tomó tu pedido en vivo",
-      "Detalles de transacción y método de pago",
-      "Navegación guiada por categorías",
-      "Comparte QRs en apps de mensajería",
-      "Descarga comprobantes y QRs",
-      "Cifrado AES-GCM para datos",
-    ],
-    color: "primary",
     premium: true,
   },
 ]
@@ -70,14 +51,14 @@ export function ProductModules() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-            Tres módulos, una suite completa
+            Dos módulos, una suite completa
           </h2>
           <p className="text-lg text-muted-foreground text-pretty">
             Desde operación básica hasta cumplimiento regulatorio avanzado y experiencia de cliente digital
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8" ref={ref}>
+        <div className="grid md:grid-cols-2 gap-8" ref={ref}>
           {modules.map((module, index) => {
             const Icon = module.icon
             const isSuccess = module.color === "success"
@@ -143,7 +124,7 @@ export function ProductModules() {
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Acepta pagos en Ethereum, Arbitrum, Optimism y Bitcoin Lightning Network directamente en el POS.
-                  Conversión automática a MXN para reportes.
+                  Conversión automática a MXN, USD o BRL según el país de operación.
                 </p>
               </div>
             </div>

@@ -30,12 +30,17 @@ export function Hero() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance">
-              Suite tecnológica para restaurantes que toman en serio operación y regulación sanitaria
+              Suite tecnológica para restaurantes en México, USA y Brasil que toman en serio operación, pagos y
+              regulación sanitaria
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty">
               Integra POS operativo, métricas avanzadas, panel de cumplimiento COFEPRIS y app cliente en una sola
               plataforma. Diseñado para el mercado mexicano de alimentos.
+            </p>
+
+            <p className="text-base text-muted-foreground/90 italic">
+              Configurable para COFEPRIS, Health Departments/FDA y ANVISA.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">

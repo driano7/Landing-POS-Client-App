@@ -58,6 +58,8 @@ export function Cofepris() {
             <span className="text-sm font-medium text-success">Cumplimiento COFEPRIS</span>
           </div>
 
+          <h3 className="text-lg font-semibold text-muted-foreground mb-3">Panel sanitario configurable</h3>
+
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
             Panel COFEPRIS integrado para cumplimiento sanitario
           </h2>
@@ -92,6 +94,18 @@ export function Cofepris() {
             )
           })}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-12 max-w-3xl mx-auto text-center"
+        >
+          <p className="text-base text-muted-foreground leading-relaxed">
+            El panel se adapta a las regulaciones locales de cada mercado: COFEPRIS para México, Health Departments y
+            FDA para Estados Unidos, y ANVISA para Brasil. Mantén el cumplimiento sanitario sin importar dónde operes.
+          </p>
+        </motion.div>
       </div>
     </section>
   )

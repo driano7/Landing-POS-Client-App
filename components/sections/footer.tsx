@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { MessageCircle, Linkedin, ExternalLink, Mail } from "lucide-react"
+import { MessageCircle, Linkedin, ExternalLink, Mail, Send } from "lucide-react"
 import { motion } from "framer-motion"
 
 const MotionLink = motion(Link)
@@ -160,7 +160,7 @@ export function Footer() {
                 whileHover={{ scale: 1.1 }}
                 aria-label="Telegram"
               >
-                <MessageCircle className="w-5 h-5" />
+                <Send className="w-5 h-5" />
               </motion.a>
               <motion.a
                 href="https://www.linkedin.com/in/driano7/"
