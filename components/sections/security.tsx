@@ -46,7 +46,7 @@ export function Security() {
   return (
     <section id="seguridad" className="py-20 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center" ref={ref}>
+        <div className="grid lg:grid-cols-2 gap-12 items-start lg:items-center" ref={ref}>
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
@@ -82,59 +82,83 @@ export function Security() {
 
             <div className="bg-card border border-border rounded-xl p-6">
               <h3 className="font-semibold text-foreground mb-4">Flujo de seguridad</h3>
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-sm">
+                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-xs">
                     1
                   </div>
                   <span className="text-sm text-foreground">Datos del cliente ingresados</span>
                 </div>
-                <div className="ml-4 w-px h-6 bg-border" />
+                <div className="ml-3 w-px h-3 bg-border" />
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-sm">
+                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-xs">
                     2
                   </div>
                   <span className="text-sm text-foreground">Cifrado AES-GCM aplicado</span>
                 </div>
-                <div className="ml-4 w-px h-6 bg-border" />
+                <div className="ml-3 w-px h-3 bg-border" />
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-sm">
+                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-xs">
                     3
                   </div>
                   <span className="text-sm text-foreground">Almacenamiento seguro</span>
                 </div>
-                <div className="ml-4 w-px h-6 bg-border" />
+                <div className="ml-3 w-px h-3 bg-border" />
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-success/10 flex items-center justify-center text-success font-semibold text-sm">
+                  <div className="w-6 h-6 rounded-full bg-success/10 flex items-center justify-center text-success font-semibold text-xs">
                     4
                   </div>
-                  <span className="text-sm text-foreground">Descifrado controlado por llaves</span>
+                  <span className="text-sm text-foreground">Descifrado controlado</span>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-4">
-            {securityFeatures.map((feature, index) => {
-              const Icon = feature.icon
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                >
-                  <Card className="p-6 hover:shadow-lg transition-shadow h-full bg-card/80 backdrop-blur-sm">
-                    <div className="w-12 h-12 rounded-lg bg-success/10 flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6 text-success" />
-                    </div>
-                    <h3 className="font-semibold text-foreground mb-2">{feature.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-                  </Card>
-                </motion.div>
-              )
-            })}
+          <div className="space-y-4">
+            <div className="grid grid-cols-3 gap-3">
+              {securityFeatures.slice(0, 3).map((feature, index) => {
+                const Icon = feature.icon
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                  >
+                    <Card className="p-4 hover:shadow-lg transition-shadow h-full bg-card/80 backdrop-blur-sm">
+                      <div className="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center mb-3">
+                        <Icon className="w-5 h-5 text-success" />
+                      </div>
+                      <h3 className="font-semibold text-sm text-foreground mb-1">{feature.title}</h3>
+                      <p className="text-xs text-muted-foreground leading-tight">{feature.description}</p>
+                    </Card>
+                  </motion.div>
+                )
+              })}
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              {securityFeatures.slice(3, 6).map((feature, index) => {
+                const Icon = feature.icon
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.4, delay: (index + 3) * 0.1 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                  >
+                    <Card className="p-4 hover:shadow-lg transition-shadow h-full bg-card/80 backdrop-blur-sm">
+                      <div className="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center mb-3">
+                        <Icon className="w-5 h-5 text-success" />
+                      </div>
+                      <h3 className="font-semibold text-sm text-foreground mb-1">{feature.title}</h3>
+                      <p className="text-xs text-muted-foreground leading-tight">{feature.description}</p>
+                    </Card>
+                  </motion.div>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>

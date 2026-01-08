@@ -29,14 +29,12 @@ const plans = [
   },
   {
     name: "Premium",
-    subtitle: "Métricas + App Cliente",
+    subtitle: "Suite Completa",
     price: "Contactar",
     description: "Suite completa con analytics, COFEPRIS y app cliente",
     features: [
       { text: "Todo lo del plan Básico", included: true, bold: true },
-      { text: "Módulo de métricas avanzadas", included: true },
-      { text: "Panel COFEPRIS completo", included: true },
-      { text: "App Cliente (web + móvil)", included: true },
+      { text: "Métricas, Cumplimiento y App Cliente", included: true, bold: true },
       { text: "Cifrado AES-GCM", included: true },
       { text: "Políticas alineadas a GDPR", included: true },
       { text: "Lectura de 3 tipos de QR", included: true },
@@ -63,14 +61,14 @@ export function Pricing() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-            Paquetes diseñados para tu operación
+            Dos módulos, una suite completa
           </h2>
           <p className="text-lg text-muted-foreground text-pretty">
             Desde POS básico hasta suite completa con cumplimiento regulatorio
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto" ref={ref}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto" ref={ref}>
           {plans.map((plan, index) => (
             <motion.div
               key={index}
@@ -82,7 +80,9 @@ export function Pricing() {
             >
               <Card
                 className={`relative p-8 h-full bg-card/80 backdrop-blur-sm ${
-                  plan.featured ? "border-2 border-primary shadow-2xl shadow-primary/20" : "border-2"
+                  plan.featured
+                    ? "md:border-2 md:border-primary md:shadow-2xl md:shadow-primary/20 border-2 border-primary"
+                    : "border-2"
                 }`}
               >
                 {plan.featured && (

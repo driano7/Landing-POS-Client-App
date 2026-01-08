@@ -2,7 +2,7 @@
 
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Rocket, Plug, Settings, ArrowRight } from "lucide-react"
+import { Rocket, Plug, Settings } from "lucide-react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
@@ -54,7 +54,7 @@ export function POCs() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12" ref={ref}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12" ref={ref}>
           {pocOptions.map((poc, index) => {
             const Icon = poc.icon
             return (
@@ -66,29 +66,24 @@ export function POCs() {
                 whileHover={{ scale: 1.05, y: -5 }}
               >
                 <Card className="p-6 hover:shadow-xl transition-all duration-300 h-full bg-card/80 backdrop-blur-sm">
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                    <Icon className="w-7 h-7 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-primary" />
                   </div>
 
-                  <h3 className="text-xl font-bold text-foreground mb-3">{poc.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-6 leading-relaxed">{poc.description}</p>
+                  <h3 className="text-lg font-bold text-foreground mb-2">{poc.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{poc.description}</p>
 
-                  <div className="space-y-2 mb-6">
+                  <div className="space-y-2">
                     <p className="text-xs font-semibold text-foreground uppercase tracking-wider">Incluye:</p>
-                    <ul className="space-y-2">
+                    <ul className="space-y-1">
                       {poc.includes.map((item, i) => (
-                        <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                          <span className="text-primary mt-1">•</span>
+                        <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
+                          <span className="text-primary mt-0.5">•</span>
                           {item}
                         </li>
                       ))}
                     </ul>
                   </div>
-
-                  <Button variant="outline" className="w-full group bg-transparent">
-                    Solicitar POC
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
                 </Card>
               </motion.div>
             )
@@ -117,20 +112,6 @@ export function POCs() {
                     rel="noopener noreferrer"
                   >
                     Agenda demo por WhatsApp
-                  </a>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 bg-transparent"
-                  asChild
-                >
-                  <a
-                    href="https://wa.me/525512291607?text=Hola%2C%20me%20gustaría%20hablar%20con%20el%20equipo%20técnico%20de%20Xoco%20Suite"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Hablar con equipo técnico
                   </a>
                 </Button>
               </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { MessageCircle, Linkedin, ExternalLink, Mail, Phone } from "lucide-react"
+import { MessageCircle, Linkedin, ExternalLink, Mail } from "lucide-react"
 import { motion } from "framer-motion"
 
 const MotionLink = motion(Link)
@@ -133,74 +133,57 @@ export function Footer() {
 
           <div>
             <h4 className="font-semibold text-foreground mb-4">Contacto</h4>
-            <ul className="space-y-3">
-              <li>
-                <motion.a
-                  href="https://wa.me/525512291607"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                  whileHover={{ x: 4 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Phone className="w-4 h-4" />
-                  WhatsApp
-                  <ExternalLink className="w-3 h-3" />
-                </motion.a>
-              </li>
-              <li>
-                <motion.a
-                  href="mailto:donovan@criptec.io"
-                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                  whileHover={{ x: 4 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Mail className="w-4 h-4" />
-                  donovan@criptec.io
-                </motion.a>
-              </li>
-              <li>
-                <motion.a
-                  href="https://t.me/driano7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                  whileHover={{ x: 4 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  Telegram
-                  <ExternalLink className="w-3 h-3" />
-                </motion.a>
-              </li>
-              <li>
-                <motion.a
-                  href="https://www.linkedin.com/in/driano7/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                  whileHover={{ x: 4 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Linkedin className="w-4 h-4" />
-                  LinkedIn
-                  <ExternalLink className="w-3 h-3" />
-                </motion.a>
-              </li>
-              <li>
-                <motion.a
-                  href="https://studio--donovan-riao-portfolio.us-central1.hosted.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
-                  whileHover={{ x: 4 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  Studio / Portfolio
-                  <ExternalLink className="w-3 h-3" />
-                </motion.a>
-              </li>
-            </ul>
+            <div className="flex gap-4 mb-6">
+              <motion.a
+                href="https://wa.me/525512291607"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+                whileHover={{ scale: 1.1 }}
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="w-5 h-5" />
+              </motion.a>
+              <motion.a
+                href="mailto:donovan@criptec.io"
+                className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+                whileHover={{ scale: 1.1 }}
+                aria-label="Email"
+              >
+                <Mail className="w-5 h-5" />
+              </motion.a>
+              <motion.a
+                href="https://t.me/driano7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+                whileHover={{ scale: 1.1 }}
+                aria-label="Telegram"
+              >
+                <MessageCircle className="w-5 h-5" />
+              </motion.a>
+              <motion.a
+                href="https://www.linkedin.com/in/driano7/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+                whileHover={{ scale: 1.1 }}
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </motion.a>
+            </div>
+            <motion.a
+              href="https://studio--donovan-riao-portfolio.us-central1.hosted.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+              whileHover={{ x: 4 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              Studio / Portfolio
+              <ExternalLink className="w-3 h-3" />
+            </motion.a>
           </div>
         </div>
 

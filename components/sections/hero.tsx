@@ -51,7 +51,7 @@ export function Hero() {
               </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button size="lg" variant="outline">
+                  <Button size="lg" variant="outline" className="hidden md:flex bg-transparent">
                     Ver documentación técnica
                     <ChevronDown className="ml-2 h-4 w-4" />
                   </Button>
