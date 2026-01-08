@@ -19,6 +19,10 @@ const plans = [
       { text: "Inventario básico + alertas", included: true },
       { text: "Programa de lealtad vía QR", included: true },
       { text: "Roles de usuario", included: true },
+      {
+        text: "Compatible con terminales como Blokko.io para cobros con tarjetas y transferencias locales",
+        included: true,
+      },
       { text: "Módulo de métricas avanzadas", included: false },
       { text: "Panel COFEPRIS", included: false },
       { text: "App Cliente", included: false },
@@ -40,6 +44,10 @@ const plans = [
       { text: "Lectura de 3 tipos de QR", included: true },
       { text: "Exportación para auditorías", included: true },
       { text: "Soporte prioritario", included: true },
+      {
+        text: "Integración con terminal Blokko.io para tarjetas, SPEI/CoDi en México, PIX en Brasil y pagos con criptomonedas convertidos automáticamente a moneda local",
+        included: true,
+      },
     ],
     cta: "Solicitar demo",
     variant: "default",

@@ -1,7 +1,8 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { ShoppingCart, BarChart3, Check, Brain, Coins } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { ShoppingCart, BarChart3, Check, Brain, Coins, ExternalLink } from "lucide-react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
@@ -17,6 +18,7 @@ const modules = [
       "Control de mesas y roles de usuario (caja, cocina, administración).",
       "Inventario básico con alertas de stock.",
       "Programa de lealtad mediante QR de cliente.",
+      "Compatible con terminales como Blokko.io para cobros con tarjetas y transferencias locales.",
     ],
     color: "primary",
   },
@@ -31,6 +33,7 @@ const modules = [
       "App Cliente (móvil y desktop) para pedidos y reservaciones, con soporte para compartir o descargar tickets y reservas.",
       "Soporte de 3 tipos de QR: ID cliente (lealtad), tickets/pedidos (productos y propinas) y reservaciones.",
       "Cifrado AES-GCM y gestión de datos inspirada en GDPR para proteger la información de tus clientes.",
+      "Integración con terminal Blokko.io para tarjetas, SPEI/CoDi en México, PIX en Brasil y pagos con criptomonedas convertidos automáticamente a moneda local.",
     ],
     color: "success",
     premium: true,
@@ -110,23 +113,37 @@ export function ProductModules() {
 
         <div className="grid md:grid-cols-2 gap-6 mt-12">
           <Card className="p-6 bg-gradient-to-br from-primary/5 to-transparent border-2 border-primary/20">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
-                <Coins className="w-6 h-6 text-primary-foreground" />
+            <div className="flex flex-col gap-4">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
+                  <Coins className="w-6 h-6 text-primary-foreground" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-foreground mb-2 flex items-center gap-2">
+                    Soporte Crypto Nativo con Blokko.io
+                    <div className="flex gap-1">
+                      <span className="text-xs px-2 py-0.5 rounded bg-primary/10 text-primary font-mono">EVM</span>
+                      <span className="text-xs px-2 py-0.5 rounded bg-warning/10 text-warning font-mono">⚡BTC</span>
+                    </div>
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Acepta pagos en Ethereum, Arbitrum, Optimism y Bitcoin Lightning Network directamente en la terminal
+                    Blokko, con conversión automática a MXN, USD o BRL para tu negocio. Integramos los pagos crypto
+                    dentro del mismo flujo del POS.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-bold text-foreground mb-2 flex items-center gap-2">
-                  Soporte Crypto Nativo
-                  <div className="flex gap-1">
-                    <span className="text-xs px-2 py-0.5 rounded bg-primary/10 text-primary font-mono">EVM</span>
-                    <span className="text-xs px-2 py-0.5 rounded bg-warning/10 text-warning font-mono">⚡BTC</span>
-                  </div>
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Acepta pagos en Ethereum, Arbitrum, Optimism y Bitcoin Lightning Network directamente en el POS.
-                  Conversión automática a MXN, USD o BRL según el país de operación.
-                </p>
-              </div>
+              <Button variant="outline" size="sm" className="w-fit bg-transparent" asChild>
+                <a
+                  href="https://blokko.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  Conoce Blokko.io
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </Button>
             </div>
           </Card>
 
