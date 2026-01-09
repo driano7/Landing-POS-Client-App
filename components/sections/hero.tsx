@@ -91,12 +91,6 @@ export function Hero() {
                 <div className="text-2xl font-bold text-primary">100%</div>
                 <div className="text-sm text-muted-foreground">Cumplimiento</div>
               </div>
-              <div className="w-px h-12 bg-border" />
-              <div>
-                <div className="text-2xl font-bold text-primary">3 en 1</div>
-                <div className="text-sm text-muted-foreground">Módulos integrados</div>
-              </div>
-              <div className="w-px h-12 bg-border" />
               <div>
                 <div className="text-2xl font-bold text-primary">AES-GCM</div>
                 <div className="text-sm text-muted-foreground">Cifrado</div>
@@ -125,7 +119,7 @@ export function Hero() {
                     <div className="h-24 bg-primary/20 rounded-lg" />
                     <div className="h-24 bg-muted rounded-lg" />
                   </div>
-                  <div className="h-32 bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg" />
+
                   <div className="grid grid-cols-2 gap-3">
                     <div className="h-16 bg-muted rounded-lg" />
                     <div className="h-16 bg-success/20 rounded-lg" />

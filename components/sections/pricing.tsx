@@ -14,19 +14,19 @@ const plans = [
     price: "Contactar",
     description: "Sistema operativo completo para caja y meseros",
     features: [
-      { text: "POS completo para caja y meseros", included: true },
-      { text: "Flujo de preparación y estados", included: true },
-      { text: "Inventario básico + alertas", included: true },
-      { text: "Programa de lealtad vía QR", included: true },
-      { text: "Roles de usuario", included: true },
+      { text: "POS completo para caja y meseros", included: true, bold: false },
+      { text: "Flujo de preparación y estados", included: true, bold: false },
+      { text: "Inventario básico + alertas", included: true, bold: false },
+      { text: "Programa de lealtad vía QR", included: true, bold: false },
+      { text: "Roles de usuario", included: true, bold: false },
       {
         text: "Compatible con terminales como Blokko.io para cobros con tarjetas y transferencias locales",
-        included: true,
+        included: true, bold: false,
       },
-      { text: "Módulo de métricas avanzadas", included: false },
-      { text: "Panel COFEPRIS", included: false },
-      { text: "App Cliente", included: false },
-      { text: "Cifrado AES-GCM", included: false },
+      { text: "Módulo de métricas avanzadas", included: false, bold: false },
+      { text: "Panel COFEPRIS", included: false, bold: false },
+      { text: "App Cliente", included: false, bold: false },
+      { text: "Cifrado AES-GCM", included: false, bold: false },
     ],
     cta: "Comenzar",
     variant: "outline",
@@ -39,14 +39,14 @@ const plans = [
     features: [
       { text: "Todo lo del plan Básico", included: true, bold: true },
       { text: "Métricas, Cumplimiento y App Cliente", included: true, bold: true },
-      { text: "Cifrado AES-GCM", included: true },
-      { text: "Políticas alineadas a GDPR", included: true },
-      { text: "Lectura de 3 tipos de QR", included: true },
-      { text: "Exportación para auditorías", included: true },
-      { text: "Soporte prioritario", included: true },
+      { text: "Cifrado AES-GCM", included: true, bold: false },
+      { text: "Políticas alineadas a GDPR", included: true, bold: false },
+      { text: "Lectura de 3 tipos de QR", included: true, bold: false },
+      { text: "Exportación para auditorías", included: true, bold: false },
+      { text: "Soporte prioritario", included: true, bold: false },
       {
         text: "Integración con terminal Blokko.io para tarjetas, SPEI/CoDi en México, PIX en Brasil y pagos con criptomonedas convertidos automáticamente a moneda local",
-        included: true,
+        included: true, bold: false,
       },
     ],
     cta: "Solicitar demo",
@@ -87,19 +87,10 @@ export function Pricing() {
               className="h-full"
             >
               <Card
-                className={`relative p-8 h-full bg-card/80 backdrop-blur-sm ${
-                  plan.featured
-                    ? "md:border-2 md:border-primary md:shadow-2xl md:shadow-primary/20 border-2 border-primary"
-                    : "border-2"
-                }`}
+                className={`relative p-8 h-full bg-card/80 backdrop-blur-sm ${plan.featured ? "border-2 border-primary shadow-2xl shadow-primary/40 ring-2 ring-primary/20" : "border-2"
+                  }`}
               >
-                {plan.featured && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center px-4 py-1 rounded-full text-sm font-semibold bg-primary text-primary-foreground shadow-lg">
-                      Recomendado
-                    </span>
-                  </div>
-                )}
+
 
                 <div className="mb-8">
                   <h3 className="text-2xl font-bold text-foreground mb-1">{plan.name}</h3>
@@ -119,13 +110,12 @@ export function Pricing() {
                         <X className="w-5 h-5 mt-0.5 flex-shrink-0 text-muted-foreground/40" />
                       )}
                       <span
-                        className={`text-sm ${
-                          feature.included
-                            ? feature.bold
-                              ? "text-foreground font-semibold"
-                              : "text-foreground/80"
-                            : "text-muted-foreground/60 line-through"
-                        }`}
+                        className={`text-sm ${feature.included
+                          ? feature.bold
+                            ? "text-foreground font-semibold"
+                            : "text-foreground/80"
+                          : "text-muted-foreground/60 line-through"
+                          }`}
                       >
                         {feature.text}
                       </span>
