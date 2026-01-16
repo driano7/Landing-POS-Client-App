@@ -55,13 +55,13 @@ export function Cofepris() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-success/10 border border-success/20 mb-6">
             <CheckCircle2 className="w-4 h-4 text-success" />
-            <span className="text-sm font-medium text-success">Cumplimiento COFEPRIS</span>
+            <span className="text-sm font-medium text-success">Cumplimiento Sanitario</span>
           </div>
 
           <h3 className="text-lg font-semibold text-muted-foreground mb-3">Panel sanitario configurable</h3>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-            Panel COFEPRIS integrado para cumplimiento sanitario
+            Panel de cumplimiento sanitario integrado
           </h2>
           <p className="text-lg text-muted-foreground text-pretty">
             Diseñado alineado a requerimientos de manejo y tracking de alimentos
@@ -99,11 +99,29 @@ export function Cofepris() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 max-w-3xl mx-auto text-center"
+          className="mt-12 max-w-4xl mx-auto text-center space-y-6"
         >
-          <p className="text-base text-muted-foreground leading-relaxed">
-            El panel se adapta a las regulaciones locales de cada mercado: COFEPRIS para México, Health Departments y
-            FDA para Estados Unidos, y ANVISA para Brasil. Mantén el cumplimiento sanitario sin importar dónde operes.
+          <div className="text-left bg-muted/30 rounded-xl p-6 border border-border">
+            <h4 className="font-bold text-foreground mb-4">Marcos regulatorios soportados:</h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li>
+                <span className="font-semibold text-foreground">México:</span> alineado a NOM-251-SSA1-2009,
+                NOM-093-SSA1-1994 y el Reglamento de Control Sanitario de Productos y Servicios (COFEPRIS).
+              </li>
+              <li>
+                <span className="font-semibold text-foreground">Estados Unidos:</span> basado en las recomendaciones del
+                FDA Food Code adoptadas por departamentos de salud (CDC/FDA).
+              </li>
+              <li>
+                <span className="font-semibold text-foreground">Brasil:</span> basado en la RDC 216/2004 de ANVISA y
+                guías de boas práticas para serviços de alimentação.
+              </li>
+            </ul>
+          </div>
+
+          <p className="text-sm text-muted-foreground italic">
+            Importante: Xoco Suite se diseña alineado a estos marcos de buenas prácticas, pero no es un organismo
+            certificador ni sustituye inspecciones oficiales o certificaciones externas.
           </p>
         </motion.div>
       </div>

@@ -2,56 +2,58 @@
 
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Check, X } from "lucide-react"
+import { Check } from "lucide-react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 
 const plans = [
   {
-    name: "Básico",
-    subtitle: "Solo POS",
+    name: "Starter",
+    subtitle: "Presencia digital + POS base",
     price: "Contactar",
-    description: "Sistema operativo completo para caja y meseros",
+    description: "Para restaurantes que quieren empezar con lo esencial.",
     features: [
-      { text: "POS completo para caja y meseros", included: true, bold: false },
-      { text: "Flujo de preparación y estados", included: true, bold: false },
-      { text: "Inventario básico + alertas", included: true, bold: false },
-      { text: "Programa de lealtad vía QR", included: true, bold: false },
-      { text: "Roles de usuario", included: true, bold: false },
-      {
-        text: "Compatible con terminales como Blokko.io para cobros con tarjetas y transferencias locales",
-        included: true, bold: false,
-      },
-      { text: "Módulo de métricas avanzadas", included: false, bold: false },
-      { text: "Panel COFEPRIS", included: false, bold: false },
-      { text: "App Cliente", included: false, bold: false },
-      { text: "Cifrado AES-GCM", included: false, bold: false },
+      "Sitio web básico en un subdominio de Xoco (landing 1–3 secciones, responsive).",
+      "POS operativo para caja y mesas con inventario básico y roles.",
+      "Programa de lealtad mediante QR de cliente.",
+      "Pagos con tarjetas y transferencias locales: SPEI/CoDi en México, PIX en Brasil y tarjetas + wallets en USA (integración con terminales compatibles).",
+      "Integración opcional con terminal Blokko.io para unificar tarjetas, transferencias locales y pagos con criptomonedas en un solo dispositivo, con conversión automática a moneda local.",
     ],
-    cta: "Comenzar",
+    cta: "Contactar",
     variant: "outline",
   },
   {
-    name: "Premium",
-    subtitle: "Suite Completa",
+    name: "Growth",
+    subtitle: "Web premium + POS + App Cliente",
     price: "Contactar",
-    description: "Suite completa con analytics, COFEPRIS y app cliente",
+    description: "Para negocios que quieren crecer su marca y digitalizar pedidos y reservas.",
     features: [
-      { text: "Todo lo del plan Básico", included: true, bold: true },
-      { text: "Métricas, Cumplimiento y App Cliente", included: true, bold: true },
-      { text: "Cifrado AES-GCM", included: true, bold: false },
-      { text: "Políticas alineadas a GDPR", included: true, bold: false },
-      { text: "Lectura de 3 tipos de QR", included: true, bold: false },
-      { text: "Exportación para auditorías", included: true, bold: false },
-      { text: "Soporte prioritario", included: true, bold: false },
-      {
-        text: "Integración con terminal Blokko.io para tarjetas, SPEI/CoDi en México, PIX en Brasil y pagos con criptomonedas convertidos automáticamente a moneda local",
-        included: true, bold: false,
-      },
+      "Sitio web premium con animaciones suaves, tipografía Lato y gradientes de la marca.",
+      "Dominio personalizado disponible (compra de dominio se cotiza por separado).",
+      "POS operativo completo para caja/mesas, inventario y roles.",
+      "App Cliente (móvil y escritorio) para pedidos y reservaciones, con posibilidad de compartir o descargar tickets y reservas.",
+      "Soporte para 3 tipos de QR: ID cliente (lealtad), tickets/pedidos y reservaciones.",
+      "Integración opcional con terminal Blokko.io, que permite aceptar tarjetas, SPEI/CoDi y PIX junto con pagos crypto (EVM y Lightning) en un solo flujo, recibiendo siempre en MXN, USD o BRL.",
     ],
     cta: "Solicitar demo",
     variant: "default",
     featured: true,
+  },
+  {
+    name: "Compliance & Data",
+    subtitle: "Suite completa",
+    price: "Contactar",
+    description: "Para operaciones que necesitan métricas, regulación sanitaria y pagos avanzados.",
+    features: [
+      "Todo lo incluido en Growth.",
+      "Métricas avanzadas con dashboards de ventas, productos, horas pico, tiempos de preparación y rotación de inventario.",
+      "Panel sanitario configurable: México (COFEPRIS), Estados Unidos (FDA Food Code) y Brasil (ANVISA RDC 216/2004).",
+      "Integración opcional con terminal Blokko.io, que combina en un solo equipo: tarjetas, SPEI/CoDi en México, PIX en Brasil y pagos con criptomonedas (EVM + Lightning) con conversión automática a moneda local.",
+      "Pagos con crypto ofrecidos a través de la asociación con Blokko.io, sujetos a sus términos y comisiones; las comisiones de la terminal no están incluidas en los precios de Xoco Suite.",
+    ],
+    cta: "Solicitar demo",
+    variant: "default",
   },
 ]
 
@@ -69,14 +71,14 @@ export function Pricing() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-            Dos módulos, una suite completa
+            Tres paquetes, una suite completa
           </h2>
           <p className="text-lg text-muted-foreground text-pretty">
-            Desde POS básico hasta suite completa con cumplimiento regulatorio
+            Desde presencia digital básica hasta suite completa con cumplimiento regulatorio
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto" ref={ref}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto" ref={ref}>
           {plans.map((plan, index) => (
             <motion.div
               key={index}
@@ -87,38 +89,32 @@ export function Pricing() {
               className="h-full"
             >
               <Card
-                className={`relative p-8 h-full bg-card/80 backdrop-blur-sm ${plan.featured ? "border-2 border-primary shadow-2xl shadow-primary/40 ring-2 ring-primary/20" : "border-2"
-                  }`}
+                className={`relative p-6 md:p-8 h-full bg-card/80 backdrop-blur-sm ${
+                  plan.featured ? "border-2 border-primary shadow-2xl shadow-primary/20" : "border-2"
+                }`}
               >
+                {plan.featured && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <span className="inline-flex items-center px-4 py-1 rounded-full text-sm font-semibold bg-primary text-primary-foreground shadow-lg">
+                      Recomendado
+                    </span>
+                  </div>
+                )}
 
-
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-foreground mb-1">{plan.name}</h3>
+                <div className="mb-6">
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-1">{plan.name}</h3>
                   <p className="text-sm text-muted-foreground mb-4">{plan.subtitle}</p>
                   <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-4xl font-bold text-primary">{plan.price}</span>
+                    <span className="text-3xl md:text-4xl font-bold text-primary">{plan.price}</span>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed">{plan.description}</p>
                 </div>
 
-                <ul className="space-y-4 mb-8">
+                <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      {feature.included ? (
-                        <Check className="w-5 h-5 mt-0.5 flex-shrink-0 text-success" />
-                      ) : (
-                        <X className="w-5 h-5 mt-0.5 flex-shrink-0 text-muted-foreground/40" />
-                      )}
-                      <span
-                        className={`text-sm ${feature.included
-                          ? feature.bold
-                            ? "text-foreground font-semibold"
-                            : "text-foreground/80"
-                          : "text-muted-foreground/60 line-through"
-                          }`}
-                      >
-                        {feature.text}
-                      </span>
+                      <Check className="w-5 h-5 mt-0.5 flex-shrink-0 text-success" />
+                      <span className="text-sm text-foreground/80">{feature}</span>
                     </li>
                   ))}
                 </ul>

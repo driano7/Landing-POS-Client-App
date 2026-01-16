@@ -75,8 +75,10 @@ export function WhyComplete() {
         <Card className="p-6 md:p-8 bg-gradient-to-br from-primary/10 to-transparent border-2 border-primary/30">
           <div className="max-w-3xl mx-auto text-center">
             <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">Diseñado específicamente para México</h3>
-            <p className="text-muted-foreground leading-relaxed text-pretty">
-              Aunque la suite fue construida y optimizada en México, sus funcionalidades se adaptan rigurosamente a las reglas de sanidad y cumplimiento de **USA, Brasil y México**, garantizando una operación segura a nivel internacional.
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed text-pretty">
+              No es una adaptación de soluciones extranjeras. Xoco Suite fue construido desde cero entendiendo las
+              necesidades reales del mercado mexicano de restaurantes: operación eficiente, cumplimiento COFEPRIS,
+              seguridad de datos personales y experiencia digital.
             </p>
           </div>
         </Card>
