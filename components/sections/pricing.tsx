@@ -1,133 +1,139 @@
-"use client"
-
-import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Check, X } from "lucide-react"
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
+import { CheckCircle, XCircle } from "lucide-react"
 
 const plans = [
   {
     name: "Básico",
-    subtitle: "Solo POS",
-    price: "Contactar",
-    description: "Sistema operativo completo para caja y meseros",
+    price: "$99",
+    period: "USD/mes",
+    description: "Para restaurantes que inician",
     features: [
-      { text: "POS completo para caja y meseros", included: true, bold: false },
-      { text: "Flujo de preparación y estados", included: true, bold: false },
-      { text: "Inventario básico + alertas", included: true, bold: false },
-      { text: "Programa de lealtad vía QR", included: true, bold: false },
-      { text: "Roles de usuario", included: true, bold: false },
-      {
-        text: "Compatible con terminales como Blokko.io para cobros con tarjetas y transferencias locales",
-        included: true, bold: false,
-      },
-      { text: "Módulo de métricas avanzadas", included: false, bold: false },
-      { text: "Panel COFEPRIS", included: false, bold: false },
-      { text: "App Cliente", included: false, bold: false },
-      { text: "Cifrado AES-GCM", included: false, bold: false },
+      { text: "Xoco POS completo", included: true },
+      { text: "Roles de usuario (Admin, Cajero, Cocina)", included: true },
+      { text: "Inventario básico y alertas", included: true },
+      { text: "Programa de lealtad con QR", included: true },
+      { text: "Pagos: Efectivo, Tarjeta, Transferencia", included: true },
+      { text: "Pagos con Cripto", included: false },
+      { text: "Métricas avanzadas", included: false },
+      { text: "App Cliente", included: false },
     ],
-    cta: "Comenzar",
-    variant: "outline",
+    cta: "Empezar Gratis",
+    highlight: false,
   },
   {
     name: "Premium",
-    subtitle: "Suite Completa",
-    price: "Contactar",
-    description: "Suite completa con analytics, COFEPRIS y app cliente",
+    price: "$249",
+    period: "USD/mes",
+    badge: "Más Popular",
+    description: "Todo lo que necesitas para crecer",
     features: [
-      { text: "Todo lo del plan Básico", included: true, bold: true },
-      { text: "Métricas, Cumplimiento y App Cliente", included: true, bold: true },
-      { text: "Cifrado AES-GCM", included: true, bold: false },
-      { text: "Políticas alineadas a GDPR", included: true, bold: false },
-      { text: "Lectura de 3 tipos de QR", included: true, bold: false },
-      { text: "Exportación para auditorías", included: true, bold: false },
-      { text: "Soporte prioritario", included: true, bold: false },
-      {
-        text: "Integración con terminal Blokko.io para tarjetas, SPEI/CoDi en México, PIX en Brasil y pagos con criptomonedas convertidos automáticamente a moneda local",
-        included: true, bold: false,
-      },
+      { text: "Todo lo del Plan Básico", included: true },
+      { text: "Pagos con Bitcoin Lightning, ETH y Stablecoins", included: true, highlight: true },
+      { text: "Métricas avanzadas y dashboards", included: true },
+      { text: "Panel COFEPRIS completo", included: true },
+      { text: "App Cliente Xoco (móvil + desktop)", included: true },
+      { text: "3 tipos de QR (lealtad, pedidos, reservaciones)", included: true },
+      { text: "Cifrado AES-GCM", included: true },
+      { text: "Integración con wallets (RainbowKit + Bitcoin Connect)", included: true },
     ],
-    cta: "Solicitar demo",
-    variant: "default",
-    featured: true,
+    cta: "Agenda Demo",
+    highlight: true,
+  },
+  {
+    name: "Enterprise",
+    price: "Contactar",
+    period: "",
+    description: "Para cadenas y multi-sucursales",
+    features: [
+      { text: "Todo lo del Premium", included: true },
+      { text: "Multi-sucursal ilimitado", included: true },
+      { text: "API custom para integraciones", included: true },
+      { text: "Conversión automática crypto-a-fiat", included: true },
+      { text: "Soporte prioritario 24/7", included: true },
+      { text: "Onboarding personalizado", included: true },
+      { text: "SLA garantizado", included: true },
+    ],
+    cta: "Hablar con Ventas",
+    highlight: false,
   },
 ]
 
-export function Pricing() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.2 })
-
+export default function Pricing() {
   return (
-    <section id="precios" className="py-20 md:py-32 bg-background">
-      <div className="container mx-auto px-4 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-            Dos módulos, una suite completa
-          </h2>
-          <p className="text-lg text-muted-foreground text-pretty">
-            Desde POS básico hasta suite completa con cumplimiento regulatorio
-          </p>
-        </motion.div>
+    <section id="pricing" className="py-24 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6 space-y-8">
+        <div className="text-center space-y-4">
+          <h2 className="text-4xl font-bold text-gray-900">Planes y Precios</h2>
+          <p className="text-lg text-gray-600">Sin contratos, cancela cuando quieras. Prueba gratis 14 días.</p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto" ref={ref}>
-          {plans.map((plan, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              whileHover={{ scale: 1.03, y: -8 }}
-              className="h-full"
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+          {plans.map((plan) => (
+            <div
+              key={plan.name}
+              className={`relative rounded-2xl bg-white border border-gray-200 p-8 shadow-lg transition-shadow hover:shadow-2xl ${
+                plan.highlight ? "border-orange-500 border-2" : ""
+              }`}
             >
-              <Card
-                className={`relative p-8 h-full bg-card/80 backdrop-blur-sm ${plan.featured ? "border-2 border-primary shadow-2xl shadow-primary/40 ring-2 ring-primary/20" : "border-2"
-                  }`}
-              >
+              {plan.badge && (
+                <div className="absolute right-6 top-6 rounded-full bg-orange-500/10 text-orange-500 text-xs font-semibold px-3 py-1">
+                  {plan.badge}
+                </div>
+              )}
 
-
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-foreground mb-1">{plan.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{plan.subtitle}</p>
-                  <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-4xl font-bold text-primary">{plan.price}</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{plan.description}</p>
+              <div className="space-y-4">
+                <div className="space-y-1">
+                  <p className="text-sm text-gray-500 uppercase tracking-wide">Plan</p>
+                  <h3 className="text-2xl font-bold text-gray-900">{plan.name}</h3>
                 </div>
 
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      {feature.included ? (
-                        <Check className="w-5 h-5 mt-0.5 flex-shrink-0 text-success" />
-                      ) : (
-                        <X className="w-5 h-5 mt-0.5 flex-shrink-0 text-muted-foreground/40" />
-                      )}
-                      <span
-                        className={`text-sm ${feature.included
-                          ? feature.bold
-                            ? "text-foreground font-semibold"
-                            : "text-foreground/80"
-                          : "text-muted-foreground/60 line-through"
-                          }`}
-                      >
-                        {feature.text}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex items-baseline gap-2">
+                  <p className="text-5xl font-bold text-gray-900">{plan.price}</p>
+                  {plan.period && <span className="text-gray-600">{plan.period}</span>}
+                </div>
 
-                <Button className="w-full" variant={plan.variant as "default" | "outline"} size="lg">
-                  {plan.cta}
-                </Button>
-              </Card>
-            </motion.div>
+                <p className="text-gray-600">{plan.description}</p>
+              </div>
+
+              <ul className="mt-8 space-y-4">
+                {plan.features.map((feature) => (
+                  <li key={feature.text} className="flex items-start gap-3">
+                    {feature.included ? (
+                      <CheckCircle
+                        className={`mt-0.5 h-5 w-5 flex-shrink-0 ${
+                          feature.highlight ? "text-orange-600" : "text-green-600"
+                        }`}
+                      />
+                    ) : (
+                      <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-gray-400" />
+                    )}
+                    <span
+                      className={`text-sm ${
+                        feature.included
+                          ? feature.highlight
+                            ? "text-orange-600 font-semibold"
+                            : "text-gray-800"
+                          : "text-gray-400 line-through"
+                      }`}
+                    >
+                      {feature.text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8">
+                {plan.highlight ? (
+                  <Button className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold text-lg py-4 shadow-lg hover:shadow-xl transition-all">
+                    {plan.cta}
+                  </Button>
+                ) : (
+                  <Button className="w-full border-2 border-gray-800 text-gray-800 font-semibold text-lg py-4 hover:bg-gray-800 hover:text-white transition-all">
+                    {plan.cta}
+                  </Button>
+                )}
+              </div>
+            </div>
           ))}
         </div>
       </div>
