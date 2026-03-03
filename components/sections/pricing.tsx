@@ -98,12 +98,9 @@ export function Pricing() {
           <p className="text-sm md:text-base text-muted-foreground">
             Sin contratos anuales, sin sorpresas.
           </p>
-          <div className="mt-3 text-xs md:text-sm text-muted-foreground bg-muted/50 rounded-lg px-3 py-1.5 inline-block">
-            <div className="mt-3 text-xs md:text-sm text-muted-foreground bg-muted/50 rounded-lg px-3 py-1.5 inline-block">
-                          🇲🇽 Precios en MXN · Cotización para varias sucursales · Dominio personalizado sujeto a precio
-        </motion.div>
-
-        {/* Plans grid - optimizado para móvil */}
+          <div className="mt-3 text-xs md:text-sm text-muted-foreground bg-muted/50 rounded-lg px-3 py-1.5 inline-block">                          🇲🇽 Precios en MXN · Cotización para varias sucursales · Dominio personalizado sujeto a precio
+          </div>
+        </motion.div>        {/* Plans grid - optimizado para móvil */}
         <div className="grid md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
           {plans.map((plan, index) => (
             <motion.div
