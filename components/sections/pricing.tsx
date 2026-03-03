@@ -1,144 +1,166 @@
 "use client"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Check, CreditCard } from "lucide-react"
+import { Check, CreditCard, Zap, Building2, MessageCircle, Wrench, GraduationCap, HeadphonesIcon } from "lucide-react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 
 const plans = [
   {
-    name: "Starter",
-    subtitle: "Presencia digital + POS base",
-    price: "$2,490",
+    name: "Esencial",
+    emoji: "🌱",
+    subtitle: "Para empezar a vender digital",
+    price: "$500",
     period: "/mes MXN",
-    description: "Para restaurantes que quieren empezar a digitalizar su operación sin complicaciones.",
+    description: "Digitalizate sin drama. Ideal para puestos, fondas y negocios que dan el primer paso.",
     features: [
-      "Sitio web del negocio (landing 1–3 secciones)",
-      "POS operativo: mesas, caja e inventario básico",
-      "Programa de lealtad con QR del cliente",
-      "Pagos con tarjeta, SPEI/CoDi (MX) y PIX (BR)",
-      "Roles de personal básicos (admin + cajero)",
-      "Soporte vía WhatsApp",
+      "POS operativo: mesas y caja",
+      "Inventario básico con alertas",
+      "Pagos con tarjeta y SPEI",
+      "Programa de lealtad QR",
+      "Soporte por WhatsApp",
     ],
     cta: "Empezar ahora",
     variant: "outline" as const,
   },
   {
-    name: "Growth",
-    subtitle: "Web premium + POS + App Cliente",
-    price: "$4,990",
+    name: "Negocio",
+    emoji: "🚀",
+    subtitle: "POS + App + Lealtad",
+    price: "$1,000",
     period: "/mes MXN",
-    description: "Para negocios que quieren crecer su marca, digitalizar pedidos y mejorar la experiencia del cliente.",
+    description: "El combo que tus clientes van a notar. App propia, pedidos online y Google / Apple Pay.",
     features: [
-      "Todo lo incluido en Starter",
-      "Sitio web premium con diseño de marca (animaciones, tipografía, gradientes)",
-      "Dominio personalizado disponible (costo del dominio aparte)",
-      "App Cliente móvil: pedidos online con seguimiento en tiempo real",
-      "Reservaciones con QR de confirmación",
-      "3 tipos de QR: ID cliente, ticket/pedido y reservación",
-      "Métricas de consumo del cliente por categoría",
-      "Programa de lealtad enrolable a Google Pay / Apple Pay",
-      "Gestión de empleados, socios y sucursales",
+      "Todo lo del plan Esencial",
+      "App Cliente móvil con pedidos online",
+      "Reservaciones con QR",
+      "Lealtad enrolable a Google / Apple Pay",
+      "Métricas de consumo del cliente",
+      "Gestión de empleados y sucursales",
     ],
     cta: "Solicitar demo",
     variant: "default" as const,
     featured: true,
   },
   {
-    name: "Compliance & Data",
-    subtitle: "Suite completa con IA y COFEPRIS",
-    price: "$8,490",
+    name: "Suite Completa",
+    emoji: "🏆",
+    subtitle: "IA + COFEPRIS + Marketing",
+    price: "$1,500",
     period: "/mes MXN",
-    description: "Para operaciones que necesitan métricas avanzadas, cumplimiento regulatorio y control total.",
+    description: "Para los que quieren crecer con datos, cumplir la ley sin dolor y llegar a más clientes.",
     features: [
-      "Todo lo incluido en Growth",
-      "Métricas avanzadas con algoritmos de predicción (IA)",
-      "Forecasting de inventario y horas pico",
-      "Métricas de comportamiento en el sitio web",
-      "Panel sanitario COFEPRIS (MX) / FDA (US) / ANVISA (BR)",
-      "Registros de limpieza, alimentos y caducidades",
-      "Exportación de auditorías en CSV/XLSX",
-      "Envíos propios del negocio",
-      "Soporte prioritario + onboarding dedicado",
+      "Todo lo del plan Negocio",
+      "Métricas avanzadas con predicción IA",
+      "Panel COFEPRIS / FDA / ANVISA",
+      "Exportación de auditorías",
+      "Campañas de marketing segmentadas",
+      "Notificaciones push a clientes",
+      "Soporte prioritario + onboarding",
     ],
     cta: "Solicitar demo",
-    variant: "default" as const,
+    variant: "outline" as const,
   },
+]
+
+const addons = [
+  { icon: CreditCard, label: "Terminal Blokko.io", desc: "Cripto, SPEI, PIX y tarjeta en un dispositivo", badge: "Add-on" },
+  { icon: Wrench, label: "Setup & Configuración", desc: "Montaje inicial del sistema en tu local", badge: "Desde $800" },
+  { icon: GraduationCap, label: "Capacitación extra", desc: "Sesión de entrenamiento para tu equipo", badge: "Desde $500" },
+  { icon: HeadphonesIcon, label: "Soporte premium", desc: "Atención personalizada 7 días / semana", badge: "$300/mes" },
 ]
 
 export function Pricing() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.2 })
+  const isInView = useInView(ref, { once: false, amount: 0.1 })
 
   return (
     <section id="precios" className="py-20 md:py-32 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
+          ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-2xl mx-auto mb-12"
         >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
+            <Zap className="w-3 h-3 text-primary" />
+            <span className="text-xs font-medium text-primary">Precios accesibles para todo negocio</span>
+          </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-            Planes que escalan con tu negocio
+            Lo que necesitas, al precio que mereces
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Precios en pesos mexicanos. Sin contratos anuales forzosos. Cambia de plan cuando quieras.
+          <p className="text-muted-foreground">
+            Empieza con lo esencial y crece cuando quieras. Sin contratos análes, sin sorpresas.
           </p>
+          <div className="mt-4 text-sm text-muted-foreground bg-muted/50 rounded-lg px-4 py-2 inline-block">
+            🇲🇽 Precios en MXN · USD y BRL disponibles · Cotización para varias sucursales
+          </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto" ref={ref}>
+        {/* Plans grid */}
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
           {plans.map((plan, index) => (
             <motion.div
-              key={index}
+              key={plan.name}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex"
+              whileHover={{ y: -4 }}
             >
-              <Card className={`p-6 flex flex-col w-full border-2 transition-all ${
-                plan.featured
-                  ? "border-primary shadow-xl shadow-primary/10 relative"
-                  : "border-border hover:border-primary/30"
-              }`}>
+              <Card
+                className={`p-6 h-full flex flex-col bg-card/80 backdrop-blur-sm border-2 transition-all ${
+                  plan.featured
+                    ? "border-primary/50 shadow-xl shadow-primary/15 relative overflow-hidden"
+                    : "border-border hover:border-primary/30"
+                }`}
+              >
                 {plan.featured && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="bg-primary text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full">
-                      Recomendado
-                    </span>
-                  </div>
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-warning to-primary" />
                 )}
-                <div className="mb-6">
-                  <h3 className="text-xl font-bold text-foreground mb-0.5">{plan.name}</h3>
-                  <p className="text-xs text-primary font-medium mb-3">{plan.subtitle}</p>
-                  <div className="flex items-baseline gap-1 mb-3">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <div className="text-2xl mb-1">{plan.emoji}</div>
+                    <h3 className="text-lg font-bold text-foreground">{plan.name}</h3>
+                    <p className="text-xs text-primary font-medium">{plan.subtitle}</p>
+                  </div>
+                  {plan.featured && (
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium">
+                      Más popular
+                    </span>
+                  )}
+                </div>
+
+                <div className="mb-4">
+                  <div className="flex items-baseline gap-1">
                     <span className="text-4xl font-bold text-foreground">{plan.price}</span>
                     <span className="text-sm text-muted-foreground">{plan.period}</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">{plan.description}</p>
+                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{plan.description}</p>
                 </div>
 
-                <ul className="space-y-2.5 flex-1 mb-6">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                <ul className="space-y-2 flex-1 mb-6">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       <span className="text-sm text-foreground/80">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 <Button
-                  size="lg"
                   variant={plan.variant}
-                  className={plan.featured ? "bg-primary text-primary-foreground hover:bg-primary/90" : ""}
+                  className={`w-full rounded-xl font-semibold ${
+                    plan.featured
+                      ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:from-primary/90 hover:to-primary/70 shadow-md shadow-primary/25"
+                      : "border-primary/30 text-primary hover:bg-primary/10"
+                  }`}
                   asChild
                 >
-                  <a
-                    href={`https://wa.me/525512291607?text=Hola%2C%20me%20interesa%20el%20plan%20${encodeURIComponent(plan.name)}%20de%20Xoco%20Suite`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href="https://wa.me/5215512345678?text=Hola%2C%20me%20interesa%20el%20plan" target="_blank" rel="noopener noreferrer">
+                    <MessageCircle className="w-4 h-4 mr-2" />
                     {plan.cta}
                   </a>
                 </Button>
@@ -147,40 +169,40 @@ export function Pricing() {
           ))}
         </div>
 
-        {/* Blokko Add-on */}
+        {/* Add-ons */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-10 max-w-4xl mx-auto"
+          className="bg-muted/30 border border-border rounded-2xl p-6"
         >
-          <Card className="p-6 border-2 border-dashed border-primary/40 bg-primary/5">
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
-              <div className="p-3 rounded-xl bg-primary/10 flex-shrink-0">
-                <CreditCard className="w-6 h-6 text-primary" />
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-1">
-                  <h4 className="font-bold text-foreground">Add-on: Terminal Blokko.io</h4>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">Opcional</span>
+          <div className="text-center mb-6">
+            <h3 className="text-lg font-bold text-foreground mb-1">🛠️ Servicios adicionales</h3>
+            <p className="text-sm text-muted-foreground">Agrega lo que necesitas, cuando lo necesites</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {addons.map(({ icon: Icon, label, desc, badge }) => (
+              <div key={label} className="flex items-start gap-3 p-3 rounded-xl bg-card/50 border border-border/50 hover:border-primary/30 transition-colors">
+                <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
+                  <Icon className="w-4 h-4 text-primary" />
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  Agrega la terminal física de Blokko.io a cualquier plan y acepta tarjetas, SPEI/CoDi, PIX y criptomonedas (EVM + Lightning) en un solo dispositivo. La comisión por transacción la determina Blokko.io y se suma al costo del plan.
-                </p>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <span className="text-sm font-medium text-foreground">{label}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">{desc}</p>
+                  <span className="text-xs text-primary font-medium mt-1 inline-block">{badge}</span>
+                </div>
               </div>
-              <Button variant="outline" size="sm" className="flex-shrink-0" asChild>
-                <a href="https://blokko.io" target="_blank" rel="noopener noreferrer">
-                  Ver Blokko.io
-                </a>
-              </Button>
-            </div>
-          </Card>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Note */}
+        {/* Fine print */}
         <p className="text-center text-xs text-muted-foreground mt-6">
           Precios en MXN. USD y BRL disponibles bajo cotización. Costo de dominio personalizado no incluido.
-          Xoco Suite no es organismo certificador; los paneles sanitarios son herramientas de apoyo.
+          Cotización especial para 2+ sucursales. ¿Tienes una cadena o franquicia? 
+          <a href="https://wa.me/5215512345678" className="text-primary hover:underline ml-1">Háblanos.</a>
         </p>
       </div>
     </section>
