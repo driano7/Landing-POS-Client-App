@@ -68,8 +68,7 @@ const plans = [
 ]
 
 const addons = [
-  { icon: CreditCard, label: "Terminal Blokko.io", desc: "Cripto + SPEI + PIX + tarjeta", badge: "Add-on" },
-  { icon: Wrench, label: "Setup & Configuración", desc: "Montaje inicial", badge: "$800+" },
+  { icon: CreditCard, label: "Terminal Blokko.io", desc: "Acepta cripto + PIX, recibe pesos MXN al día siguiente", badge: "Add-on" },  { icon: Wrench, label: "Setup & Configuración", desc: "Montaje inicial", badge: "$800+" },
   { icon: GraduationCap, label: "Capacitación extra", desc: "Entrenamiento equipo", badge: "$500+" },
   { icon: HeadphonesIcon, label: "Soporte premium", desc: "7 días/semana", badge: "$300/mes" },
 ]
@@ -100,8 +99,8 @@ export function Pricing() {
             Sin contratos anuales, sin sorpresas.
           </p>
           <div className="mt-3 text-xs md:text-sm text-muted-foreground bg-muted/50 rounded-lg px-3 py-1.5 inline-block">
-            🇲🇽 Precios en MXN · Cotización para varias sucursales
-          </div>
+            <div className="mt-3 text-xs md:text-sm text-muted-foreground bg-muted/50 rounded-lg px-3 py-1.5 inline-block">
+                          🇲🇽 Precios en MXN · Cotización para varias sucursales · Dominio personalizado sujeto a precio
         </motion.div>
 
         {/* Plans grid - optimizado para móvil */}
