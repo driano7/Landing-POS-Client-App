@@ -1,8 +1,7 @@
 "use client"
 import { Card } from "@/components/ui/card"
 import { ShoppingCart, TrendingUp, Shield, Smartphone, CreditCard, Megaphone, Check } from "lucide-react"
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
 const modules = [
@@ -102,13 +101,59 @@ const modules = [
   },
 ]
 
+// Variants para el contenedor: orquesta el stagger entre tarjetas
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.09,
+      delayChildren: 0.05,
+    },
+  },
+  exit: {
+    transition: {
+      staggerChildren: 0.06,
+      staggerDirection: -1,
+    },
+  },
+}
+
+// Variants para cada tarjeta: fade + slide-up al entrar, fade + slide-down al salir
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 52,
+    scale: 0.95,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: 30,
+    scale: 0.97,
+    transition: {
+      duration: 0.3,
+      ease: [0.55, 0, 1, 0.45],
+    },
+  },
+}
+
 export function ProductModules() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.1 })
+  // once: false -> la animación se dispara cada vez que el grid entra o sale del viewport
+  const isInView = useInView(ref, { once: false, amount: 0.08 })
 
   return (
     <section id="productos" className="py-20 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
+        {/* Título */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -123,23 +168,50 @@ export function ProductModules() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" ref={ref}>
+        {/* Grid con animación staggered: aparece al entrar, desaparece al salir */}
+        <motion.div
+          ref={ref}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "exit"}
+        >
           {modules.map((module, index) => {
             const Icon = module.icon
             const colorClass =
-              module.color === "success" ? "text-success" : module.color === "info" ? "text-info" : module.color === "warning" ? "text-yellow-500" : "text-primary"
+              module.color === "success"
+                ? "text-success"
+                : module.color === "info"
+                ? "text-info"
+                : module.color === "warning"
+                ? "text-yellow-500"
+                : "text-primary"
             const bgClass =
-              module.color === "success" ? "bg-success/10" : module.color === "info" ? "bg-info/10" : module.color === "warning" ? "bg-yellow-500/10" : "bg-primary/10"
+              module.color === "success"
+                ? "bg-success/10"
+                : module.color === "info"
+                ? "bg-info/10"
+                : module.color === "warning"
+                ? "bg-yellow-500/10"
+                : "bg-primary/10"
 
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                whileHover={{ scale: 1.02, y: -3 }}
+                variants={cardVariants}
+                whileHover={{
+                  scale: 1.03,
+                  y: -4,
+                  transition: { duration: 0.18, ease: "easeOut" },
+                }}
               >
-                <Card className={`p-6 h-full bg-card/80 backdrop-blur-sm border-2 hover:border-primary/30 transition-all ${ module.featured ? "border-primary/40 shadow-lg shadow-primary/10" : "border-border"}`}>
+                <Card
+                  className={`p-6 h-full bg-card/80 backdrop-blur-sm border-2 hover:border-primary/30 transition-colors ${
+                    module.featured
+                      ? "border-primary/40 shadow-lg shadow-primary/10"
+                      : "border-border"
+                  }`}
+                >
                   <div className="flex items-start justify-between mb-4">
                     <div className={`p-2.5 rounded-xl ${bgClass}`}>
                       <Icon className={`w-5 h-5 ${colorClass}`} />
@@ -170,7 +242,7 @@ export function ProductModules() {
               </motion.div>
             )
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
