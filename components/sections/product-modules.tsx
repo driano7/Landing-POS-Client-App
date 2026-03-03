@@ -1,6 +1,6 @@
 "use client"
 import { Card } from "@/components/ui/card"
-import { ShoppingCart, TrendingUp, Shield, Smartphone, CreditCard, Megaphone } from "lucide-react"
+import { ShoppingCart, TrendingUp, Shield, Smartphone, CreditCard, Megaphone, Check } from "lucide-react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
@@ -161,7 +161,7 @@ export function ProductModules() {
                   <ul className="space-y-1.5">
                     {module.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <span className={`text-xs mt-0.5 flex-shrink-0 ${colorClass}`}>\u2713</span>
+                        <Check className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${colorClass}`} />
                         <span className="text-xs text-foreground/80">{feature}</span>
                       </li>
                     ))}
