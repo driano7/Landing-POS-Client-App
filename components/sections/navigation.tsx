@@ -1,20 +1,25 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import { type MouseEvent, useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, useSheet } from "@/components/ui/sheet"
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
 
 const navLinks = [
   { href: "#features", label: "Características" },
   { href: "#pricing", label: "Precios" },
   { href: "#testimonials", label: "Testimonios" },
   { href: "#faq", label: "FAQ" },
+  { href: "/cursos", label: "Cursos" },
+  { href: "/noticias", label: "Noticias" },
+  { href: "/ebooks", label: "eBooks" },
 ]
 
-const demoLink =
-  "https://wa.me/525512291607?text=Hola%2C%20me%20interesa%20agendar%20una%20demo%20de%20Xoco%20Suite"
+const consultingLink =
+  "https://wa.me/525512291607?text=Hola%2C%20me%20interesa%20agendar%20una%20consulta%20de%20Xoco%20Suite"
 
 function scrollToAnchor(href: string) {
   const target = document.querySelector(href)
@@ -23,20 +28,31 @@ function scrollToAnchor(href: string) {
   }
 }
 
+function isAnchor(link: typeof navLinks[number]) {
+  return link.href.startsWith("#")
+}
+
 function MobileNavLink({ href, label }: typeof navLinks[number]) {
+  const router = useRouter()
   const { setOpen } = useSheet()
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    setOpen(false)
+    if (href.startsWith("#")) {
+      scrollToAnchor(href)
+    } else {
+      router.push(href)
+    }
+  }
+
   return (
-    <a
-      href={href}
-      onClick={(event) => {
-        event.preventDefault()
-        setOpen(false)
-        scrollToAnchor(href)
-      }}
-      className="block rounded-2xl border border-gray-200 bg-white/80 px-4 py-3 text-base font-medium text-gray-700 transition hover:border-orange-300 hover:text-gray-900"
+    <button
+      type="button"
+      onClick={handleClick}
+      className="block rounded-2xl border border-gray-200 bg-white/80 px-4 py-3 text-base font-medium text-gray-700 transition hover:border-orange-300 hover:text-gray-900 text-left w-full"
     >
       {label}
-    </a>
+    </button>
   )
 }
 
@@ -82,27 +98,35 @@ export function Navigation() {
 
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(event) => {
-                  event.preventDefault()
-                  scrollToAnchor(link.href)
-                }}
-                className="text-sm font-medium text-gray-700 transition hover:text-gray-900"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              isAnchor(link) ? (
+                <button
+                  key={link.href}
+                  type="button"
+                  onClick={() => scrollToAnchor(link.href)}
+                  className="text-sm font-medium text-gray-700 transition hover:text-gray-900"
+                >
+                  {link.label}
+                </button>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium text-gray-700 transition hover:text-gray-900"
+                >
+                  {link.label}
+                </Link>
+              ),
+            )}
           </div>
 
           <Button
             type="button"
-            className="hidden rounded-full bg-gradient-to-r from-amber-600 to-orange-600 px-6 py-3 text-white font-semibold uppercase shadow-lg hover:shadow-xl md:inline-flex"
-            onClick={() => window.open(demoLink, "_blank")}
+            className="hidden items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 px-6 py-3 text-sm font-bold uppercase shadow-lg hover:shadow-xl md:inline-flex"
+            onClick={() => window.open(consultingLink, "_blank")}
           >
-            Agenda Demo
+            <WhatsAppIcon className="h-5 w-5" />
+            <span>Iniciar consultoría ahora</span>
           </Button>
 
           <Sheet>
@@ -124,10 +148,11 @@ export function Navigation() {
               <div className="mt-6">
                 <Button
                   type="button"
-                  className="w-full rounded-full bg-gradient-to-r from-amber-600 to-orange-600 px-6 py-3 text-white font-semibold uppercase shadow-lg hover:shadow-xl"
-                  onClick={() => window.open(demoLink, "_blank")}
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 px-6 py-3 text-sm font-bold uppercase shadow-lg hover:shadow-xl"
+                  onClick={() => window.open(consultingLink, "_blank")}
                 >
-                  Agenda Demo
+                  <WhatsAppIcon className="h-5 w-5" />
+                  Iniciar consultoría ahora
                 </Button>
               </div>
             </SheetContent>

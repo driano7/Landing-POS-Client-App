@@ -1,6 +1,7 @@
 "use client"
 
-import { Bitcoin, Ethereum } from "lucide-react"
+import { Bitcoin, Sparkles } from "lucide-react"
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
 
 const stats = [
   { value: "0% comisiones extra", label: "Comisiones" },
@@ -17,7 +18,7 @@ export default function FinalCTA() {
         <Bitcoin size={48} className="text-orange-300" aria-hidden />
       </div>
       <div className="absolute bottom-8 left-12 opacity-70 animate-bounce">
-        <Ethereum size={48} className="text-cyan-300" aria-hidden />
+        <Sparkles size={48} className="text-cyan-300" aria-hidden />
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
@@ -42,9 +43,11 @@ export default function FinalCTA() {
         <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
           <button
             type="button"
-            className="rounded-xl bg-white px-10 py-5 text-lg font-bold text-gray-900 shadow-2xl transition hover:bg-gray-100"
+            className="flex items-center gap-3 rounded-xl bg-white px-10 py-5 text-lg font-bold text-gray-900 shadow-2xl transition hover:bg-gray-100"
+            onClick={() => window.open("https://wa.me/525512291607?text=Hola%2C%20me%20interesa%20agendar%20una%20consulta%20de%20Xoco%20Suite", "_blank")}
           >
-            Agenda Demo Gratis
+            <WhatsAppIcon className="h-6 w-6" />
+            Iniciar consultoría ahora
           </button>
           <button
             type="button"
