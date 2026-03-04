@@ -1,12 +1,13 @@
 "use client"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Smartphone, Monitor, Star, Zap, Shield, Coffee, ChevronDown } from "lucide-react"
-import { motion, useInView } from "framer-motion"
+import { ArrowRight, Smartphone, Monitor, Star, Zap, Shield, TrendingUp, Coffee, ChevronDown } from "lucide-react"
+import { motion } from "framer-motion"
+import { useInView } from "framer-motion"
 import { useRef } from "react"
 
 export function Hero() {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-120px 0px -80px 0px" })
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: false, amount: 0.3 })
 
   return (
     <section className="relative pt-20 pb-12 md:pt-32 md:pb-20 overflow-hidden bg-background">

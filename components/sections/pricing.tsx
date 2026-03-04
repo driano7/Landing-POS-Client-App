@@ -1,5 +1,4 @@
 "use client"
-
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Check, CreditCard, Zap, Building2, MessageCircle, Wrench, GraduationCap, HeadphonesIcon } from "lucide-react"
@@ -14,6 +13,7 @@ const plans = [
     price: "$500",
     period: "/mes",
     description: "POS + Inventario + Pagos + Lealtad QR",
+    // Features resumidos para móvil
     featuresShort: ["POS", "Inventario", "Pagos", "Soporte"],
     featuresFull: [
       "POS operativo: mesas y caja",
@@ -68,14 +68,14 @@ const plans = [
 ]
 
 const addons = [
-  { icon: CreditCard, label: "Terminal Blokko.io", desc: "Acepta cripto + PIX, recibe pesos MXN al día siguiente", badge: "Add-on" },
-  { icon: Wrench, label: "Setup & Configuración", desc: "Montaje inicial", badge: "$800+" },
+  { icon: CreditCard, label: "Terminal Blokko.io", desc: "Acepta cripto + PIX, recibe pesos MXN al día siguiente", badge: "Add-on" },  { icon: Wrench, label: "Setup & Configuración", desc: "Montaje inicial", badge: "$800+" },
   { icon: GraduationCap, label: "Capacitación extra", desc: "Entrenamiento equipo", badge: "$500+" },
   { icon: HeadphonesIcon, label: "Soporte premium", desc: "7 días/semana", badge: "$300/mes" },
 ]
 
-export default function Pricing() {
+export function Pricing() {
   const ref = useRef(null)
+  // once: true para evitar que desaparezca al scrollear
   const isInView = useInView(ref, { once: true, amount: 0.15 })
 
   return (
@@ -95,12 +95,12 @@ export default function Pricing() {
           <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-3 text-balance">
             Lo que necesitas, al precio que mereces
           </h2>
-          <p className="text-sm md:text-base text-muted-foreground">Sin contratos anuales, sin sorpresas.</p>
-          <div className="mt-3 text-xs md:text-sm text-muted-foreground bg-muted/50 rounded-lg px-3 py-1.5 inline-block">
-            🇲🇽 Precios en MXN · Cotización para varias sucursales · Dominio personalizado sujeto a precio
+          <p className="text-sm md:text-base text-muted-foreground">
+            Sin contratos anuales, sin sorpresas.
+          </p>
+          <div className="mt-3 text-xs md:text-sm text-muted-foreground bg-muted/50 rounded-lg px-3 py-1.5 inline-block">                          🇲🇽 Precios en MXN · Cotización para varias sucursales · Dominio personalizado sujeto a precio
           </div>
-        </motion.div>
-
+        </motion.div>        {/* Plans grid - optimizado para móvil */}
         <div className="grid md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
           {plans.map((plan, index) => (
             <motion.div
@@ -141,7 +141,9 @@ export default function Pricing() {
                   <p className="text-xs md:text-sm text-muted-foreground mt-1.5 md:mt-2 leading-snug">{plan.description}</p>
                 </div>
 
+                {/* Móvil: lista corta / Desktop: lista completa */}
                 <ul className="space-y-1.5 md:space-y-2 flex-1 mb-4 md:mb-6">
+                  {/* Solo en móvil (< md) */}
                   <div className="md:hidden space-y-1.5">
                     {plan.featuresShort.map((feature) => (
                       <li key={feature} className="flex items-start gap-1.5">
@@ -150,6 +152,7 @@ export default function Pricing() {
                       </li>
                     ))}
                   </div>
+                  {/* Solo en desktop (>= md) */}
                   <div className="hidden md:block space-y-2">
                     {plan.featuresFull.map((feature) => (
                       <li key={feature} className="flex items-start gap-2">
@@ -183,6 +186,7 @@ export default function Pricing() {
           ))}
         </div>
 
+        {/* Add-ons - también resumidos en móvil */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -212,8 +216,9 @@ export default function Pricing() {
           </div>
         </motion.div>
 
+        {/* Fine print */}
         <p className="text-center text-[10px] md:text-xs text-muted-foreground mt-4 md:mt-6 px-2">
-          Precios en MXN. Cotización especial para 2+ sucursales. 
+          Precios en MXN. Cotización especial para 2+ sucursales.{" "}
           <a href="https://wa.me/525512291607" className="text-primary hover:underline">
             Háblanos
           </a>
