@@ -1,3 +1,4 @@
+import CryptoComparison from "@/components/sections/crypto-comparison"
 import { Hero } from "@/components/sections/hero"
 import { ProductModules } from "@/components/sections/product-modules"
 import { Pricing } from "@/components/sections/pricing"
@@ -20,6 +21,7 @@ export default function Home() {
       <Cofepris />
       <QRFlows />
       <WhyComplete />
+      <CryptoComparison />
       <POCs />
       <Footer />
     </main>

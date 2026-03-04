@@ -11,6 +11,8 @@ const navLinks = [
   { href: "#precios", label: "Precios" },
   { href: "#seguridad", label: "Seguridad" },
   { href: "#sanidad", label: "Sanidad" },
+  { href: "/noticias", label: "Noticias" },
+  { href: "/ebooks", label: "eBooks" },
 ]
 
 export function Navigation() {
