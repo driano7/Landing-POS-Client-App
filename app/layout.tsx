@@ -1,14 +1,9 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Lato } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
-const lato = Lato({
-  subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
-})
 
 export const metadata: Metadata = {
   title: "Xoco Suite - Plataforma SaaS para Restaurantes en México, USA y Brasil",
@@ -52,7 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${lato.className} font-sans antialiased transition-colors duration-500`}>
+      <body className="font-sans antialiased transition-colors duration-500">
         <ThemeProvider defaultTheme="dark" storageKey="xoco-theme">
           {children}
         </ThemeProvider>

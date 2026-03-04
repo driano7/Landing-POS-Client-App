@@ -16,6 +16,7 @@ const resourceLinks = [
   { href: "https://github.com/driano7/Xoco-POS", label: "API Reference" },
   { href: "#blog", label: "Blog" },
   { href: "#casos", label: "Casos de Estudio" },
+  { href: "/acerca", label: "Acerca de nosotros" },
   { href: "#ayuda", label: "Centro de Ayuda" },
 ]
 
