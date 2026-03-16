@@ -191,9 +191,21 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-border">
+        <div className="pt-8 border-t border-border pb-24 md:pb-0">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">© 2026 Xoco Suite. Desarrollado por Donovan Riaño.</p>
+            <p className="text-sm text-muted-foreground">
+              © 2026 Xoco Suite. Con 💙 desarrollado por{" "}
+              <motion.a
+                href="https://studio--donovan-riao-portfolio.us-central1.hosted.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-primary underline decoration-2 decoration-current underline-offset-2 hover:opacity-90 transition-opacity"
+                whileHover={{ y: -1 }}
+              >
+                Donovan Riaño
+              </motion.a>
+              .
+            </p>
             <div className="flex items-center gap-6">
               <MotionLink
                 href="#privacidad"
