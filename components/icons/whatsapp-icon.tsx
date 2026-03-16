@@ -1,22 +1,22 @@
-import * as React from "react"
+import type { SVGProps } from "react"
 
-export function WhatsAppIcon({ className }: { className?: string }) {
+type WhatsAppIconProps = SVGProps<SVGSVGElement>
+
+export function WhatsAppIcon(props: WhatsAppIconProps) {
   return (
     <svg
       viewBox="0 0 24 24"
-      aria-hidden
-      role="img"
-      className={className}
-      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
     >
-      <path
-        fill="#25D366"
-        d="M20.52 3.48A10 10 0 0 0 3.48 20.52L2 22l1.48-4.52A10 10 0 1 0 20.52 3.48Z"
-      />
-      <path
-        fill="#fff"
-        d="M16.6 14.34c-.36-1.08-2.12-1.98-2.3-2.04-.18-.07-.31-.1-.44.1-.13.18-.52.66-.64.8-.12.13-.24.16-.45.05a6.24 6.24 0 0 1-1.88-1.15c-.17-.18-.18-.3-.01-.48.15-.16.33-.4.5-.6.17-.2.23-.34.36-.55.12-.2.06-.37-.03-.49-.08-.12-.44-1.07-.6-1.47-.18-.4-.37-.35-.5-.36h-.42c-.13 0-.35.05-.54.25s-.7.68-.7 1.66.72 1.93.82 2.07c.1.13 1.38 2.1 3.35 2.93 1.63.69 1.55.65 1.84.61.3-.04.96-.39 1.1-.77.14-.36.14-.68.1-.76Z"
-      />
+      <path d="M12 21c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8c0 1.25.29 2.43.8 3.48L4 20l3.7-1.3A7.96 7.96 0 0 0 12 21Z" />
+      <path d="M9.75 11.25c0 1.66 1.34 3 3 3 .34 0 .66-.06.96-.17l1.54.88" />
+      <path d="M13.5 9.5v-1" />
     </svg>
   )
 }

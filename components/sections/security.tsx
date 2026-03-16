@@ -1,6 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
+import { TypingText } from "@/components/ui/typing-text"
 import { Shield, Lock, Key, Database, Eye, FileCheck } from "lucide-react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
@@ -58,7 +59,7 @@ export function Security() {
             </div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
-              Seguridad, cifrado y privacidad de grado empresarial
+              <TypingText text="Seguridad, cifrado y privacidad de grado empresarial" />
             </h2>
 
             <p className="text-lg text-muted-foreground leading-relaxed mb-8 text-pretty">
@@ -69,7 +70,7 @@ export function Security() {
             <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 mb-8">
               <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
                 <span className="text-2xl">🔐</span>
-                ¿Qué es AES-GCM? (explicación simple)
+                <TypingText text="¿Qué es AES-GCM? (explicación simple)" />
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Imagina que tienes una caja fuerte súper especial que convierte toda la información de tus clientes en
@@ -81,7 +82,9 @@ export function Security() {
             </div>
 
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="font-semibold text-foreground mb-4">Flujo de seguridad</h3>
+              <h3 className="font-semibold text-foreground mb-4">
+                <TypingText text="Flujo de seguridad" />
+              </h3>
               <div className="space-y-2">
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-xs">
@@ -130,7 +133,9 @@ export function Security() {
                       <div className="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center mb-3">
                         <Icon className="w-5 h-5 text-success" />
                       </div>
-                      <h3 className="font-semibold text-sm text-foreground mb-1">{feature.title}</h3>
+                      <h3 className="font-semibold text-sm text-foreground mb-1">
+                        <TypingText text={feature.title} />
+                      </h3>
                       <p className="text-xs text-muted-foreground leading-tight">{feature.description}</p>
                     </Card>
                   </motion.div>
@@ -152,7 +157,9 @@ export function Security() {
                       <div className="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center mb-3">
                         <Icon className="w-5 h-5 text-success" />
                       </div>
-                      <h3 className="font-semibold text-sm text-foreground mb-1">{feature.title}</h3>
+                      <h3 className="font-semibold text-sm text-foreground mb-1">
+                        <TypingText text={feature.title} />
+                      </h3>
                       <p className="text-xs text-muted-foreground leading-tight">{feature.description}</p>
                     </Card>
                   </motion.div>

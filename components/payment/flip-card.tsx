@@ -40,7 +40,7 @@ function chunkByPattern(value: string, pattern: number[]) {
 }
 
 function formatNumber(value: string, brand: CardBrand) {
-  const digits = value.replace(/\D/g, "")
+  const digits = value.replace(/\\D/g, "")
   const targetLength = brandLengths[brand]
   const padded = (digits + slipPlaceholder(brand)).slice(0, targetLength)
   const pattern = brandPatterns[brand]
@@ -48,7 +48,7 @@ function formatNumber(value: string, brand: CardBrand) {
 }
 
 export function detectCardBrand(cardNumber: string): CardBrand {
-  const digits = cardNumber.replace(/\D/g, "")
+  const digits = cardNumber.replace(/\\D/g, "")
   if (/^3[47]/.test(digits)) {
     return "amex"
   }

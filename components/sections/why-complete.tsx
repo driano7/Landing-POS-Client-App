@@ -1,89 +1,66 @@
 "use client"
 
-import { Bitcoin, Shield, Smartphone, TrendingUp } from "lucide-react"
+import Link from "next/link"
+import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { TypingText } from "@/components/ui/typing-text"
+import { CheckCircle2, Shield } from "lucide-react"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 
-const benefits = [
-  {
-    icon: Bitcoin,
-    iconColor: "text-orange-500",
-    bgColor: "bg-orange-100",
-    title: "Pagos del Futuro",
-    description:
-      "Acepta Bitcoin, ETH, USDC y USDT directamente en tu POS. Sin intermediarios, sin comisiones abusivas.",
-    stat: "Ahorra hasta 80%",
-    statLabel: "en comisiones",
-  },
-  {
-    icon: Shield,
-    iconColor: "text-blue-500",
-    bgColor: "bg-blue-100",
-    title: "Cumplimiento COFEPRIS",
-    description:
-      "Panel dedicado para registros de higiene, control de plagas y inventario alimentario. Exporta reportes mensuales.",
-    stat: "100% Compliant",
-    statLabel: "Listo para auditorías",
-  },
-  {
-    icon: Smartphone,
-    iconColor: "text-purple-500",
-    bgColor: "bg-purple-100",
-    title: "App Cliente Completa",
-    description:
-      "Tus clientes hacen pedidos desde su celular y pagan con su wallet crypto. Sin apps de terceros.",
-    stat: "0% comisión",
-    statLabel: "en pedidos directos",
-  },
-  {
-    icon: TrendingUp,
-    iconColor: "text-green-500",
-    bgColor: "bg-green-100",
-    title: "Métricas en Tiempo Real",
-    description:
-      "Dashboards de ventas, productos más vendidos y horas pico. Decisiones respaldadas por datos.",
-    stat: "Insights",
-    statLabel: "en segundos",
-  },
+const bullets = [
+  "Evitas pagar 3 o 4 softwares distintos para POS, pedidos, sitio web, BI y pagos.",
+  "Tienes todo en un solo lugar, con una vista unificada del negocio.",
+  "Tus datos se protegen con cifrado y buenas prácticas tipo GDPR. 🔒",
+  "Incluye panel sanitario y operación offline con sincronización al volver internet.",
 ]
 
 export function WhyComplete() {
-  return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6 space-y-12">
-        <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center rounded-full bg-orange-50 px-4 py-1 text-sm font-semibold text-orange-600">
-            Ventajas Competitivas
-          </div>
-          <div className="space-y-2">
-            <h2 className="text-4xl font-bold text-gray-900">¿Por Qué Xoco Suite?</h2>
-            <p className="text-lg text-gray-600">
-              La única plataforma que combina POS, crypto y compliance en un solo sistema
-            </p>
-          </div>
-        </div>
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.25 })
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {benefits.map((benefit) => {
-            const Icon = benefit.icon
-            return (
-              <article
-                key={benefit.title}
-                className="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl"
-              >
-                <div
-                  className={`${benefit.bgColor} mb-6 flex h-16 w-16 items-center justify-center rounded-full`}
-                >
-                  <Icon size={32} className={`${benefit.iconColor}`} aria-hidden="true" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h3>
-                <p className="text-gray-600 leading-relaxed mb-6">{benefit.description}</p>
-                <div className="mt-auto space-y-1">
-                  <p className="text-3xl font-bold text-gray-900">{benefit.stat}</p>
-                  <p className="text-sm text-gray-500 uppercase tracking-wide">{benefit.statLabel}</p>
-                </div>
-              </article>
-            )
-          })}
-        </div>
+  return (
+    <section id="seguridad" className="py-16 md:py-24 bg-muted/30">
+      <div id="cofepris" className="relative -top-20" />
+      <div className="container mx-auto px-4 lg:px-8">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.45 }}
+          className="max-w-3xl mx-auto text-center mb-10"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-3">
+            <Shield className="w-3 h-3 text-primary" />
+            <span className="text-xs font-medium text-primary">Por qué Xoco Suite</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+            <TypingText text="Una solución pensada para operar sin fricción" />
+          </h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.45, delay: 0.1 }}
+        >
+          <Card className="max-w-4xl mx-auto p-6 md:p-8 border-2 border-border bg-card/85 backdrop-blur-sm">
+            <ul className="space-y-4">
+              {bullets.map((bullet, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                  <p className="text-sm md:text-base text-foreground/90">{bullet}</p>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-7 flex justify-center">
+              <Button asChild variant="outline" className="border-primary/35 text-primary hover:bg-primary/10 rounded-xl font-semibold">
+                <Link href="/prices">Ver planes y precios</Link>
+              </Button>
+            </div>
+          </Card>
+        </motion.div>
       </div>
     </section>
   )

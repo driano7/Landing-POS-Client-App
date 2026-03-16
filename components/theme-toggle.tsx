@@ -5,18 +5,28 @@ import { useTheme } from "./theme-provider"
 import { motion, AnimatePresence } from "framer-motion"
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
+
+  const handleToggleTheme = () => {
+    const nextTheme = resolvedTheme === "light" ? "dark" : "light"
+    setTheme(nextTheme)
+    try {
+      localStorage.setItem("xoco-theme-manual", "1")
+    } catch {
+      // Ignore storage write errors (private mode, blocked storage, etc.).
+    }
+  }
 
   return (
     <motion.button
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      onClick={handleToggleTheme}
       className="relative w-10 h-10 rounded-full flex items-center justify-center overflow-hidden backdrop-blur-sm bg-white/20 border border-white/30 hover:border-white/50 transition-colors"
       whileTap={{ scale: 0.9 }}
       whileHover={{ scale: 1.05 }}
       aria-label="Toggle theme"
     >
       <AnimatePresence mode="wait" initial={false}>
-        {theme === "light" ? (
+        {resolvedTheme === "light" ? (
           <motion.div
             key="sun"
             initial={{ rotate: -90, opacity: 0 }}

@@ -2,15 +2,11 @@
 
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { TypingText } from "@/components/ui/typing-text"
 import { CheckCircle2, AlertCircle, FileText } from "lucide-react"
 import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
 
 export function Cofepris() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.2 })
-
   const cofeprisItems = [
     {
       icon: CheckCircle2,
@@ -46,10 +42,11 @@ export function Cofepris() {
     <section id="cofepris" className="py-20 md:py-32 relative overflow-hidden bg-background">
       <div className="absolute inset-0 bg-gradient-to-br from-success/5 to-transparent" />
 
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
@@ -58,25 +55,28 @@ export function Cofepris() {
             <span className="text-sm font-medium text-success">Cumplimiento Sanitario</span>
           </div>
 
-          <h3 className="text-lg font-semibold text-muted-foreground mb-3">Panel sanitario configurable</h3>
+          <h3 className="text-lg font-semibold text-muted-foreground mb-3">
+            <TypingText text="Panel sanitario configurable" />
+          </h3>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-            Panel de cumplimiento sanitario integrado
+            <TypingText text="Panel de cumplimiento sanitario integrado" />
           </h2>
           <p className="text-lg text-muted-foreground text-pretty">
             Diseñado alineado a requerimientos de manejo y tracking de alimentos
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6" ref={ref}>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {cofeprisItems.map((item, index) => {
             const Icon = item.icon
             return (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.45, delay: index * 0.12 }}
                 whileHover={{ scale: 1.05, y: -5 }}
               >
                 <Card className="p-4 border-2 border-success/20 hover:border-success/40 transition-colors h-full bg-card/80 backdrop-blur-sm">
@@ -86,7 +86,9 @@ export function Cofepris() {
                     </div>
                     <Badge className="bg-success text-success-foreground text-xs">{item.badge}</Badge>
                   </div>
-                  <h3 className="font-bold text-sm text-foreground mb-1">{item.title}</h3>
+                  <h3 className="font-bold text-sm text-foreground mb-1">
+                    <TypingText text={item.title} />
+                  </h3>
                   <p className="text-xs text-muted-foreground mb-2">{item.description}</p>
                   <div className="text-lg font-bold text-success">{item.metric}</div>
                 </Card>
@@ -97,12 +99,15 @@ export function Cofepris() {
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-12 max-w-4xl mx-auto text-center space-y-6"
         >
           <div className="text-left bg-muted/30 rounded-xl p-6 border border-border">
-            <h4 className="font-bold text-foreground mb-4">Marcos regulatorios soportados:</h4>
+            <h4 className="font-bold text-foreground mb-4">
+              <TypingText text="Marcos regulatorios soportados:" />
+            </h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li>
                 <span className="font-semibold text-foreground">México:</span> alineado a NOM-251-SSA1-2009,
