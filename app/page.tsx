@@ -7,7 +7,7 @@ import { Cofepris } from "@/components/sections/cofepris"
 import { QRFlows } from "@/components/sections/qr-flows"
 import { WhyComplete } from "@/components/sections/why-complete"
 import { POCs } from "@/components/sections/pocs"
-import { Footer } from "@/components/sections/footer"
+import Footer from "@/components/sections/footer"
 import { Navigation } from "@/components/sections/navigation"
 
 export default function Home() {
