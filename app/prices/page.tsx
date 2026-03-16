@@ -79,7 +79,7 @@ const plans: Plan[] = [
     blokkoBadge: "Opcional",
     features: [
       { icon: Globe, text: "Sitio web completo con menú dinámico y secciones clave." },
-      { icon: Store, text: "POS con inventario básico y alertas de stock." },
+      { icon: Store, text: "POS con inventario básico, alertas de stock y recuperación/recreación de tickets." },
       { icon: ShieldCheck, text: "Roles múltiples: admin, caja y cocina." },
       { icon: QrCode, text: "Reservas y pedidos con QR + lealtad básica con PNG compatible.", underlinePart: "lealtad básica" },
       { icon: BarChart3, text: "Reportes simples de ventas (sin modelos de Machine Learning).", underlinePart: "(sin modelos de Machine Learning)." },
@@ -98,7 +98,7 @@ const plans: Plan[] = [
       { icon: Globe, text: "Landing con secciones de eventos, video y galerías." },
       { icon: Smartphone, text: "Lealtad con Apple/Google Wallet + PNG compartible." },
       { icon: BarChart3, text: "Métricas de consumo: visitas, frecuencia y ticket promedio." },
-      { icon: Building2, text: "Gestión de empleados y hasta 2 sucursales." },
+      { icon: Building2, text: "Gestión de empleados y hasta 3 sucursales, con recuperación/recreación de tickets." },
       { icon: Store, text: "Exportación CSV/Excel + panel COFEPRIS básico.", underlinePart: "panel COFEPRIS básico" },
       { icon: CreditCard, text: "Blokko integrado para tarjetas, SPEI/PIX y cripto (opcional, se adapta mejor para tu negocio)." },
     ],
@@ -112,7 +112,7 @@ const plans: Plan[] = [
     blokkoBadge: "Opcional (funciona mejor aquí)",
     features: [
       { icon: Globe, text: "Sitio totalmente personalizado con diseño de marca." },
-      { icon: Building2, text: "Multi-sucursal completa (3+) con control global." },
+      { icon: Building2, text: "Multi-sucursal completa (3+) con control global y recuperación/recreación de tickets." },
       { icon: QrCode, text: "Operación offline robusta y sincronización automática." },
       { icon: BarChart3, text: "Machine Learning: pronóstico de ventas y proyección de inventario." },
       { icon: ShieldCheck, text: "Panel sanitario completo COFEPRIS/FDA/ANVISA." },

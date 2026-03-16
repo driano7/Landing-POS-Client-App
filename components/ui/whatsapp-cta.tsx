@@ -20,7 +20,7 @@ type WhatsAppIconButtonProps = {
 }
 
 const whatsappGradientClass =
-  "group rounded-xl border border-[#8d6e63]/40 bg-gradient-to-r from-[#5c3025] via-[#7d4a30] to-[#b46f3c] text-white shadow-lg shadow-[#7d4a30]/35 transition-all hover:-translate-y-0.5 hover:from-[#6a3a2b] hover:via-[#8b5638] hover:to-[#c6854f] dark:border-[#22304a] dark:from-[#050912] dark:via-[#0b1221] dark:to-[#141f33] dark:text-primary-50 dark:shadow-black/45"
+  "group rounded-xl border border-[#8d6e63]/40 bg-gradient-to-r from-[#5c3025] via-[#7d4a30] to-[#b46f3c] text-white shadow-lg shadow-[#7d4a30]/35 transition-all hover:-translate-y-0.5 hover:from-[#6a3a2b] hover:via-[#8b5638] hover:to-[#c6854f] dark:border-[#4a5f78] dark:from-[#1b2940] dark:via-[#273b58] dark:to-[#355179] dark:text-white dark:shadow-[#0d1626]/45"
 
 function WhatsAppThemeLogo({ className }: { className?: string }) {
   return (
@@ -35,7 +35,7 @@ function WhatsAppThemeLogo({ className }: { className?: string }) {
         src="/whatsapp%20oscuro.png"
         alt=""
         aria-hidden="true"
-        className={cn("hidden h-3.5 w-3.5 object-contain dark:block", className)}
+        className={cn("hidden h-3.5 w-3.5 object-contain dark:block dark:[filter:brightness(0)_invert(1)]", className)}
       />
     </>
   )
@@ -51,7 +51,7 @@ export function WhatsAppCTAButton({
   return (
     <Button asChild size={size} className={cn(whatsappGradientClass, className)}>
       <a href={href} target="_blank" rel="noopener noreferrer">
-        <span className="inline-flex size-5 items-center justify-center rounded-full bg-white/20 transition-colors group-hover:bg-white/30 dark:bg-white/15 dark:group-hover:bg-white/25">
+        <span className="inline-flex size-5 items-center justify-center rounded-full bg-white/20 transition-colors group-hover:bg-white/30 dark:bg-white/30 dark:group-hover:bg-white/40">
           <WhatsAppThemeLogo />
         </span>
         <span>{label}</span>
@@ -73,12 +73,17 @@ export function WhatsAppIconButton({
       rel="noopener noreferrer"
       aria-label={ariaLabel}
       className={cn(
-        "inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#8d6e63]/40 bg-gradient-to-r from-[#5c3025] via-[#7d4a30] to-[#b46f3c] text-white shadow-md shadow-[#7d4a30]/35 transition-all hover:-translate-y-0.5 hover:from-[#6a3a2b] hover:via-[#8b5638] hover:to-[#c6854f] dark:border-[#22304a] dark:from-[#050912] dark:via-[#0b1221] dark:to-[#141f33] dark:text-primary-50 dark:shadow-black/45",
+        "inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#8d6e63]/40 bg-gradient-to-r from-[#5c3025] via-[#7d4a30] to-[#b46f3c] text-white shadow-md shadow-[#7d4a30]/35 transition-all hover:-translate-y-0.5 hover:from-[#6a3a2b] hover:via-[#8b5638] hover:to-[#c6854f] dark:border-[#4a5f78] dark:from-[#1b2940] dark:via-[#273b58] dark:to-[#355179] dark:text-white dark:shadow-[#0d1626]/45",
         className,
       )}
     >
       <img src="/whatsapp%20claro.png" alt="" aria-hidden="true" className="h-5 w-5 object-contain dark:hidden" />
-      <img src="/whatsapp%20oscuro.png" alt="" aria-hidden="true" className="hidden h-5 w-5 object-contain dark:block" />
+      <img
+        src="/whatsapp%20oscuro.png"
+        alt=""
+        aria-hidden="true"
+        className="hidden h-5 w-5 object-contain dark:block dark:[filter:brightness(0)_invert(1)]"
+      />
     </a>
   )
 }
