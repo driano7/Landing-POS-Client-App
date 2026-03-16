@@ -23,7 +23,7 @@ export function Footer() {
             <p className="text-sm text-muted-foreground leading-relaxed">
               Suite tecnológica completa para restaurantes en México
             </p>
-            <p className="text-sm text-muted-foreground leading-relaxed mt-2">
+            <p className="text-sm text-muted-foreground leading-relaxed mt-2 underline decoration-2 decoration-current underline-offset-2">
               También desarrollamos sitios web a la medida para cualquier negocio o persona.
             </p>
           </div>
