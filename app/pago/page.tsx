@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Navigation } from "@/components/sections/navigation"
 import { Footer } from "@/components/sections/footer"
 import { FlipCard, detectCardBrand, type CardBrand } from "@/components/payment/flip-card"
+import { TypingText } from "@/components/ui/typing-text"
 
 const paymentHighlights = [
   {
@@ -52,9 +53,11 @@ export default function PagoPage() {
       <Navigation />
       <section className="mx-auto max-w-6xl px-6 py-20">
         <p className="text-xs uppercase tracking-[0.5em] text-amber-300">Pasarela Criptec</p>
-        <h1 className="mt-3 text-4xl font-semibold text-white">Formulario de pago con flip-card interactivo</h1>
+        <h1 className="mt-3 text-4xl font-semibold text-white">
+          <TypingText text="Formulario de pago con flip-card interactivo" />
+        </h1>
         <p className="mt-4 max-w-3xl text-lg text-slate-300">
-          Recorre la UI completa que se mostrará tras seleccionar los eBooks o cualquier producto en el carrito. Todo es experiencia de usuario,
+          Recorre la UI completa del checkout para productos del ecosistema Xoco. Todo es experiencia de usuario,
           sin procesar pagos reales ni conectar servicios externos.
         </p>
       </section>
@@ -190,8 +193,8 @@ export default function PagoPage() {
                   variant="ghost"
                   className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white/80"
                 >
-                  <Link href="/ebooks" className="flex items-center justify-center gap-2">
-                    Volver a eBooks <ArrowRight size={16} aria-hidden />
+                  <Link href="/" className="flex items-center justify-center gap-2">
+                    Volver al inicio <ArrowRight size={16} aria-hidden />
                   </Link>
                 </Button>
               </div>

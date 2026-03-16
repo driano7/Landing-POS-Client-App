@@ -1,10 +1,9 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
+import { TypingText } from "@/components/ui/typing-text"
 import { QrCode, Smartphone, Users, Receipt } from "lucide-react"
 import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
 
 const qrTypes = [
   {
@@ -34,15 +33,13 @@ const qrTypes = [
 ]
 
 export function QRFlows() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.2 })
-
   return (
     <section className="py-20 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
@@ -52,7 +49,7 @@ export function QRFlows() {
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-            Tres tipos de QR para conectar todo
+            <TypingText text="Tres tipos de QR para conectar todo" />
           </h2>
           <p className="text-lg text-muted-foreground text-pretty">
             Desde lealtad hasta pedidos y reservaciones, todo conectado
@@ -67,15 +64,16 @@ export function QRFlows() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" ref={ref}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {qrTypes.map((qr, index) => {
             const Icon = qr.icon
             return (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.45, delay: index * 0.12 }}
                 whileHover={{ scale: 1.05, y: -5 }}
               >
                 <Card className="p-6 hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50 h-full bg-card/80 backdrop-blur-sm">
@@ -84,14 +82,18 @@ export function QRFlows() {
                   </div>
 
                   <div className="mb-4">
-                    <h3 className="text-lg font-bold text-foreground mb-1">{qr.title}</h3>
+                    <h3 className="text-lg font-bold text-foreground mb-1">
+                      <TypingText text={qr.title} />
+                    </h3>
                     <p className="text-sm text-primary font-medium">{qr.subtitle}</p>
                   </div>
 
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{qr.description}</p>
 
                   <div className="space-y-2">
-                    <h4 className="text-xs font-semibold text-foreground uppercase tracking-wider">Flujo</h4>
+                    <h4 className="text-xs font-semibold text-foreground uppercase tracking-wider">
+                      <TypingText text="Flujo" />
+                    </h4>
                     {qr.flow.map((step, i) => (
                       <div key={i} className="flex items-start gap-2">
                         <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -119,7 +121,9 @@ export function QRFlows() {
               <QrCode className="w-6 h-6 text-primary-foreground" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-foreground mb-2">Integración completa</h3>
+              <h3 className="text-lg font-bold text-foreground mb-2">
+                <TypingText text="Integración completa" />
+              </h3>
               <p className="text-sm text-muted-foreground leading-relaxed text-pretty">
                 Todos los QRs se conectan automáticamente: cuando un cliente escanea su QR de lealtad, el sistema
                 vincula el pedido; cuando genera un QR de ticket, puede compartirlo en apps de mensajería o descargarlo;

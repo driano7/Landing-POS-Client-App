@@ -1,12 +1,8 @@
-import CryptoComparison from "@/components/sections/crypto-comparison"
 import { Hero } from "@/components/sections/hero"
 import { ProductModules } from "@/components/sections/product-modules"
 import { Pricing } from "@/components/sections/pricing"
-import { Security } from "@/components/sections/security"
-import { Cofepris } from "@/components/sections/cofepris"
-import { QRFlows } from "@/components/sections/qr-flows"
+import { HowWeHelp } from "@/components/sections/how-we-help"
 import { WhyComplete } from "@/components/sections/why-complete"
-import { POCs } from "@/components/sections/pocs"
 import { Footer } from "@/components/sections/footer"
 import { Navigation } from "@/components/sections/navigation"
 
@@ -15,14 +11,10 @@ export default function Home() {
     <main className="min-h-screen">
       <Navigation />
       <Hero />
+      <HowWeHelp />
+      <WhyComplete />
       <ProductModules />
       <Pricing />
-      <Security />
-      <Cofepris />
-      <QRFlows />
-      <WhyComplete />
-      <CryptoComparison />
-      <POCs />
       <Footer />
     </main>
   )

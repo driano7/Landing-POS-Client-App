@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { TypingText } from "@/components/ui/typing-text"
 import { CheckCircle } from "lucide-react"
 
 const comparisonData = [
@@ -48,7 +49,9 @@ export default function CryptoComparison() {
             Comparativa
           </div>
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold text-gray-900">Crypto vs Métodos Tradicionales</h2>
+            <h2 className="text-3xl font-bold text-gray-900">
+              <TypingText text="Crypto vs Métodos Tradicionales" />
+            </h2>
             <p className="text-lg text-gray-600">
               Descubre por qué las stablecoins son el futuro de los pagos en restaurantes
             </p>

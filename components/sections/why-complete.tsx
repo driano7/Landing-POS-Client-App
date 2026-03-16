@@ -1,98 +1,66 @@
 "use client"
+
+import Link from "next/link"
 import { Card } from "@/components/ui/card"
-import { CheckCircle2 } from "lucide-react"
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
+import { Button } from "@/components/ui/button"
+import { TypingText } from "@/components/ui/typing-text"
+import { CheckCircle2, Shield } from "lucide-react"
+import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
-const categories = [
-  {
-    name: "Operación",
-    emoji: "📲",
-    features: ["POS completo con mesas y caja", "Inventario en tiempo real", "Gestión de empleados y sucursales", "Seguimiento de pedidos en vivo"],
-  },
-  {
-    name: "App Cliente",
-    emoji: "👤",
-    features: ["Pedidos online desde el celular", "Reservaciones con QR", "Seguimiento del pedido en tiempo real", "Historial y métricas de consumo"],
-  },
-  {
-    name: "Lealtad y Pagos",
-    emoji: "💳",
-    features: ["Lealtad en Google Pay y Apple Pay", "SPEI, PIX y tarjetas integradas", "Cripto vía terminal Blokko.io", "3 tipos de QR (cliente, ticket, reserva)"],
-  },
-  {
-    name: "Métricas e IA",
-    emoji: "🧠",
-    features: ["Algoritmos de predicción de ventas", "Forecasting de inventario", "Hábitos de clientes y horas pico", "Comportamiento en el sitio web"],
-  },
-  {
-    name: "Seguridad",
-    emoji: "🔐",
-    features: ["Cifrado AES-GCM 256 bits", "Políticas GDPR y descarga de datos", "Control de acceso por roles", "Auditoría completa de operaciones"],
-  },
-  {
-    name: "Regulación",
-    emoji: "📋",
-    features: ["Panel COFEPRIS / FDA / ANVISA", "Registros de limpieza y alimentos", "Tracking de caducidades", "Exportación de auditorías CSV/XLSX"],
-  },
+const bullets = [
+  "Evitas pagar 3 o 4 softwares distintos para POS, pedidos, sitio web, BI y pagos.",
+  "Tienes todo en un solo lugar, con una vista unificada del negocio.",
+  "Tus datos se protegen con cifrado y buenas prácticas tipo GDPR. 🔒",
+  "Incluye panel sanitario y operación offline con sincronización al volver internet.",
 ]
 
 export function WhyComplete() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.2 })
+  const isInView = useInView(ref, { once: true, amount: 0.25 })
 
   return (
-    <section className="py-20 md:py-32 bg-background">
+    <section id="seguridad" className="py-16 md:py-24 bg-muted/30">
+      <div id="cofepris" className="relative -top-20" />
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          ref={ref}
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.45 }}
+          className="max-w-3xl mx-auto text-center mb-10"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-            Más completo que cualquier solución en LATAM
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-3">
+            <Shield className="w-3 h-3 text-primary" />
+            <span className="text-xs font-medium text-primary">Por qué Xoco Suite</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+            <TypingText text="Una solución pensada para operar sin fricción" />
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Mientras otras plataformas solo cubren POS básico, Xoco Suite integra operación, experiencia de cliente, pagos, métricas con IA, seguridad y cumplimiento regulatorio en una sola suite
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12" ref={ref}>
-          {categories.map((category, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              whileHover={{ scale: 1.03, y: -3 }}
-            >
-              <Card className="p-4 hover:shadow-lg transition-shadow border-2 hover:border-primary/30 bg-card/80 backdrop-blur-sm h-full">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xl">{category.emoji}</span>
-                  <span className="text-sm font-bold text-primary">{category.name}</span>
-                </div>
-                <ul className="space-y-1.5">
-                  {category.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3 h-3 text-success flex-shrink-0 mt-0.5" />
-                      <span className="text-xs text-foreground/80">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.45, delay: 0.1 }}
+        >
+          <Card className="max-w-4xl mx-auto p-6 md:p-8 border-2 border-border bg-card/85 backdrop-blur-sm">
+            <ul className="space-y-4">
+              {bullets.map((bullet, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                  <p className="text-sm md:text-base text-foreground/90">{bullet}</p>
+                </li>
+              ))}
+            </ul>
 
-        <Card className="p-6 md:p-8 max-w-3xl mx-auto bg-gradient-to-br from-primary/10 to-transparent border-2 border-primary/30 text-center">
-          <div className="text-2xl mb-3">🇲🇽</div>
-          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">¿Por qué Xoco Suite?</h3>
-          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            No es una adaptación de soluciones extranjeras. Xoco Suite fue construido desde cero para el mercado latinoamericano de restaurantes: operación eficiente, cumplimiento COFEPRIS, seguridad de datos personales, pagos con cripto y experiencia digital de primer nivel.
-          </p>
-        </Card>
+            <div className="mt-7 flex justify-center">
+              <Button asChild variant="outline" className="border-primary/35 text-primary hover:bg-primary/10 rounded-xl font-semibold">
+                <Link href="/prices">Ver planes y precios</Link>
+              </Button>
+            </div>
+          </Card>
+        </motion.div>
       </div>
     </section>
   )

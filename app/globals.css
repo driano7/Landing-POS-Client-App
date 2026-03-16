@@ -14,6 +14,9 @@
   --primary-foreground: oklch(0.99 0.002 85.87);
   --primary-light: oklch(0.6 0.045 43.17);
   --primary-lighter: oklch(0.88 0.02 43.17);
+  /* Mouse gradient tokens (light: stronger coffee) */
+  --mouse-gradient-main-rgb: 108, 70, 50;
+  --mouse-gradient-accent-rgb: 176, 121, 78;
   --secondary: oklch(0.95 0.008 85.87);
   --secondary-foreground: oklch(0.27 0.015 34.39);
   --muted: oklch(0.96 0.005 85.87);
@@ -63,6 +66,9 @@
   --primary-foreground: oklch(0.17 0.01 34.39);
   --primary-light: oklch(0.47 0.055 43.17);
   --primary-lighter: oklch(0.27 0.025 43.17);
+  /* Mouse gradient in dark mode -> beige */
+  --mouse-gradient-main-rgb: 232, 220, 198;
+  --mouse-gradient-accent-rgb: 214, 198, 169;
   --secondary: oklch(0.27 0.015 34.39);
   --secondary-foreground: oklch(0.98 0.005 85.87);
   --muted: oklch(0.27 0.015 34.39);
@@ -198,5 +204,41 @@
     border: 2px solid transparent;
     background-clip: padding-box;
     box-shadow: 0 0 0 2px oklch(0.47 0.055 43.17 / 0.5), 0 0 20px oklch(0.65 0.12 55 / 0.15);
+  }
+}
+
+@keyframes moveVertical {
+  0% {
+    transform: translateY(-45%);
+  }
+  50% {
+    transform: translateY(45%);
+  }
+  100% {
+    transform: translateY(-45%);
+  }
+}
+
+@keyframes moveHorizontal {
+  0% {
+    transform: translateX(-45%) translateY(-12%);
+  }
+  50% {
+    transform: translateX(45%) translateY(12%);
+  }
+  100% {
+    transform: translateX(-45%) translateY(-12%);
+  }
+}
+
+@keyframes moveInCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

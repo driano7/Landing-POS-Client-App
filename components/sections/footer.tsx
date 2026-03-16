@@ -1,8 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { MessageCircle, Linkedin, ExternalLink, Mail, Send } from "lucide-react"
+import { Linkedin, ExternalLink, Mail, Send } from "lucide-react"
 import { motion } from "framer-motion"
+import { TypingText } from "@/components/ui/typing-text"
+import { WhatsAppIconButton } from "@/components/ui/whatsapp-cta"
 
 const MotionLink = motion(Link)
 
@@ -24,7 +26,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Productos</h4>
+            <h4 className="font-semibold text-foreground mb-4">
+              <TypingText text="Productos" />
+            </h4>
             <ul className="space-y-2">
               <li>
                 <MotionLink
@@ -70,7 +74,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Recursos</h4>
+            <h4 className="font-semibold text-foreground mb-4">
+              <TypingText text="Recursos" />
+            </h4>
             <ul className="space-y-2">
               <li>
                 <motion.a
@@ -132,18 +138,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Contacto</h4>
+            <h4 className="font-semibold text-foreground mb-4">
+              <TypingText text="Contacto" />
+            </h4>
             <div className="flex gap-4 mb-6">
-              <motion.a
-                href="https://wa.me/525512291607"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
-                whileHover={{ scale: 1.1 }}
-                aria-label="WhatsApp"
-              >
-                <MessageCircle className="w-5 h-5" />
-              </motion.a>
+              <motion.div whileHover={{ scale: 1.1 }}>
+                <WhatsAppIconButton href="https://wa.me/525512291607" />
+              </motion.div>
               <motion.a
                 href="mailto:donovan@criptec.io"
                 className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
