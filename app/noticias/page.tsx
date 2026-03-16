@@ -4,7 +4,7 @@ import Link from "next/link"
 
 import { Badge } from "@/components/ui/badge"
 import { Navigation } from "@/components/sections/navigation"
-import { Footer } from "@/components/sections/footer"
+import Footer from "@/components/sections/footer"
 import { Button } from "@/components/ui/button"
 import { Sparkles, ShieldCheck, BookOpenCheck } from "lucide-react"
 

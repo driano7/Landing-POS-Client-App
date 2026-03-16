@@ -141,7 +141,7 @@ export default function CryptoComparison() {
             asChild
             className="mx-auto bg-gradient-to-r from-amber-600 to-orange-600 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
           >
-            <a href="#precios">Calcula tu Ahorro</a>
+            <a href="#pricing">Calcula tu Ahorro</a>
           </Button>
         </div>
       </div>

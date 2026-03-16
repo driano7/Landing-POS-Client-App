@@ -1,12 +1,10 @@
-"use client"
-
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Navigation } from "@/components/sections/navigation"
-import { Footer } from "@/components/sections/footer"
+import Footer from "@/components/sections/footer"
 
 const ebooks = [
   {

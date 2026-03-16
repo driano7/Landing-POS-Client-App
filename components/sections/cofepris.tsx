@@ -46,7 +46,7 @@ export function Cofepris() {
     <section id="cofepris" className="py-20 md:py-32 relative overflow-hidden bg-background">
       <div className="absolute inset-0 bg-gradient-to-br from-success/5 to-transparent" />
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -68,7 +68,7 @@ export function Cofepris() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4" ref={ref}>
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6" ref={ref}>
           {cofeprisItems.map((item, index) => {
             const Icon = item.icon
             return (

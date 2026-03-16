@@ -8,7 +8,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Navigation } from "@/components/sections/navigation"
-import { Footer } from "@/components/sections/footer"
+import Footer from "@/components/sections/footer"
 import { FlipCard, detectCardBrand, type CardBrand } from "@/components/payment/flip-card"
 
 const paymentHighlights = [
