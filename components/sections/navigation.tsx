@@ -20,6 +20,7 @@ const mobileDockLinks = [
     label: "Sitio web",
     lightIcon: "/docIcons/sitio-web claro.png",
     darkIcon: "/docIcons/sitio-web oscuro.png",
+    darkIconClassName: "invert brightness-125 contrast-125",
   },
   {
     href: "/app-cliente",
@@ -32,6 +33,7 @@ const mobileDockLinks = [
     label: "POV",
     lightIcon: "/docIcons/punto-de-venta claro.png",
     darkIcon: "/docIcons/punto-de-venta oscuro.png",
+    darkIconClassName: "invert brightness-125 contrast-125",
   },
   {
     href: "/prices",
@@ -140,7 +142,7 @@ export function Navigation() {
                       <img
                         src={item.darkIcon}
                         alt={item.label}
-                        className={`hidden dark:block max-h-6 max-w-6 object-contain ${active ? "scale-105" : ""}`}
+                        className={`hidden dark:block max-h-6 max-w-6 object-contain ${item.darkIconClassName ?? ""} ${active ? "scale-105" : ""}`}
                       />
                     ) : (
                       <img
