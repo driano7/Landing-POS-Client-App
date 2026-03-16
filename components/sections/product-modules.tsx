@@ -1,52 +1,159 @@
 "use client"
-
 import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ShoppingCart, BarChart3, Check, Brain, Coins, ExternalLink } from "lucide-react"
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
+import { ShoppingCart, TrendingUp, Shield, Smartphone, CreditCard, Megaphone, Check } from "lucide-react"
+import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
 const modules = [
   {
-    icon: ShoppingCart,
-    title: "Básico — POS Operativo",
-    description:
-      "Todo lo que necesitas para operar tu restaurante día a día: caja, mesas, inventario básico y programa de lealtad.",
+    icon: Smartphone,
+    title: "App Cliente",
+    subtitle: "La cara digital de tu negocio",
+    description: "Tus clientes ordenan, pagan y siguen su pedido en tiempo real desde su celular. Con programa de lealtad integrado en Google Pay y Apple Pay.",
     features: [
-      "Toma de órdenes, tickets y flujo de preparación en tiempo real.",
-      "Control de mesas y roles de usuario (caja, cocina, administración).",
-      "Inventario básico con alertas de stock.",
-      "Programa de lealtad mediante QR de cliente.",
-      "Compatible con terminales como Blokko.io para cobros con tarjetas y transferencias locales.",
+      "Sitio web del negocio con UI/UX premium",
+      "Pedidos online con seguimiento en tiempo real",
+      "Reservaciones con QR de confirmación",
+      "Envíos propios (futura conexión Didi/Rappi)",
+      "Métricas de consumo del cliente (alimentos, bebidas, paquetes)",
+      "Programa de lealtad: enrola tarjeta a Google Pay o Apple Pay",
+      "Descarga de datos personales (GDPR)",
+      "Cifrado AES-CM en datos sensibles",
     ],
     color: "primary",
   },
   {
-    icon: BarChart3,
-    title: "Premium — Métricas, Cumplimiento y App Cliente",
-    description:
-      "Lleva tu operación al siguiente nivel con analítica avanzada, panel sanitario configurable y una app de cliente integrada para pedidos y reservaciones.",
+    icon: ShoppingCart,
+    title: "POS Operativo",
+    subtitle: "Control total del salón y la caja",
+    description: "Gestiona mesas, caja, inventario, empleados, sucursales y proveedores desde un solo punto.",
     features: [
-      "Dashboards avanzados de ventas, tiempos de preparación y desempeño por producto/hora.",
-      "Panel sanitario configurable: COFEPRIS (MX), Health Depts/FDA (US) y ANVISA (BR), con checklists de higiene, plagas, inventario alimentario y residuos, más exportación CSV/XLSX para auditorías.",
-      "App Cliente (móvil y desktop) para pedidos y reservaciones, con soporte para compartir o descargar tickets y reservas.",
-      "Soporte de 3 tipos de QR: ID cliente (lealtad), tickets/pedidos (productos y propinas) y reservaciones.",
-      "Cifrado AES-GCM y gestión de datos inspirada en GDPR para proteger la información de tus clientes.",
-      "Integración con terminal Blokko.io para tarjetas, SPEI/CoDi en México, PIX en Brasil y pagos con criptomonedas convertidos automáticamente a moneda local.",
+      "Pedidos por mesas y caja con roles de personal",
+      "Inventario con alertas de stock mínimo",
+      "Escaneo inteligente de QR (autodetecta tipo)",
+      "Gestión de empleados, socios y sucursales",
+      "Control de pagos a proveedores y nómina",
+      "Registro de limpieza y verificación sanitaria",
+      "Métricas de comportamiento en el sitio web",
+    ],
+    color: "info",
+    featured: true,
+  },
+  {
+    icon: TrendingUp,
+    title: "Métricas Avanzadas",
+    subtitle: "Inteligencia artificial para tu negocio",
+    description: "Dashboards con algoritmos de predicción que analizan ventas, inventario y comportamiento para ayudarte a tomar mejores decisiones.",
+    features: [
+      "Dashboard de ventas, productos y horas pico",
+      "Algoritmos de forecasting de inventario",
+      "Métricas de clientes: frecuencia, ticket promedio",
+      "Análisis de tiempo de preparación y rotación",
+      "Tiempos en sitio web por sección",
+      "Exportación de reportes CSV/XLSX",
     ],
     color: "success",
-    premium: true,
+  },
+  {
+    icon: Shield,
+    title: "Cumplimiento COFEPRIS",
+    subtitle: "Registros que pide la ley, sin el dolor",
+    description: "Panel sanitario configurable para llevar los registros que exige COFEPRIS (MX), FDA (US) o ANVISA (BR) de forma digital y exportable.",
+    features: [
+      "Checklist de higiene diario, semanal y mensual",
+      "Seguimiento de caducidades y control de plagas",
+      "Registro de temperaturas de alimentos",
+      "Exportación de auditorías para inspecciones",
+      "Alineado a NOM-251-SSA1-2009 y NOM-093",
+      "Configurable para FDA Food Code y ANVISA RDC 216",
+    ],
+    color: "warning",
+  },
+  {
+    icon: CreditCard,
+    title: "Terminal Blokko.io",
+    subtitle: "Acepta cualquier forma de pago",
+    description: "Terminal física opcional que unifica tarjeta, SPEI/CoDi, PIX y criptomonedas en un solo dispositivo. Add-on disponible para todos los planes.",
+    features: [
+      "Tarjetas (Visa, Mastercard, Amex)",
+      "SPEI / CoDi en México",
+      "PIX en Brasil",
+      "Cripto: EVM (ETH, ARB, OP) y Bitcoin Lightning",
+      "Conversión automática a MXN / USD / BRL",
+      "Comisión por transacción según Blokko.io",
+    ],
+    color: "primary",
+    badge: "Add-on opcional",
+  },
+  {
+    icon: Megaphone,
+    title: "Marketing Digital",
+    subtitle: "Llega a más clientes",
+    description: "Crea campañas segmentadas usando los datos de tu propia base de clientes: envía notificaciones push, promociones y correos desde la plataforma.",
+    features: [
+      "Campañas de notificaciones push",
+      "Segmentación por hábitos de consumo",
+      "Promociones en programa de lealtad",
+      "Estadísticas de apertura y conversión",
+    ],
+    color: "info",
+    badge: "Próximamente",
   },
 ]
 
+// Variants para el contenedor: orquesta el stagger entre tarjetas
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.09,
+      delayChildren: 0.05,
+    },
+  },
+  exit: {
+    transition: {
+      staggerChildren: 0.06,
+      staggerDirection: -1,
+    },
+  },
+}
+
+// Variants para cada tarjeta: fade + slide-up al entrar, fade + slide-down al salir
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 52,
+    scale: 0.95,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: 30,
+    scale: 0.97,
+    transition: {
+      duration: 0.3,
+      ease: [0.55, 0, 1, 0.45],
+    },
+  },
+}
+
 export function ProductModules() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.2 })
+  // once: false -> la animación se dispara cada vez que el grid entra o sale del viewport
+  const isInView = useInView(ref, { once: false, amount: 0.08 })
 
   return (
     <section id="productos" className="py-20 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
+        {/* Título */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -54,54 +161,80 @@ export function ProductModules() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-            Dos módulos, una suite completa
+            Todo lo que tu restaurante necesita
           </h2>
-          <p className="text-lg text-muted-foreground text-pretty">
-            Desde operación básica hasta cumplimiento regulatorio avanzado y experiencia de cliente digital
+          <p className="text-lg text-muted-foreground">
+            Seis módulos que trabajan juntos. Puedes empezar con lo esencial y escalar cuando estés listo.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8" ref={ref}>
+        {/* Grid con animación staggered: aparece al entrar, desaparece al salir */}
+        <motion.div
+          ref={ref}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "exit"}
+        >
           {modules.map((module, index) => {
             const Icon = module.icon
-            const isSuccess = module.color === "success"
+            const colorClass =
+              module.color === "success"
+                ? "text-success"
+                : module.color === "info"
+                ? "text-info"
+                : module.color === "warning"
+                ? "text-yellow-500"
+                : "text-primary"
+            const bgClass =
+              module.color === "success"
+                ? "bg-success/10"
+                : module.color === "info"
+                ? "bg-info/10"
+                : module.color === "warning"
+                ? "bg-yellow-500/10"
+                : "bg-primary/10"
 
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="h-full"
+                variants={cardVariants}
+                whileHover={{
+                  scale: 1.03,
+                  y: -4,
+                  transition: { duration: 0.18, ease: "easeOut" },
+                }}
               >
-                <Card className="relative p-8 hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50 h-full bg-card/80 backdrop-blur-sm">
-                  {module.premium && (
-                    <div className="absolute top-4 right-4">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary text-primary-foreground">
-                        Premium
-                      </span>
+                <Card
+                  className={`p-6 h-full bg-card/80 backdrop-blur-sm border-2 hover:border-primary/30 transition-colors ${
+                    module.featured
+                      ? "border-primary/40 shadow-lg shadow-primary/10"
+                      : "border-border"
+                  }`}
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className={`p-2.5 rounded-xl ${bgClass}`}>
+                      <Icon className={`w-5 h-5 ${colorClass}`} />
                     </div>
-                  )}
-
-                  <div
-                    className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${
-                      isSuccess ? "bg-success/10" : "bg-primary/10"
-                    }`}
-                  >
-                    <Icon className={`w-7 h-7 ${isSuccess ? "text-success" : "text-primary"}`} />
+                    {module.badge && (
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border">
+                        {module.badge}
+                      </span>
+                    )}
+                    {module.featured && !module.badge && (
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
+                        Popular
+                      </span>
+                    )}
                   </div>
-
-                  <h3 className="text-xl font-bold text-foreground mb-3">{module.title}</h3>
-                  <p className="text-muted-foreground mb-6 text-sm leading-relaxed">{module.description}</p>
-
-                  <ul className="space-y-3">
+                  <h3 className="text-lg font-bold text-foreground mb-0.5">{module.title}</h3>
+                  <p className="text-xs text-primary font-medium mb-2">{module.subtitle}</p>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{module.description}</p>
+                  <ul className="space-y-1.5">
                     {module.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <Check
-                          className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isSuccess ? "text-success" : "text-primary"}`}
-                        />
-                        <span className="text-sm text-foreground/80">{feature}</span>
+                      <li key={i} className="flex items-start gap-2">
+                        <Check className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${colorClass}`} />
+                        <span className="text-xs text-foreground/80">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -109,59 +242,7 @@ export function ProductModules() {
               </motion.div>
             )
           })}
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6 mt-12">
-          <Card className="p-6 bg-gradient-to-br from-primary/5 to-transparent border-2 border-primary/20">
-            <div className="flex flex-col gap-4">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
-                  <Coins className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-foreground mb-2 flex items-center gap-2">
-                    Soporte Crypto Nativo con Blokko.io
-                    <div className="flex gap-1">
-                      <span className="text-xs px-2 py-0.5 rounded bg-primary/10 text-primary font-mono">EVM</span>
-                      <span className="text-xs px-2 py-0.5 rounded bg-warning/10 text-warning font-mono">⚡BTC</span>
-                    </div>
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Acepta pagos en Ethereum, Arbitrum, Optimism y Bitcoin Lightning Network directamente en la terminal
-                    Blokko, con conversión automática a MXN, USD o BRL para tu negocio. Integramos los pagos crypto
-                    dentro del mismo flujo del POS.
-                  </p>
-                </div>
-              </div>
-              <Button variant="outline" size="sm" className="w-fit bg-transparent" asChild>
-                <a
-                  href="https://blokko.io"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  Conoce Blokko.io
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </Button>
-            </div>
-          </Card>
-
-          <Card className="p-6 bg-gradient-to-br from-info/5 to-transparent border-2 border-info/20">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-info flex items-center justify-center flex-shrink-0">
-                <Brain className="w-6 h-6 text-info-foreground" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-foreground mb-2">Machine Learning Integrado</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Algoritmos de predicción analizan patrones de venta e inventario para forecasting inteligente.
-                  Optimiza compras y reduce desperdicio.
-                </p>
-              </div>
-            </div>
-          </Card>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

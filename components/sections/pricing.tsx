@@ -56,6 +56,32 @@ const plans = [
     cta: "Hablar con Ventas",
     highlight: false,
   },
+  {
+    name: "Suite Completa",
+    emoji: "🏆",
+    subtitle: "IA + COFEPRIS + Marketing",
+    price: "$1,500",
+    period: "/mes",
+    description: "Predicción IA + Panel COFEPRIS + Campañas",
+    featuresShort: ["Todo Negocio", "IA", "COFEPRIS", "Marketing"],
+    featuresFull: [
+      "Todo lo del plan Negocio",
+      "Métricas avanzadas con predicción IA",
+      "Panel COFEPRIS / FDA / ANVISA",
+      "Exportación de auditorías",
+      "Campañas de marketing segmentadas",
+      "Notificaciones push a clientes",
+      "Soporte prioritario + onboarding",
+    ],
+    cta: "Solicitar demo",
+    variant: "outline" as const,
+  },
+]
+
+const addons = [
+  { icon: CreditCard, label: "Terminal Blokko.io", desc: "Acepta cripto + PIX, recibe pesos MXN al día siguiente", badge: "Add-on" },  { icon: Wrench, label: "Setup & Configuración", desc: "Montaje inicial", badge: "$800+" },
+  { icon: GraduationCap, label: "Capacitación extra", desc: "Entrenamiento equipo", badge: "$500+" },
+  { icon: HeadphonesIcon, label: "Soporte premium", desc: "7 días/semana", badge: "$300/mes" },
 ]
 
 export default function Pricing() {
@@ -136,6 +162,44 @@ export default function Pricing() {
             </div>
           ))}
         </div>
+
+        {/* Add-ons - también resumidos en móvil */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="bg-muted/30 border border-border rounded-2xl p-4 md:p-6"
+        >
+          <div className="text-center mb-4 md:mb-6">
+            <h3 className="text-base md:text-lg font-bold text-foreground mb-1">🛠️ Servicios adicionales</h3>
+            <p className="text-xs md:text-sm text-muted-foreground">Agrega lo que necesites</p>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+            {addons.map(({ icon: Icon, label, desc, badge }) => (
+              <div
+                key={label}
+                className="flex flex-col md:flex-row items-start gap-2 md:gap-3 p-2.5 md:p-3 rounded-xl bg-card/50 border border-border/50 hover:border-primary/30 transition-colors"
+              >
+                <div className="p-1.5 md:p-2 rounded-lg bg-primary/10 flex-shrink-0">
+                  <Icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
+                </div>
+                <div className="min-w-0">
+                  <span className="text-xs md:text-sm font-medium text-foreground block mb-0.5">{label}</span>
+                  <p className="text-[10px] md:text-xs text-muted-foreground hidden md:block">{desc}</p>
+                  <span className="text-[10px] md:text-xs text-primary font-medium mt-0.5 inline-block">{badge}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Fine print */}
+        <p className="text-center text-[10px] md:text-xs text-muted-foreground mt-4 md:mt-6 px-2">
+          Precios en MXN. Cotización especial para 2+ sucursales.{" "}
+          <a href="https://wa.me/525512291607" className="text-primary hover:underline">
+            Háblanos
+          </a>
+        </p>
       </div>
     </section>
   )

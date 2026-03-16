@@ -1,5 +1,4 @@
 "use client"
-
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { type MouseEvent, useEffect, useState } from "react"
@@ -71,6 +70,7 @@ function SheetCloseButton() {
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -158,6 +158,46 @@ export function Navigation() {
             </SheetContent>
           </Sheet>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden border-t border-white/10 overflow-hidden"
+            >
+              <div className="px-6 py-4 flex flex-col gap-3">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm text-white/80 hover:text-white py-2 border-b border-white/5 last:border-0"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <Button
+                  size="sm"
+                  className="mt-2 bg-primary hover:bg-primary/90 text-primary-foreground w-full"
+                  asChild
+                >
+                  <a
+                    href="https://wa.me/525512291607?text=Hola%2C%20me%20interesa%20agendar%20una%20demo%20de%20Xoco%20Suite"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Agenda demo gratis
+                  </a>
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   )

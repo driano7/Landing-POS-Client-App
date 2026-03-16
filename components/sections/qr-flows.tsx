@@ -1,8 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { QrCode, Smartphone, Users, Receipt, Share2, Download } from "lucide-react"
+import { QrCode, Smartphone, Users, Receipt } from "lucide-react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
@@ -58,9 +57,17 @@ export function QRFlows() {
           <p className="text-lg text-muted-foreground text-pretty">
             Desde lealtad hasta pedidos y reservaciones, todo conectado
           </p>
+          <div className="flex items-center justify-center gap-2 mt-4">
+            <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-info/10 text-info border border-info/20">
+              Growth
+            </span>
+            <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-success/10 text-success border border-success/20">
+              Compliance & Data
+            </span>
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-8" ref={ref}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" ref={ref}>
           {qrTypes.map((qr, index) => {
             const Icon = qr.icon
             return (
@@ -71,31 +78,35 @@ export function QRFlows() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -5 }}
               >
-                <Card className="p-3 md:p-6 hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50 h-full bg-card/80 backdrop-blur-sm">
-                  <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 md:mb-6">
-                    <Icon className="w-5 h-5 md:w-7 md:h-7 text-primary" />
+                <Card className="p-6 hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50 h-full bg-card/80 backdrop-blur-sm">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-primary" />
                   </div>
 
-                  <div className="mb-2 md:mb-4">
-                    <h3 className="text-sm md:text-xl font-bold text-foreground mb-1">{qr.title}</h3>
-                    <p className="text-[10px] md:text-sm text-primary font-medium">{qr.subtitle}</p>
+                  <div className="mb-4">
+                    <h3 className="text-lg font-bold text-foreground mb-1">{qr.title}</h3>
+                    <p className="text-sm text-primary font-medium">{qr.subtitle}</p>
                   </div>
 
-                  <p className="text-xs md:text-sm text-muted-foreground mb-6 leading-relaxed hidden sm:block">{qr.description}</p>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{qr.description}</p>
 
-                  <div className="space-y-3 hidden sm:block">
+                  <div className="space-y-2">
                     <h4 className="text-xs font-semibold text-foreground uppercase tracking-wider">Flujo</h4>
                     {qr.flow.map((step, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div key={i} className="flex items-start gap-2">
+                        <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <span className="text-xs font-semibold text-primary">{i + 1}</span>
                         </div>
-                        <span className="text-sm text-foreground/80">{step}</span>
+                        <span className="text-xs text-foreground/80">{step}</span>
                       </div>
                     ))}
                   </div>
 
-
+                  <div className="mt-4 pt-4 border-t border-border">
+                    <div className="w-20 h-20 bg-foreground/5 rounded-lg mx-auto flex items-center justify-center">
+                      <QrCode className="w-12 h-12 text-foreground/20" />
+                    </div>
+                  </div>
                 </Card>
               </motion.div>
             )
@@ -110,7 +121,10 @@ export function QRFlows() {
             <div>
               <h3 className="text-lg font-bold text-foreground mb-2">Integración completa</h3>
               <p className="text-sm text-muted-foreground leading-relaxed text-pretty">
-                Todos los QRs se conectan automáticamente: desde lealtad hasta reservaciones. El software permite **compartir vía apps de mensajería** y **descargar QRs**, sincronizándose con el POS en tiempo real con detección inteligente según el tipo de QR.
+                Todos los QRs se conectan automáticamente: cuando un cliente escanea su QR de lealtad, el sistema
+                vincula el pedido; cuando genera un QR de ticket, puede compartirlo en apps de mensajería o descargarlo;
+                y las reservaciones se sincronizan con el POS en tiempo real. El scanner del POS es inteligente y
+                autodetecta cada tipo de QR automáticamente sin que el usuario necesite hacer nada más.
               </p>
             </div>
           </div>
