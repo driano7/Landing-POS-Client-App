@@ -66,6 +66,11 @@ const plans: Plan[] = [
       { icon: Store, text: "POS básico: toma de orden y tickets." },
       { icon: ShieldCheck, text: "Accesos por rol limitado (admin y caja).", underline: true },
       { icon: Smartphone, text: "App Cliente básica: ver menú y reserva simple." },
+      {
+        icon: XCircle,
+        text: "Sin sitio bilingüe (español/inglés), sin edición de ticket antes del pago y sin división de cuentas en POS y App Cliente.",
+        underline: true,
+      },
       { icon: QrCode, text: "Sin métricas avanzadas, sin COFEPRIS, sin Machine Learning.", underline: true },
       { icon: CreditCard, text: "Blokko integrado para tarjetas, SPEI/PIX y cripto (opcional, se adapta mejor para tu negocio)." },
     ],
@@ -78,8 +83,11 @@ const plans: Plan[] = [
     blokkoStatus: "addon",
     blokkoBadge: "Opcional",
     features: [
-      { icon: Globe, text: "Sitio web completo con menú dinámico y secciones clave." },
-      { icon: Store, text: "POS con inventario básico, alertas de stock y recuperación/recreación de tickets." },
+      { icon: Globe, text: "Sitio web completo bilingüe (español/inglés) con menú dinámico y secciones clave." },
+      {
+        icon: Store,
+        text: "POS con inventario básico, alertas de stock, edición de ticket antes del pago, división de cuentas y recuperación/recreación de tickets en POS y App Cliente.",
+      },
       { icon: ShieldCheck, text: "Roles múltiples: admin, caja y cocina." },
       { icon: QrCode, text: "Reservas y pedidos con QR + lealtad básica con PNG compatible.", underlinePart: "lealtad básica" },
       { icon: BarChart3, text: "Reportes simples de ventas (sin modelos de Machine Learning).", underlinePart: "(sin modelos de Machine Learning)." },
@@ -95,10 +103,13 @@ const plans: Plan[] = [
     blokkoStatus: "included",
     blokkoBadge: "Opcional (funciona mejor aquí)",
     features: [
-      { icon: Globe, text: "Landing con secciones de eventos, video y galerías." },
+      { icon: Globe, text: "Landing bilingüe (español/inglés) con secciones de eventos, video y galerías." },
       { icon: Smartphone, text: "Lealtad con Apple/Google Wallet + PNG compartible." },
       { icon: BarChart3, text: "Métricas de consumo: visitas, frecuencia y ticket promedio." },
-      { icon: Building2, text: "Gestión de empleados y hasta 3 sucursales, con recuperación/recreación de tickets." },
+      {
+        icon: Building2,
+        text: "Gestión de empleados y hasta 3 sucursales, con edición de ticket antes del pago, división de cuentas y recuperación/recreación de tickets en POS y App Cliente.",
+      },
       { icon: Store, text: "Exportación CSV/Excel + panel COFEPRIS básico.", underlinePart: "panel COFEPRIS básico" },
       { icon: CreditCard, text: "Blokko integrado para tarjetas, SPEI/PIX y cripto (opcional, se adapta mejor para tu negocio)." },
     ],
@@ -111,8 +122,11 @@ const plans: Plan[] = [
     blokkoStatus: "included",
     blokkoBadge: "Opcional (funciona mejor aquí)",
     features: [
-      { icon: Globe, text: "Sitio totalmente personalizado con diseño de marca." },
-      { icon: Building2, text: "Multi-sucursal completa (3+) con control global y recuperación/recreación de tickets." },
+      { icon: Globe, text: "Sitio totalmente personalizado bilingüe (español/inglés) con diseño de marca." },
+      {
+        icon: Building2,
+        text: "Multi-sucursal completa (3+) con control global, edición de ticket antes del pago, división de cuentas y recuperación/recreación de tickets en POS y App Cliente.",
+      },
       { icon: QrCode, text: "Operación offline robusta y sincronización automática." },
       { icon: BarChart3, text: "Machine Learning: pronóstico de ventas y proyección de inventario." },
       { icon: ShieldCheck, text: "Panel sanitario completo COFEPRIS/FDA/ANVISA." },
@@ -228,6 +242,11 @@ export default function PricesPage() {
       </section>
 
       <section className="container mx-auto px-4 lg:px-8 pb-8">
+        <Card className="mb-5 border border-primary/35 bg-primary/10 p-3 md:p-4">
+          <p className="text-center text-sm md:text-base font-medium text-foreground">
+            Todos los planes se contratan por 12 meses al iniciar.
+          </p>
+        </Card>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {plans.map((plan, index) => (
             <motion.div
@@ -332,6 +351,11 @@ export default function PricesPage() {
           transition={{ duration: 0.4 }}
         >
           <Card className="p-6 md:p-8 border-2 border-primary/30 bg-gradient-to-r from-primary/15 via-primary/10 to-background">
+            <div className="mb-5 flex justify-center">
+              <Badge className="border border-primary/40 bg-background/80 px-3 py-1.5 text-center text-xs md:text-sm text-primary">
+                Se conecta a cualquier terminal. Blokko es opcional, no obligatorio.
+              </Badge>
+            </div>
             <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
               <div>
                 <Badge className="mb-3 border-primary/40 bg-primary/15 text-primary">Pagos con Blokko.io</Badge>

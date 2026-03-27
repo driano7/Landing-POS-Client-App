@@ -20,7 +20,7 @@ type WhatsAppIconButtonProps = {
 }
 
 const whatsappGradientClass =
-  "group rounded-xl border border-[#8d6e63]/40 bg-gradient-to-r from-[#5c3025] via-[#7d4a30] to-[#b46f3c] text-white shadow-lg shadow-[#7d4a30]/35 transition-all hover:-translate-y-0.5 hover:from-[#6a3a2b] hover:via-[#8b5638] hover:to-[#c6854f] dark:border-[#4a5f78] dark:from-[#1b2940] dark:via-[#273b58] dark:to-[#355179] dark:text-white dark:shadow-[#0d1626]/45"
+  "group rounded-xl border border-[#8d6e63]/40 bg-gradient-to-r from-[#5c3025] via-[#7d4a30] to-[#b46f3c] text-white shadow-lg shadow-[#7d4a30]/35 transition-all hover:-translate-y-0.5 hover:from-[#6a3a2b] hover:via-[#8b5638] hover:to-[#c6854f] dark:border-[#1f8f52] dark:from-[#128C7E] dark:via-[#25D366] dark:to-[#1db954] dark:text-white dark:shadow-[#0d1626]/45"
 
 function WhatsAppThemeLogo({ className }: { className?: string }) {
   return (
@@ -73,7 +73,7 @@ export function WhatsAppIconButton({
       rel="noopener noreferrer"
       aria-label={ariaLabel}
       className={cn(
-        "inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#8d6e63]/40 bg-gradient-to-r from-[#5c3025] via-[#7d4a30] to-[#b46f3c] text-white shadow-md shadow-[#7d4a30]/35 transition-all hover:-translate-y-0.5 hover:from-[#6a3a2b] hover:via-[#8b5638] hover:to-[#c6854f] dark:border-[#4a5f78] dark:from-[#1b2940] dark:via-[#273b58] dark:to-[#355179] dark:text-white dark:shadow-[#0d1626]/45",
+        "inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#8d6e63]/40 bg-gradient-to-r from-[#5c3025] via-[#7d4a30] to-[#b46f3c] text-white shadow-md shadow-[#7d4a30]/35 transition-all hover:-translate-y-0.5 hover:from-[#6a3a2b] hover:via-[#8b5638] hover:to-[#c6854f] dark:border-[#1f8f52] dark:from-[#128C7E] dark:via-[#25D366] dark:to-[#1db954] dark:text-white dark:shadow-[#0d1626]/45",
         className,
       )}
     >

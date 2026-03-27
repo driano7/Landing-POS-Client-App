@@ -36,10 +36,10 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fff7ef]/90 border border-[#d8b79a]/70 text-[#7a533a] dark:bg-[#1b1714] dark:border-[#4f3a2a] dark:text-[#9a734f]"
           >
-            <Coffee className="w-3 h-3 text-[#4f3226] dark:text-primary" />
-            <span className="text-xs font-medium text-[#4f3226] dark:text-primary tracking-wide">Hecho para restaurantes latinoamericanos</span>
+            <Coffee className="w-3 h-3 text-current" />
+            <span className="text-xs font-medium tracking-wide text-current">Hecho para restaurantes latinoamericanos</span>
           </motion.div>
 
           {/* Headline */}
@@ -60,7 +60,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto"
+            className="text-base md:text-lg text-foreground dark:text-[#8a6547] leading-relaxed max-w-2xl mx-auto"
           >
             Sitio web, app cliente, POS, métricas e integración de pagos en una sola plataforma, con planes desde Starter hasta $1,499 MXN/mes.
           </motion.p>
@@ -78,7 +78,10 @@ export function Hero() {
               { icon: BarChart3, label: "POS + métricas" },
               { icon: CreditCard, label: "Pagos con Blokko.io" },
             ].map(({ icon: Icon, label }) => (
-              <span key={label} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted text-sm text-muted-foreground border border-border hover:border-primary/30 hover:text-primary transition-colors">
+              <span
+                key={label}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted text-sm text-muted-foreground border border-border hover:border-primary/30 hover:text-primary transition-colors dark:bg-[#1b1714] dark:border-[#4f3a2a] dark:text-[#9a734f] dark:hover:border-[#7b5a3f] dark:hover:text-[#b88c61]"
+              >
                 <Icon className="w-3.5 h-3.5" />
                 {label}
               </span>
@@ -115,7 +118,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="pt-2"
           >
-            <p className="text-xs md:text-sm text-muted-foreground">
+            <p className="text-xs md:text-sm text-foreground dark:text-[#8a6547]">
               4 planes claros: Starter, $499, $899 y $1,499 MXN/mes.
             </p>
           </motion.div>
