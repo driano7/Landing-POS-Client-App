@@ -183,7 +183,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
         blokkoStatus: "addon",
         blokkoBadge: "Opcional",
         features: [
-          { icon: Globe, text: "Sitio web completo bilingüe (español/inglés) con menú dinámico y secciones clave." },
+          { icon: Globe, text: "Sitio web completo bilingüe (2 idiomas a escoger: español, inglés, francés o portugués) con menú dinámico y secciones clave." },
           {
             icon: Store,
             text: "POS con inventario básico, alertas de stock, edición de ticket antes del pago, división de cuentas y recuperación/recreación de tickets en POS y App Cliente.",
@@ -204,7 +204,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
         blokkoStatus: "included",
         blokkoBadge: "Opcional (funciona mejor aquí)",
         features: [
-          { icon: Globe, text: "Landing bilingüe (español/inglés) con secciones de eventos, video y galerías." },
+          { icon: Globe, text: "Landing bilingüe (2 idiomas a escoger: español, inglés, francés o portugués) con secciones de eventos, video y galerías." },
           { icon: Smartphone, text: "Lealtad con Apple/Google Wallet + PNG compartible." },
           { icon: Smartphone, text: "Acceso desde múltiples dispositivos para operar en más de una terminal o sucursal." },
           { icon: BarChart3, text: "Métricas de consumo: visitas, frecuencia y ticket promedio." },
@@ -224,7 +224,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
         blokkoStatus: "included",
         blokkoBadge: "Opcional (funciona mejor aquí)",
         features: [
-          { icon: Globe, text: "Sitio totalmente personalizado bilingüe (español/inglés) con diseño de marca." },
+          { icon: Globe, text: "Sitio totalmente personalizado bilingüe (2 idiomas a escoger: español, inglés, francés o portugués) con diseño de marca." },
           {
             icon: Building2,
             text: "Multi-sucursal completa (3+) con control global, edición de ticket antes del pago, división de cuentas y recuperación/recreación de tickets en POS y App Cliente.",
@@ -358,7 +358,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
         blokkoStatus: "addon",
         blokkoBadge: "Optional",
         features: [
-          { icon: Globe, text: "Full bilingual website (Spanish/English) with dynamic menu and key sections." },
+          { icon: Globe, text: "Full bilingual website (choose 2 languages: Spanish, English, French, or Portuguese) with dynamic menu and key sections." },
           {
             icon: Store,
             text: "POS with basic inventory, stock alerts, edit-before-pay, bill splitting, and ticket recovery/recreation in POS and Client App.",
@@ -379,7 +379,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
         blokkoStatus: "included",
         blokkoBadge: "Optional (works better here)",
         features: [
-          { icon: Globe, text: "Bilingual landing page (Spanish/English) with events, video, and galleries." },
+          { icon: Globe, text: "Bilingual landing page (choose 2 languages: Spanish, English, French, or Portuguese) with events, video, and galleries." },
           { icon: Smartphone, text: "Loyalty with Apple/Google Wallet + shareable PNG." },
           { icon: Smartphone, text: "Access from multiple devices to run more than one terminal or location." },
           { icon: BarChart3, text: "Consumption metrics: visits, frequency, and average ticket." },
@@ -399,7 +399,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
         blokkoStatus: "included",
         blokkoBadge: "Optional (works better here)",
         features: [
-          { icon: Globe, text: "Fully custom bilingual website (Spanish/English) with brand design." },
+          { icon: Globe, text: "Fully custom bilingual website (choose 2 languages: Spanish, English, French, or Portuguese) with brand design." },
           {
             icon: Building2,
             text: "Complete multi-location (3+) control with edit-before-pay, bill splitting, and ticket recovery/recreation in POS and Client App.",
@@ -533,7 +533,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
         blokkoStatus: "addon",
         blokkoBadge: "Opcional",
         features: [
-          { icon: Globe, text: "Site completo bilíngue (espanhol/inglês) com menu dinâmico e seções-chave." },
+          { icon: Globe, text: "Site completo bilíngue (2 idiomas à escolha: espanhol, inglês, francês ou português) com menu dinâmico e seções-chave." },
           {
             icon: Store,
             text: "PDV com inventário básico, alertas de estoque, edição de ticket antes do pagamento, divisão de contas e recuperação/recriação de tickets no PDV e no App do cliente.",
@@ -554,7 +554,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
         blokkoStatus: "included",
         blokkoBadge: "Opcional (funciona melhor aqui)",
         features: [
-          { icon: Globe, text: "Landing bilíngue (espanhol/inglês) com seções de eventos, vídeo e galerias." },
+          { icon: Globe, text: "Landing bilíngue (2 idiomas à escolha: espanhol, inglês, francês ou português) com seções de eventos, vídeo e galerias." },
           { icon: Smartphone, text: "Fidelidade com Apple/Google Wallet + PNG compartilhável." },
           { icon: Smartphone, text: "Acesso por múltiplos dispositivos para operar mais de um terminal ou unidade." },
           { icon: BarChart3, text: "Métricas de consumo: visitas, frequência e ticket médio." },
@@ -574,7 +574,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
         blokkoStatus: "included",
         blokkoBadge: "Opcional (funciona melhor aqui)",
         features: [
-          { icon: Globe, text: "Site totalmente personalizado bilíngue (espanhol/inglês) com identidade de marca." },
+          { icon: Globe, text: "Site totalmente personalizado bilíngue (2 idiomas à escolha: espanhol, inglês, francês ou português) com identidade de marca." },
           {
             icon: Building2,
             text: "Controle multiunidade completo (3+) com controle global, edição de ticket antes do pagamento, divisão de contas e recuperação/recriação de tickets no PDV e no App do cliente.",
@@ -708,7 +708,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
         blokkoStatus: "addon",
         blokkoBadge: "Optionnel",
         features: [
-          { icon: Globe, text: "Site web bilingue complet (espagnol/anglais) avec menu dynamique et sections clés." },
+          { icon: Globe, text: "Site web bilingue complet (2 langues au choix: espagnol, anglais, français ou portugais) avec menu dynamique et sections clés." },
           {
             icon: Store,
             text: "POS avec inventaire de base, alertes de stock, édition du ticket avant paiement, division d'addition et récupération/recréation des tickets dans le POS et l'App client.",
@@ -729,7 +729,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
         blokkoStatus: "included",
         blokkoBadge: "Optionnel (fonctionne mieux ici)",
         features: [
-          { icon: Globe, text: "Landing bilingue (espagnol/anglais) avec sections événements, vidéo et galeries." },
+          { icon: Globe, text: "Landing bilingue (2 langues au choix: espagnol, anglais, français ou portugais) avec sections événements, vidéo et galeries." },
           { icon: Smartphone, text: "Fidélité avec Apple/Google Wallet + PNG partageable." },
           { icon: Smartphone, text: "Accès depuis plusieurs appareils pour opérer plusieurs terminaux ou sites." },
           { icon: BarChart3, text: "Métriques de consommation: visites, fréquence et ticket moyen." },
@@ -749,7 +749,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
         blokkoStatus: "included",
         blokkoBadge: "Optionnel (fonctionne mieux ici)",
         features: [
-          { icon: Globe, text: "Site totalement personnalisé bilingue (espagnol/anglais) avec identité de marque." },
+          { icon: Globe, text: "Site totalement personnalisé bilingue (2 langues au choix: espagnol, anglais, français ou portugais) avec identité de marque." },
           {
             icon: Building2,
             text: "Contrôle multi-sites complet (3+) avec contrôle global, édition du ticket avant paiement, division d'addition et récupération/recréation des tickets dans le POS et l'App client.",
