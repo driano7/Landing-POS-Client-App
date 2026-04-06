@@ -242,3 +242,29 @@
     transform: rotate(360deg);
   }
 }
+
+@layer utilities {
+  .language-menu-item {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+    animation: language-menu-item-in 280ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: var(--language-menu-delay, 0ms);
+  }
+
+  .dropdown-menu-open .language-menu-item {
+    animation-name: language-menu-item-in;
+  }
+}
+
+@keyframes language-menu-item-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}

@@ -17,10 +17,11 @@ export function MouseGradient({ containerClassName }: MouseGradientProps) {
   const tgYRef = useRef(0)
   const frameRef = useRef<number | null>(null)
   const [isSafari, setIsSafari] = useState(false)
-  const { resolvedTheme } = useTheme()
+  const { theme, resolvedTheme } = useTheme()
+  const currentTheme = resolvedTheme ?? theme ?? "dark"
 
   const palette = useMemo(() => {
-    if (resolvedTheme === "dark") {
+    if (currentTheme === "dark") {
       return {
         first: "232, 220, 198",
         second: "214, 198, 169",
@@ -41,7 +42,7 @@ export function MouseGradient({ containerClassName }: MouseGradientProps) {
       pointer: "184, 132, 92",
       blendingValue: "soft-light",
     }
-  }, [resolvedTheme])
+  }, [currentTheme])
 
   useEffect(() => {
     setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent))

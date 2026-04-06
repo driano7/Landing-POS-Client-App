@@ -7,10 +7,60 @@ import { Smartphone, Monitor, BarChart3, CreditCard, Coffee } from "lucide-react
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
+import { useLocale } from "@/components/locale-provider"
+
+const heroCopy = {
+  es: {
+    badge: "Hecho para restaurantes latinoamericanos",
+    titleBefore: "Tu restaurante merece",
+    titleAccent: "más que un POS",
+    description:
+      "Sitio web, app cliente, POS, métricas e integración de pagos en una sola plataforma, con planes desde Starter hasta $1,499 MXN/mes.",
+    pills: ["Sitio web profesional", "App cliente", "POS + métricas", "Pagos con Blokko.io"],
+    cta: "Agenda demo por WhatsApp",
+    secondary: "Ver planes",
+    footer: "4 planes claros: Starter, $499, $899 y $1,499 MXN/mes.",
+  },
+  en: {
+    badge: "Made for Latin American restaurants",
+    titleBefore: "Your restaurant deserves",
+    titleAccent: "more than a POS",
+    description:
+      "Website, client app, POS, analytics, and payments in one platform, with plans starting at Starter and up to $1,499 MXN/month.",
+    pills: ["Professional website", "Client app", "POS + analytics", "Payments with Blokko.io"],
+    cta: "Book a WhatsApp demo",
+    secondary: "See plans",
+    footer: "4 clear plans: Starter, $499, $899 and $1,499 MXN/month.",
+  },
+  pt: {
+    badge: "Feito para restaurantes latino-americanos",
+    titleBefore: "Seu restaurante merece",
+    titleAccent: "mais do que um PDV",
+    description:
+      "Site, app do cliente, PDV, métricas e pagamentos em uma única plataforma, com planos desde Starter até $1,499 MXN/mês.",
+    pills: ["Site profissional", "App do cliente", "PDV + métricas", "Pagamentos com Blokko.io"],
+    cta: "Agendar demo pelo WhatsApp",
+    secondary: "Ver planos",
+    footer: "4 planos claros: Starter, $499, $899 e $1,499 MXN/mês.",
+  },
+  fr: {
+    badge: "Conçu pour les restaurants d’Amérique latine",
+    titleBefore: "Votre restaurant mérite",
+    titleAccent: "mieux qu’un POS",
+    description:
+      "Site web, app client, POS, analyses et paiements sur une seule plateforme, avec des offres de Starter jusqu’à 1 499 MXN/mois.",
+    pills: ["Site web pro", "App client", "POS + métriques", "Paiements avec Blokko.io"],
+    cta: "Réserver une démo WhatsApp",
+    secondary: "Voir les offres",
+    footer: "4 offres claires: Starter, $499, $899 et $1,499 MXN/mois.",
+  },
+} as const
 
 export function Hero() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: false, amount: 0.3 })
+  const { locale } = useLocale()
+  const copy = heroCopy[locale]
 
   return (
     <section className="relative pt-20 pb-12 md:pt-32 md:pb-20 overflow-hidden bg-background">
@@ -39,7 +89,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fff7ef]/90 border border-[#d8b79a]/70 text-[#7a533a] dark:bg-[#1b1714] dark:border-[#4f3a2a] dark:text-[#9a734f]"
           >
             <Coffee className="w-3 h-3 text-current" />
-            <span className="text-xs font-medium tracking-wide text-current">Hecho para restaurantes latinoamericanos</span>
+            <span className="text-xs font-medium tracking-wide text-current">{copy.badge}</span>
           </motion.div>
 
           {/* Headline */}
@@ -49,9 +99,9 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance"
           >
-            Tu restaurante merece{" "}
+            {copy.titleBefore}{" "}
             <span className="bg-gradient-to-r from-[#6d4633] via-[#96612d] to-[#744f3a] dark:from-[#cba06e] dark:via-[#e7b961] dark:to-[#bf9168] bg-clip-text text-transparent">
-              más que un POS
+              {copy.titleAccent}
             </span>
           </motion.h1>
 
@@ -62,7 +112,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-base md:text-lg text-foreground dark:text-[#8a6547] leading-relaxed max-w-2xl mx-auto"
           >
-            Sitio web, app cliente, POS, métricas e integración de pagos en una sola plataforma, con planes desde Starter hasta $1,499 MXN/mes.
+            {copy.description}
           </motion.p>
 
           {/* Feature pills con iconos */}
@@ -73,10 +123,10 @@ export function Hero() {
             className="flex flex-wrap justify-center gap-2 pt-2"
           >
             {[
-              { icon: Monitor, label: "Sitio web profesional" },
-              { icon: Smartphone, label: "App cliente" },
-              { icon: BarChart3, label: "POS + métricas" },
-              { icon: CreditCard, label: "Pagos con Blokko.io" },
+              { icon: Monitor, label: copy.pills[0] },
+              { icon: Smartphone, label: copy.pills[1] },
+              { icon: BarChart3, label: copy.pills[2] },
+              { icon: CreditCard, label: copy.pills[3] },
             ].map(({ icon: Icon, label }) => (
               <span
                 key={label}
@@ -97,7 +147,7 @@ export function Hero() {
           >
             <WhatsAppCTAButton
               href="https://wa.me/525512291607?text=Hola%2C%20quiero%20una%20demo%20de%20Xoco%20Suite"
-              label="Agenda demo por WhatsApp"
+              label={copy.cta}
               showArrow
               size="lg"
               className="font-semibold px-6 py-3 rounded-xl"
@@ -108,7 +158,7 @@ export function Hero() {
               className="border-[#744d38]/40 text-[#4f3226] hover:bg-[#744d38]/10 dark:border-white/35 dark:text-white dark:hover:bg-white/10 font-medium px-6 py-3 rounded-xl"
               asChild
             >
-              <Link href="/prices">Ver planes</Link>
+              <Link href="/prices">{copy.secondary}</Link>
             </Button>
           </motion.div>
 
@@ -118,9 +168,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="pt-2"
           >
-            <p className="text-xs md:text-sm text-foreground dark:text-[#8a6547]">
-              4 planes claros: Starter, $499, $899 y $1,499 MXN/mes.
-            </p>
+            <p className="text-xs md:text-sm text-foreground dark:text-[#8a6547]">{copy.footer}</p>
           </motion.div>
         </motion.div>
       </div>

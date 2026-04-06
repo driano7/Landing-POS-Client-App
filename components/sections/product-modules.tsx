@@ -7,6 +7,7 @@ import { TypingText } from "@/components/ui/typing-text"
 import { cn } from "@/lib/utils"
 import { CreditCard, Globe, ShieldCheck, Smartphone, Store, BarChart3, type LucideIcon } from "lucide-react"
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion"
+import { useLocale } from "@/components/locale-provider"
 
 type PeripheralId = "top-left" | "top-right" | "mid-left" | "mid-right" | "bottom-left" | "bottom-right"
 
@@ -29,48 +30,40 @@ type PeripheralLayout = {
 
 const EASE_OUT: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
-const suiteCards: SuiteCard[] = [
-  {
-    id: "top-left",
-    icon: Globe,
-    title: "Sitio web profesional",
-    description: "Presencia digital clara, menú actualizado y marca consistente.",
-    glow: true,
-  },
-  {
-    id: "top-right",
-    icon: Smartphone,
-    title: "App cliente",
-    description: "Reservas, pedidos y lealtad desde QR o navegador.",
-    glow: true,
-  },
-  {
-    id: "mid-left",
-    icon: Store,
-    title: "Punto de venta",
-    description: "Órdenes, caja e inventario conectados en un solo flujo.",
-    glow: true,
-  },
-  {
-    id: "mid-right",
-    icon: BarChart3,
-    title: "Métricas avanzadas",
-    description: "Dashboards para ventas, inventario y decisiones del día a día.",
-  },
-  {
-    id: "bottom-left",
-    icon: ShieldCheck,
-    title: "Panel sanitario",
-    description: "Registros de higiene y cumplimiento listos para auditoría.",
-  },
-  {
-    id: "bottom-right",
-    icon: CreditCard,
-    title: "Pagos con Blokko.io",
-    description: "Tarjetas, SPEI, PIX y cripto con liquidación en moneda local.",
-    glow: true,
-  },
-]
+const suiteCardsByLocale: Record<string, SuiteCard[]> = {
+  es: [
+    { id: "top-left", icon: Globe, title: "Sitio web profesional", description: "Presencia digital clara, menú actualizado y marca consistente.", glow: true },
+    { id: "top-right", icon: Smartphone, title: "App cliente", description: "Reservas, pedidos y lealtad desde QR o navegador.", glow: true },
+    { id: "mid-left", icon: Store, title: "Punto de venta", description: "Órdenes, caja e inventario conectados en un solo flujo.", glow: true },
+    { id: "mid-right", icon: BarChart3, title: "Métricas avanzadas", description: "Dashboards para ventas, inventario y decisiones del día a día." },
+    { id: "bottom-left", icon: ShieldCheck, title: "Panel sanitario", description: "Registros de higiene y cumplimiento listos para auditoría." },
+    { id: "bottom-right", icon: CreditCard, title: "Pagos con Blokko.io", description: "Tarjetas, SPEI, PIX y cripto con liquidación en moneda local.", glow: true },
+  ],
+  en: [
+    { id: "top-left", icon: Globe, title: "Professional website", description: "Clear digital presence, updated menu, and consistent brand.", glow: true },
+    { id: "top-right", icon: Smartphone, title: "Client app", description: "Reservations, orders, and loyalty from QR or browser.", glow: true },
+    { id: "mid-left", icon: Store, title: "Point of sale", description: "Orders, cash, and inventory connected in one flow.", glow: true },
+    { id: "mid-right", icon: BarChart3, title: "Advanced analytics", description: "Dashboards for sales, inventory, and day-to-day decisions." },
+    { id: "bottom-left", icon: ShieldCheck, title: "Sanitary panel", description: "Hygiene and compliance records ready for audit." },
+    { id: "bottom-right", icon: CreditCard, title: "Payments with Blokko.io", description: "Cards, SPEI, PIX, and crypto settled in local currency.", glow: true },
+  ],
+  pt: [
+    { id: "top-left", icon: Globe, title: "Site profissional", description: "Presença digital clara, menu atualizado e marca consistente.", glow: true },
+    { id: "top-right", icon: Smartphone, title: "App do cliente", description: "Reservas, pedidos e fidelidade por QR ou navegador.", glow: true },
+    { id: "mid-left", icon: Store, title: "Ponto de venda", description: "Pedidos, caixa e estoque conectados em um único fluxo.", glow: true },
+    { id: "mid-right", icon: BarChart3, title: "Métricas avançadas", description: "Dashboards para vendas, estoque e decisões do dia a dia." },
+    { id: "bottom-left", icon: ShieldCheck, title: "Painel sanitário", description: "Registros de higiene e conformidade prontos para auditoria." },
+    { id: "bottom-right", icon: CreditCard, title: "Pagamentos com Blokko.io", description: "Cartões, SPEI, PIX e cripto com liquidação na moeda local.", glow: true },
+  ],
+  fr: [
+    { id: "top-left", icon: Globe, title: "Site web professionnel", description: "Présence digitale claire, menu à jour et marque cohérente.", glow: true },
+    { id: "top-right", icon: Smartphone, title: "App client", description: "Réservations, commandes et fidélité depuis le QR ou le navigateur.", glow: true },
+    { id: "mid-left", icon: Store, title: "Point de vente", description: "Commandes, caisse et stock connectés dans un seul flux.", glow: true },
+    { id: "mid-right", icon: BarChart3, title: "Analyses avancées", description: "Tableaux de bord pour les ventes, les stocks et les décisions quotidiennes." },
+    { id: "bottom-left", icon: ShieldCheck, title: "Panneau sanitaire", description: "Registres d’hygiène et de conformité prêts pour audit." },
+    { id: "bottom-right", icon: CreditCard, title: "Paiements avec Blokko.io", description: "Cartes, SPEI, PIX et crypto liquidés en devise locale.", glow: true },
+  ],
+} as const
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n))
@@ -187,6 +180,7 @@ export function ProductModules() {
   const scrollTrackRef = useRef<HTMLDivElement | null>(null)
   const reduceMotion = useReducedMotion()
   const [viewportWidth, setViewportWidth] = useState(0)
+  const { locale } = useLocale()
   const { scrollYProgress } = useScroll({
     target: scrollTrackRef,
     offset: ["start start", "end start"],
@@ -300,13 +294,14 @@ export function ProductModules() {
   const imageScale = useTransform(scrollYProgress, [0, 0.35, 1], [1.02, 1.1, 1.16])
   const imageY = useTransform(scrollYProgress, [0, 1], [0, -16])
   const depthOpacity = useTransform(scrollYProgress, [0, 0.35, 1], [0, 0.35, 0.56])
+  const suiteCards = (suiteCardsByLocale[locale] ?? suiteCardsByLocale.es) as SuiteCard[]
 
   return (
     <section
       id="productos"
       ref={sectionRef}
       className="relative overflow-x-hidden bg-muted/30 py-16 md:py-24"
-      aria-label="Módulos del restaurante en iPhone con periféricos animados"
+      aria-label={locale === "es" ? "Módulos del restaurante en iPhone con periféricos animados" : locale === "fr" ? "Modules du restaurant sur iPhone avec périphériques animés" : locale === "pt" ? "Módulos do restaurante em iPhone com periféricos animados" : "Restaurant modules on iPhone with animated peripherals"}
     >
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
@@ -317,10 +312,10 @@ export function ProductModules() {
           className="text-center max-w-3xl mx-auto mb-10"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-            <TypingText text="Todo lo que tu restaurante necesita" />
+            <TypingText text={locale === "es" ? "Todo lo que tu restaurante necesita" : locale === "fr" ? "Tout ce dont votre restaurant a besoin" : locale === "pt" ? "Tudo o que seu restaurante precisa" : "Everything your restaurant needs"} />
           </h2>
           <p className="text-base md:text-lg text-muted-foreground">
-            Seis módulos clave en una sola plataforma para operar mejor y crecer con orden.
+            {locale === "es" ? "Seis módulos clave en una sola plataforma para operar mejor y crecer con orden." : locale === "fr" ? "Six modules clés sur une seule plateforme pour mieux opérer et grandir avec méthode." : locale === "pt" ? "Seis módulos principais em uma única plataforma para operar melhor e crescer com organização." : "Six key modules in one platform to run better and grow with structure."}
           </p>
         </motion.div>
       </div>
@@ -435,9 +430,9 @@ export function ProductModules() {
 
       <div className="container mx-auto px-4 lg:px-8">
         <p className="text-center text-sm text-muted-foreground mt-8">
-          ¿Quieres ver qué incluye cada plan?{" "}
+          {locale === "es" ? "¿Quieres ver qué incluye cada plan?" : locale === "fr" ? "Voulez-vous voir ce que chaque offre inclut ?" : locale === "pt" ? "Quer ver o que cada plano inclui?" : "Want to see what each plan includes?"}{" "}
           <Link href="/prices" className="text-primary font-medium hover:underline">
-            Revisa los planes aquí
+            {locale === "es" ? "Revisa los planes aquí" : locale === "fr" ? "Consultez les offres ici" : locale === "pt" ? "Veja os planos aqui" : "Check the plans here"}
           </Link>
           .
         </p>

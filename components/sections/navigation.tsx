@@ -5,45 +5,100 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { WhatsAppCTAButton } from "@/components/ui/whatsapp-cta"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
+import { LanguageSwitcher } from "@/components/language-switcher"
+import { useLocale } from "@/components/locale-provider"
 
-const navLinks = [
-  { href: "/sitio-web", label: "Sitio web" },
-  { href: "/app-cliente", label: "App Cliente" },
-  { href: "/pos", label: "Punto de venta" },
-  { href: "/prices", label: "Precios" },
-  { href: "/pagos", label: "Pagos Blokko" },
-]
+const navCopy = {
+  es: {
+    navLinks: [
+      { href: "/sitio-web", label: "Sitio web" },
+      { href: "/app-cliente", label: "App Cliente" },
+      { href: "/pos", label: "Punto de venta" },
+      { href: "/prices", label: "Precios" },
+      { href: "/pagos", label: "Pagos Blokko" },
+    ],
+    cta: "Agenda demo",
+    mobile: [
+      { href: "/sitio-web", label: "Sitio web" },
+      { href: "/app-cliente", label: "Web" },
+      { href: "/pos", label: "POS" },
+      { href: "/prices", label: "Precios" },
+      { href: "/pagos", label: "Pagos" },
+    ],
+  },
+  en: {
+    navLinks: [
+      { href: "/sitio-web", label: "Website" },
+      { href: "/app-cliente", label: "Client App" },
+      { href: "/pos", label: "Point of Sale" },
+      { href: "/prices", label: "Pricing" },
+      { href: "/pagos", label: "Payments" },
+    ],
+    cta: "Book a demo",
+    mobile: [
+      { href: "/sitio-web", label: "Website" },
+      { href: "/app-cliente", label: "App" },
+      { href: "/pos", label: "POS" },
+      { href: "/prices", label: "Pricing" },
+      { href: "/pagos", label: "Pay" },
+    ],
+  },
+  pt: {
+    navLinks: [
+      { href: "/sitio-web", label: "Site" },
+      { href: "/app-cliente", label: "App do cliente" },
+      { href: "/pos", label: "Ponto de venda" },
+      { href: "/prices", label: "Preços" },
+      { href: "/pagos", label: "Pagamentos" },
+    ],
+    cta: "Agendar demo",
+    mobile: [
+      { href: "/sitio-web", label: "Site" },
+      { href: "/app-cliente", label: "App" },
+      { href: "/pos", label: "PDV" },
+      { href: "/prices", label: "Preços" },
+      { href: "/pagos", label: "Pag." },
+    ],
+  },
+  fr: {
+    navLinks: [
+      { href: "/sitio-web", label: "Site web" },
+      { href: "/app-cliente", label: "App client" },
+      { href: "/pos", label: "Point de vente" },
+      { href: "/prices", label: "Tarifs" },
+      { href: "/pagos", label: "Paiements" },
+    ],
+    cta: "Réserver une démo",
+    mobile: [
+      { href: "/sitio-web", label: "Site" },
+      { href: "/app-cliente", label: "App" },
+      { href: "/pos", label: "PDV" },
+      { href: "/prices", label: "Tarifs" },
+      { href: "/pagos", label: "Pay." },
+    ],
+  },
+} as const
 
-const mobileDockLinks = [
+const mobileDockItems = [
   {
-    href: "/sitio-web",
-    label: "Sitio web",
     lightIcon: "/docIcons/sitio-web claro.png",
     darkIcon: "/docIcons/sitio-web oscuro.png",
     darkIconClassName: "invert brightness-125 contrast-125",
   },
   {
-    href: "/app-cliente",
-    label: "Web",
     lightIcon: "/docIcons/app claro.png",
     darkIcon: "/docIcons/app oscuro.png",
   },
   {
-    href: "/pos",
-    label: "POV",
     lightIcon: "/docIcons/punto-de-venta claro.png",
     darkIcon: "/docIcons/punto-de-venta oscuro.png",
     darkIconClassName: "invert brightness-125 contrast-125",
   },
   {
-    href: "/prices",
-    label: "Precios",
     lightIcon: "/docIcons/precio claro.png",
     darkIcon: "/docIcons/precio oscuro.png",
   },
   {
-    href: "/pagos",
-    label: "Blokko.io",
     lightIcon: "/docIcons/pos.png",
   },
 ]
@@ -51,6 +106,8 @@ const mobileDockLinks = [
 export function Navigation() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
+  const { locale } = useLocale()
+  const copy = navCopy[locale]
 
   const isLinkActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
@@ -87,7 +144,7 @@ export function Navigation() {
               </Link>
 
               <div className="hidden lg:flex items-center gap-4">
-                {navLinks.map((link) => (
+                {copy.navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
@@ -106,10 +163,11 @@ export function Navigation() {
               </div>
 
               <div className="flex items-center gap-3">
+                <LanguageSwitcher />
                 <ThemeToggle />
                 <WhatsAppCTAButton
                   href="https://wa.me/525512291607?text=Hola%2C%20me%20interesa%20agendar%20una%20demo%20de%20Xoco%20Suite"
-                  label="Agenda demo"
+                  label={copy.cta}
                   size="sm"
                   className="hidden md:inline-flex"
                 />
@@ -122,7 +180,8 @@ export function Navigation() {
       <div className="lg:hidden fixed bottom-3 inset-x-0 z-50 px-3 pointer-events-none">
         <div className="mx-auto max-w-md pointer-events-auto rounded-2xl border border-border/70 bg-background/85 backdrop-blur-xl shadow-xl">
           <div className="grid grid-cols-5 gap-1 p-2">
-            {mobileDockLinks.map((item) => {
+            {copy.mobile.map((item, index) => {
+              const dockItem = mobileDockItems[index] ?? mobileDockItems[0]
               const active = isLinkActive(item.href)
               return (
                 <Link
@@ -134,19 +193,19 @@ export function Navigation() {
                 >
                   <div className="h-8 w-8 flex items-center justify-center">
                     <img
-                      src={item.lightIcon}
+                      src={dockItem.lightIcon}
                       alt={item.label}
                       className={`max-h-6 max-w-6 object-contain dark:hidden ${active ? "scale-105" : ""}`}
                     />
-                    {item.darkIcon ? (
+                    {dockItem.darkIcon ? (
                       <img
-                        src={item.darkIcon}
+                        src={dockItem.darkIcon}
                         alt={item.label}
-                        className={`hidden dark:block max-h-6 max-w-6 object-contain ${item.darkIconClassName ?? ""} ${active ? "scale-105" : ""}`}
+                        className={`hidden dark:block max-h-6 max-w-6 object-contain ${dockItem.darkIconClassName ?? ""} ${active ? "scale-105" : ""}`}
                       />
                     ) : (
                       <img
-                        src={item.lightIcon}
+                        src={dockItem.lightIcon}
                         alt={item.label}
                         className={`hidden dark:block max-h-6 max-w-6 object-contain ${active ? "scale-105" : ""}`}
                       />

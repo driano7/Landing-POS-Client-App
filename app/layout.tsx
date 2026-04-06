@@ -2,7 +2,9 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Lato } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { LocaleProvider } from "@/components/locale-provider"
 import { ThemeProvider } from "@/components/theme-provider"
+import { getLocaleFromCookies } from "@/lib/locale"
 import "./globals.css"
 
 const lato = Lato({
@@ -45,58 +47,21 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const themeInitScript = `
-    (function() {
-      var storageKey = "xoco-theme";
-      var manualKey = "xoco-theme-manual";
-      var root = document.documentElement;
-      var storedTheme = null;
-      var isManual = false;
-      try {
-        storedTheme = localStorage.getItem(storageKey);
-        isManual = localStorage.getItem(manualKey) === "1";
-      } catch (e) {}
-
-      var isStoredValid = storedTheme === "light" || storedTheme === "dark";
-      var theme = "dark";
-
-      if (isManual && isStoredValid) {
-        theme = storedTheme;
-      } else {
-        try {
-          if (window.matchMedia) {
-            if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-              theme = "dark";
-            } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-              theme = "light";
-            }
-          }
-          localStorage.setItem(storageKey, theme);
-        } catch (e) {
-          theme = "dark";
-        }
-      }
-
-      root.classList.remove("light", "dark");
-      root.classList.add(theme);
-      root.style.colorScheme = theme;
-    })();
-  `
+  const locale = await getLocaleFromCookies()
 
   return (
-    <html lang="es" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${lato.className} font-sans antialiased transition-colors duration-500`}>
-        <ThemeProvider defaultTheme="dark" storageKey="xoco-theme">
-          {children}
-        </ThemeProvider>
+        <LocaleProvider initialLocale={locale}>
+          <ThemeProvider defaultTheme="dark" storageKey="xoco-theme">
+            {children}
+          </ThemeProvider>
+        </LocaleProvider>
         <Analytics />
       </body>
     </html>

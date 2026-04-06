@@ -5,10 +5,57 @@ import { Linkedin, ExternalLink, Mail, Send } from "lucide-react"
 import { motion } from "framer-motion"
 import { TypingText } from "@/components/ui/typing-text"
 import { WhatsAppIconButton } from "@/components/ui/whatsapp-cta"
+import { useLocale } from "@/components/locale-provider"
 
 const MotionLink = motion(Link)
 
+const footerCopy = {
+  es: {
+    summary: "Suite tecnológica completa para restaurantes en México",
+    support: "También desarrollamos sitios web a la medida para cualquier negocio o persona.",
+    products: "Productos",
+    resources: "Recursos",
+    contact: "Contacto",
+    privacy: "Privacidad",
+    terms: "Términos",
+    cookies: "Cookies",
+  },
+  en: {
+    summary: "Complete technology suite for restaurants in Mexico",
+    support: "We also build custom websites for any business or person.",
+    products: "Products",
+    resources: "Resources",
+    contact: "Contact",
+    privacy: "Privacy",
+    terms: "Terms",
+    cookies: "Cookies",
+  },
+  pt: {
+    summary: "Suite tecnológica completa para restaurantes no México",
+    support: "Também criamos sites personalizados para qualquer negócio ou pessoa.",
+    products: "Produtos",
+    resources: "Recursos",
+    contact: "Contato",
+    privacy: "Privacidade",
+    terms: "Termos",
+    cookies: "Cookies",
+  },
+  fr: {
+    summary: "Suite technologique complète pour restaurants au Mexique",
+    support: "Nous réalisons aussi des sites web sur mesure pour toute entreprise ou personne.",
+    products: "Produits",
+    resources: "Ressources",
+    contact: "Contact",
+    privacy: "Confidentialité",
+    terms: "Conditions",
+    cookies: "Cookies",
+  },
+} as const
+
 export function Footer() {
+  const { locale } = useLocale()
+  const copy = footerCopy[locale]
+
   return (
     <footer className="border-t border-border bg-card">
       <div className="container mx-auto px-4 lg:px-8 py-12">
@@ -20,17 +67,15 @@ export function Footer() {
               </div>
               <span className="font-bold text-lg text-foreground">Xoco Suite</span>
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Suite tecnológica completa para restaurantes en México
-            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">{copy.summary}</p>
             <p className="text-sm text-muted-foreground leading-relaxed mt-2 underline decoration-2 decoration-current underline-offset-2">
-              También desarrollamos sitios web a la medida para cualquier negocio o persona.
+              {copy.support}
             </p>
           </div>
 
           <div>
             <h4 className="font-semibold text-foreground mb-4">
-              <TypingText text="Productos" />
+              <TypingText text={copy.products} />
             </h4>
             <ul className="space-y-2">
               <li>
@@ -78,7 +123,7 @@ export function Footer() {
 
           <div>
             <h4 className="font-semibold text-foreground mb-4">
-              <TypingText text="Recursos" />
+              <TypingText text={copy.resources} />
             </h4>
             <ul className="space-y-2">
               <li>
@@ -142,7 +187,7 @@ export function Footer() {
 
           <div>
             <h4 className="font-semibold text-foreground mb-4">
-              <TypingText text="Contacto" />
+              <TypingText text={copy.contact} />
             </h4>
             <div className="flex gap-4 mb-6">
               <motion.div whileHover={{ scale: 1.1 }}>
@@ -213,7 +258,7 @@ export function Footer() {
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                Privacidad
+                {copy.privacy}
               </MotionLink>
               <MotionLink
                 href="#terminos"
@@ -221,7 +266,7 @@ export function Footer() {
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                Términos
+                {copy.terms}
               </MotionLink>
               <MotionLink
                 href="#cookies"
@@ -229,7 +274,7 @@ export function Footer() {
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                Cookies
+                {copy.cookies}
               </MotionLink>
             </div>
           </div>

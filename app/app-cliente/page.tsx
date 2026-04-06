@@ -2,48 +2,112 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Smartphone, QrCode, Clock3, WalletCards, ShieldCheck, LockKeyhole, ArrowRight } from "lucide-react"
+import { Smartphone, ShieldCheck, LockKeyhole, ArrowRight } from "lucide-react"
 
 import { Navigation } from "@/components/sections/navigation"
 import { Footer } from "@/components/sections/footer"
+import { AppClientePanel } from "@/components/sections/app-cliente-panel"
+import { useLocale } from "@/components/locale-provider"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { WhatsAppCTAButton } from "@/components/ui/whatsapp-cta"
 
-const experienceItems = [
-  {
-    icon: QrCode,
-    title: "Reservas y pedidos con QR",
-    text: "Tus clientes escanean y reservan o piden en segundos, sin fricción ni procesos largos.",
+const copyByLocale = {
+  es: {
+    badge: "📱 App Cliente",
+    title: "App cliente sin descargar nada",
+    description: "Reservas, pedidos, lealtad y métricas desde el navegador o QR.",
+    experienceTitle: "Experiencia del cliente",
+    functionsTitle: "Funciones del módulo App Cliente",
+    growthTitle: "Relación y crecimiento con clientes",
+    dataTitle: "Datos y privacidad",
+    cta: "Hablar por WhatsApp",
+    appFunctions: [
+      "Pedidos online con seguimiento en tiempo real desde el celular.",
+      "Reservaciones con QR de confirmación y gestión rápida.",
+      "Métricas de consumo por cliente: frecuencia, ticket y hábitos.",
+      "Descarga de datos personales y gestión ética bajo principios tipo GDPR.",
+      "Soporte para envíos propios y extensiones futuras de entrega.",
+    ],
+    growthFunctions: [
+      "Campañas segmentadas por hábitos de consumo.",
+      "Promociones de lealtad y mensajes por canal digital.",
+      "Estadísticas de apertura y conversión para medir resultados.",
+    ],
   },
-  {
-    icon: Clock3,
-    title: "Estado del pedido en vivo",
-    text: "El cliente ve el avance de su pedido y quién lo prepara, con mayor transparencia.",
+  en: {
+    badge: "📱 Client App",
+    title: "Client app without downloads",
+    description: "Reservations, orders, loyalty, and analytics from the browser or QR.",
+    experienceTitle: "Customer experience",
+    functionsTitle: "Client App module features",
+    growthTitle: "Customer relationship and growth",
+    dataTitle: "Data and privacy",
+    cta: "Talk on WhatsApp",
+    appFunctions: [
+      "Online orders with real-time tracking from the phone.",
+      "Reservations with QR confirmation and quick management.",
+      "Customer consumption analytics: frequency, ticket, and habits.",
+      "Personal data export and ethical handling under GDPR-style principles.",
+      "Support for own delivery and future delivery extensions.",
+    ],
+    growthFunctions: [
+      "Campaigns segmented by consumption habits.",
+      "Loyalty promotions and digital channel messaging.",
+      "Open and conversion stats to measure results.",
+    ],
   },
-  {
-    icon: WalletCards,
-    title: "Lealtad flexible",
-    text: "Se puede guardar en Apple Wallet / Google Wallet o descargar y compartir como imagen PNG (según dispositivo).",
+  pt: {
+    badge: "📱 App do cliente",
+    title: "App do cliente sem download",
+    description: "Reservas, pedidos, fidelidade e métricas pelo navegador ou QR.",
+    experienceTitle: "Experiência do cliente",
+    functionsTitle: "Funções do módulo App do cliente",
+    growthTitle: "Relacionamento e crescimento com clientes",
+    dataTitle: "Dados e privacidade",
+    cta: "Falar no WhatsApp",
+    appFunctions: [
+      "Pedidos online com acompanhamento em tempo real pelo celular.",
+      "Reservas com confirmação por QR e gestão rápida.",
+      "Métricas de consumo por cliente: frequência, ticket e hábitos.",
+      "Exportação de dados pessoais e tratamento ético com princípios tipo GDPR.",
+      "Suporte para entregas próprias e extensões futuras.",
+    ],
+    growthFunctions: [
+      "Campanhas segmentadas por hábitos de consumo.",
+      "Promoções de fidelidade e mensagens por canal digital.",
+      "Estatísticas de abertura e conversão para medir resultados.",
+    ],
   },
-]
-
-const appFunctions = [
-  "Pedidos online con seguimiento en tiempo real desde el celular.",
-  "Reservaciones con QR de confirmación y gestión rápida.",
-  "Métricas de consumo por cliente: frecuencia, ticket y hábitos.",
-  "Descarga de datos personales y gestión ética bajo principios tipo GDPR.",
-  "Soporte para envíos propios y extensiones futuras de entrega.",
-]
-
-const growthFunctions = [
-  "Campañas segmentadas por hábitos de consumo.",
-  "Promociones de lealtad y mensajes por canal digital.",
-  "Estadísticas de apertura y conversión para medir resultados.",
-]
+  fr: {
+    badge: "📱 App client",
+    title: "App client sans téléchargement",
+    description: "Réservations, commandes, fidélité et métriques depuis le navigateur ou le QR.",
+    experienceTitle: "Expérience client",
+    functionsTitle: "Fonctions du module App client",
+    growthTitle: "Relation client et croissance",
+    dataTitle: "Données et confidentialité",
+    cta: "Parler sur WhatsApp",
+    appFunctions: [
+      "Commandes en ligne avec suivi en temps réel depuis le téléphone.",
+      "Réservations avec confirmation QR et gestion rapide.",
+      "Métriques de consommation client: fréquence, ticket et habitudes.",
+      "Export des données personnelles et traitement éthique selon des principes type GDPR.",
+      "Support des livraisons propres et futures extensions de livraison.",
+    ],
+    growthFunctions: [
+      "Campagnes segmentées par habitudes de consommation.",
+      "Promotions de fidélité et messages par canal digital.",
+      "Statistiques d’ouverture et de conversion pour mesurer les résultats.",
+    ],
+  },
+} as const
 
 export default function AppClientePage() {
+  const { locale } = useLocale()
+  const copy = copyByLocale[locale]
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Navigation />
@@ -57,11 +121,9 @@ export default function AppClientePage() {
             transition={{ duration: 0.45 }}
             className="max-w-3xl"
           >
-            <Badge className="mb-4 border-primary/30 bg-primary/10 text-primary">📱 App Cliente</Badge>
-            <h1 className="text-3xl md:text-5xl font-bold text-balance">App cliente sin descargar nada</h1>
-            <p className="mt-4 text-base md:text-lg text-muted-foreground text-pretty">
-              Reservas, pedidos, lealtad y métricas desde el navegador o QR.
-            </p>
+            <Badge className="mb-4 border-primary/30 bg-primary/10 text-primary">{copy.badge}</Badge>
+            <h1 className="text-3xl md:text-5xl font-bold text-balance">{copy.title}</h1>
+            <p className="mt-4 text-base md:text-lg text-muted-foreground text-pretty">{copy.description}</p>
           </motion.div>
         </div>
       </section>
@@ -74,35 +136,15 @@ export default function AppClientePage() {
           transition={{ duration: 0.35 }}
           className="text-2xl md:text-3xl font-bold mb-6"
         >
-          Experiencia del cliente
+          {copy.experienceTitle}
         </motion.h2>
-        <div className="grid gap-4 md:grid-cols-3">
-          {experienceItems.map((item, index) => {
-            const Icon = item.icon
-            return (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.35, delay: index * 0.06 }}
-                whileHover={{ y: -4 }}
-              >
-                <Card className="h-full p-5 border border-border hover:border-primary/35 hover:shadow-md transition-all">
-                  <Icon className="h-5 w-5 text-primary mb-3" />
-                  <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.text}</p>
-                </Card>
-              </motion.div>
-            )
-          })}
-        </div>
+        <AppClientePanel />
 
         <div className="grid gap-4 lg:grid-cols-2 mt-5">
           <Card className="p-5 border border-border bg-card/70">
-            <h3 className="text-lg font-semibold mb-3">Funciones del módulo App Cliente</h3>
+            <h3 className="text-lg font-semibold mb-3">{copy.functionsTitle}</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              {appFunctions.map((item) => (
+              {copy.appFunctions.map((item) => (
                 <li key={item} className="flex items-start gap-2">
                   <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
                   <span>{item}</span>
@@ -111,9 +153,9 @@ export default function AppClientePage() {
             </ul>
           </Card>
           <Card className="p-5 border border-border bg-card/70">
-            <h3 className="text-lg font-semibold mb-3">Relación y crecimiento con clientes</h3>
+            <h3 className="text-lg font-semibold mb-3">{copy.growthTitle}</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              {growthFunctions.map((item) => (
+              {copy.growthFunctions.map((item) => (
                 <li key={item} className="flex items-start gap-2">
                   <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
                   <span>{item}</span>
@@ -134,7 +176,7 @@ export default function AppClientePage() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <ShieldCheck className="h-5 w-5 text-primary" />
-              <h2 className="text-xl md:text-2xl font-bold">Datos y privacidad</h2>
+              <h2 className="text-xl md:text-2xl font-bold">{copy.dataTitle}</h2>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
               <Card className="p-5 border border-border bg-card/85 hover:border-primary/35 transition-colors">
@@ -164,7 +206,7 @@ export default function AppClientePage() {
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <WhatsAppCTAButton
                 href="https://wa.me/525512291607?text=Hola%2C%20quiero%20conocer%20la%20App%20Cliente%20de%20Xoco%20Suite"
-                label="Hablar por WhatsApp"
+                label={copy.cta}
                 className="font-semibold"
               />
               <Button asChild variant="outline" className="rounded-xl border-primary/35 text-primary hover:bg-primary/10 font-semibold">
