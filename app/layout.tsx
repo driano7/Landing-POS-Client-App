@@ -1,9 +1,12 @@
 import type React from "react"
-import type { Metadata } from "next"
 import { Lato } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { LocaleProvider } from "@/components/locale-provider"
+import { Seo } from "@/components/seo/Seo"
 import { ThemeProvider } from "@/components/theme-provider"
+import { buildLayoutMetadata } from "@/lib/seo/buildMetadata"
+import { seoConfig } from "@/lib/seo/config"
+import { buildOrganizationEntity, buildWebSiteEntity } from "@/lib/seo/entities"
 import { getLocaleFromCookies } from "@/lib/locale"
 import "./globals.css"
 
@@ -12,38 +15,16 @@ const lato = Lato({
   weight: ["300", "400", "700", "900"],
 })
 
-export const metadata: Metadata = {
-  title: "Xoco Suite - Plataforma SaaS para Restaurantes en México, USA y Brasil",
-  description:
-    "Suite tecnológica para restaurantes que integra POS, métricas avanzadas, panel sanitario configurable (COFEPRIS/FDA/ANVISA) y app cliente",
-  generator: "v0.app",
+export const metadata = {
+  ...buildLayoutMetadata(seoConfig, {
+  defaultTitle: seoConfig.site.defaultTitle,
+  description: seoConfig.site.defaultDescription,
+  canonicalPath: "/",
+  }),
+  generator: "Next.js",
   icons: {
     icon: "/favicon.svg",
     apple: "/apple-touch-icon.png",
-  },
-  openGraph: {
-    title: "Xoco Suite — POS, métricas y app cliente para restaurantes en MX/US/BR",
-    description:
-      "Suite tecnológica completa para restaurantes con POS operativo, analítica avanzada, cumplimiento sanitario y app de cliente integrada",
-    url: "https://xoco-suite.vercel.app",
-    siteName: "Xoco Suite",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Xoco Suite - POS y app para restaurantes",
-      },
-    ],
-    locale: "es_MX",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Xoco Suite — POS, métricas y app cliente para restaurantes en MX/US/BR",
-    description:
-      "Suite tecnológica completa para restaurantes con POS operativo, analítica avanzada, cumplimiento sanitario y app de cliente integrada",
-    images: ["/og-image.jpg"],
   },
 }
 
@@ -59,6 +40,7 @@ export default async function RootLayout({
       <body className={`${lato.className} font-sans antialiased transition-colors duration-500`}>
         <LocaleProvider initialLocale={locale}>
           <ThemeProvider defaultTheme="dark" storageKey="xoco-theme">
+            <Seo entities={[buildOrganizationEntity(seoConfig), buildWebSiteEntity(seoConfig)]} />
             {children}
           </ThemeProvider>
         </LocaleProvider>
