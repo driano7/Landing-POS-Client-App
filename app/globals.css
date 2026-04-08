@@ -1,3 +1,6 @@
+/* Capa visual global del sitio de Donovan Riaño.
+ * Tokens, tipografía, gradientes y estilos base sujetos a la titularidad contractual del proyecto.
+ */
 @import "tailwindcss";
 @import "tw-animate-css";
 @custom-variant dark (&:is(.dark *));

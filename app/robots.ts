@@ -1,7 +1,9 @@
+/* Adaptador de infraestructura SEO global para el sitio de Donovan Riaño.
+ * No contiene contenido comercial ni lógica de negocio.
+ */
 import type { MetadataRoute } from "next"
-import { seoConfig } from "@/lib/seo/config"
-import { buildCanonicalUrl } from "@/lib/seo/url"
-
+import { seoConfig } from "@/agency/lib/seo/config"
+import { buildCanonicalUrl } from "@/agency/lib/seo/url"
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
@@ -12,4 +14,3 @@ export default function robots(): MetadataRoute.Robots {
     host: seoConfig.site.siteUrl,
   }
 }
-

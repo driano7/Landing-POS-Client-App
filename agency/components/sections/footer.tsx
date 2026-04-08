@@ -1,0 +1,294 @@
+"use client"
+
+/*
+ * Titular y titularidad: Donovan Riaño.
+ * Este archivo forma parte del código reusable contractual del proyecto.
+ * Cualquier cesión, sublicencia o reutilización externa requiere acuerdo escrito firmado por Donovan Riaño.
+ */
+
+import Link from "next/link"
+import { Linkedin, ExternalLink, Mail, Send } from "lucide-react"
+import { motion } from "framer-motion"
+import { TypingText } from "@/agency/components/ui/typing-text"
+import { WhatsAppIconButton } from "@/terceros/components/ui/whatsapp-cta"
+import { useLocale } from "@/agency/components/locale-provider"
+
+/* Footer compartido.
+ * La estructura es reusable; los enlaces, contactos y claims visibles son contenido del sitio del cliente.
+ */
+const MotionLink = motion(Link)
+
+const footerCopy = {
+  es: {
+    summary: "Suite tecnológica completa para restaurantes en México",
+    support: "También desarrollamos sitios web a la medida para cualquier negocio o persona.",
+    products: "Productos",
+    resources: "Recursos",
+    contact: "Contacto",
+    privacy: "Privacidad",
+    terms: "Términos",
+    cookies: "Cookies",
+  },
+  en: {
+    summary: "Complete technology suite for restaurants in Mexico",
+    support: "We also build custom websites for any business or person.",
+    products: "Products",
+    resources: "Resources",
+    contact: "Contact",
+    privacy: "Privacy",
+    terms: "Terms",
+    cookies: "Cookies",
+  },
+  pt: {
+    summary: "Suite tecnológica completa para restaurantes no México",
+    support: "Também criamos sites personalizados para qualquer negócio ou pessoa.",
+    products: "Produtos",
+    resources: "Recursos",
+    contact: "Contato",
+    privacy: "Privacidade",
+    terms: "Termos",
+    cookies: "Cookies",
+  },
+  fr: {
+    summary: "Suite technologique complète pour restaurants au Mexique",
+    support: "Nous réalisons aussi des sites web sur mesure pour toute entreprise ou personne.",
+    products: "Produits",
+    resources: "Ressources",
+    contact: "Contact",
+    privacy: "Confidentialité",
+    terms: "Conditions",
+    cookies: "Cookies",
+  },
+} as const
+
+export function Footer() {
+  const { locale } = useLocale()
+  const copy = footerCopy[locale]
+
+  return (
+    <footer className="border-t border-border bg-card">
+      <div className="container mx-auto px-4 lg:px-8 py-12">
+        <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg">X</span>
+              </div>
+              <span className="font-bold text-lg text-foreground">Xoco Suite</span>
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">{copy.summary}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed mt-2 underline decoration-2 decoration-current underline-offset-2">
+              {copy.support}
+            </p>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">
+              <TypingText text={copy.products} />
+            </h4>
+            <ul className="space-y-2">
+              <li>
+                <MotionLink
+                  href="#productos"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  Xoco POS
+                </MotionLink>
+              </li>
+              <li>
+                <MotionLink
+                  href="#productos"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  Métricas avanzadas
+                </MotionLink>
+              </li>
+              <li>
+                <MotionLink
+                  href="#productos"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  App Cliente
+                </MotionLink>
+              </li>
+              <li>
+                <MotionLink
+                  href="#cofepris"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  Panel COFEPRIS
+                </MotionLink>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">
+              <TypingText text={copy.resources} />
+            </h4>
+            <ul className="space-y-2">
+              <li>
+                <motion.a
+                  href="https://github.com/driano7/Xoco-POS"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-2"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  Documentación POS
+                  <ExternalLink className="w-3 h-3" />
+                </motion.a>
+              </li>
+              <li>
+                <motion.a
+                  href="https://github.com/driano7/XocoCafe"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-2"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  Documentación Cliente
+                  <ExternalLink className="w-3 h-3" />
+                </motion.a>
+              </li>
+              <li>
+                <MotionLink
+                  href="#seguridad"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  Seguridad
+                </MotionLink>
+              </li>
+              <li>
+                <MotionLink
+                  href="#precios"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  Precios
+                </MotionLink>
+              </li>
+              <li>
+                <MotionLink
+                  href="#contacto"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  POCs
+                </MotionLink>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">
+              <TypingText text={copy.contact} />
+            </h4>
+            <div className="flex gap-4 mb-6">
+              <motion.div whileHover={{ scale: 1.1 }}>
+                <WhatsAppIconButton href="https://wa.me/525512291607" />
+              </motion.div>
+              <motion.a
+                href="mailto:donovan@criptec.io"
+                className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+                whileHover={{ scale: 1.1 }}
+                aria-label="Email"
+              >
+                <Mail className="w-5 h-5" />
+              </motion.a>
+              <motion.a
+                href="https://t.me/driano7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+                whileHover={{ scale: 1.1 }}
+                aria-label="Telegram"
+              >
+                <Send className="w-5 h-5" />
+              </motion.a>
+              <motion.a
+                href="https://www.linkedin.com/in/driano7/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+                whileHover={{ scale: 1.1 }}
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </motion.a>
+            </div>
+            <motion.a
+              href="https://studio--donovan-riao-portfolio.us-central1.hosted.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+              whileHover={{ x: 4 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              Studio / Portfolio
+              <ExternalLink className="w-3 h-3" />
+            </motion.a>
+          </div>
+        </div>
+
+        <div className="pt-8 border-t border-border pb-24 md:pb-0">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-muted-foreground">
+              © 2026 Xoco Suite. Con 💙 desarrollado por{" "}
+              <motion.a
+                href="https://studio--donovan-riao-portfolio.us-central1.hosted.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-primary underline decoration-2 decoration-current underline-offset-2 hover:opacity-90 transition-opacity"
+                whileHover={{ y: -1 }}
+              >
+                Donovan Riaño
+              </motion.a>
+              .
+            </p>
+            <div className="flex items-center gap-6">
+              <MotionLink
+                href="#privacidad"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                whileHover={{ y: -2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {copy.privacy}
+              </MotionLink>
+              <MotionLink
+                href="#terminos"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                whileHover={{ y: -2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {copy.terms}
+              </MotionLink>
+              <MotionLink
+                href="#cookies"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                whileHover={{ y: -2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {copy.cookies}
+              </MotionLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}

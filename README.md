@@ -1,8 +1,24 @@
-Below is a Markdown README you can adaptar y pegar en tu repo (puedes cambiar el nombre del repo según corresponda).
+## Aviso de titularidad y contexto legal
+
+Este repositorio documenta y desarrolla el sitio y la suite de producto para **Donovan Riaño** como titular del proyecto.
+
+- El contenido, branding, imágenes, copy, precios y datos aportados por Donovan son de Donovan.
+- El código reusable de base técnica solo puede tratarse como reutilizable si existe cesión, licencia o acuerdo escrito válido a favor de Donovan.
+- Las integraciones de terceros quedan sujetas a la licencia original del proveedor.
+- Cualquier derecho no documentado debe marcarse como `requiere revisión legal/contractual`.
+- Si una pieza mezcla contenido de Donovan con base técnica reutilizable o integración externa, la clasificación debe mantenerse como `MIXED` y separarse por frontera.
+
+Documentos de referencia:
+
+- [LICENSE-ASSIGNMENT.md](./LICENSE-ASSIGNMENT.md)
+- [IP_CLASSIFICATION.md](./IP_CLASSIFICATION.md)
+- [IP_INVENTORY.md](./IP_INVENTORY.md)
+
+Este README conserva la documentación funcional del sitio, pero su interpretación legal queda subordinada a la titularidad de Donovan Riaño y a los documentos de cesión/licencia del proyecto.
 
 ***
 
-# Xoco Suite — POS, Advanced Metrics & Client App  
+# Xoco Suite — POS, Advanced Metrics & Client App
 _Xoco Suite — Plataforma para Restaurantes Regulados_
 
 > **EN** · SaaS platform for restaurants and food businesses (except coffee shops), focused on operations, compliance and guest experience.  

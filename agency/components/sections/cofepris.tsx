@@ -1,0 +1,142 @@
+"use client"
+
+/*
+ * Titular y titularidad: Donovan Riaño.
+ * Este archivo forma parte del código reusable contractual del proyecto.
+ * Cualquier cesión, sublicencia o reutilización externa requiere acuerdo escrito firmado por Donovan Riaño.
+ */
+
+import { Card } from "@/agency/components/ui/card"
+import { Badge } from "@/agency/components/ui/badge"
+import { TypingText } from "@/agency/components/ui/typing-text"
+import { CheckCircle2, AlertCircle, FileText } from "lucide-react"
+import { motion } from "framer-motion"
+
+/* Sección sanitaria reutilizable con referencias regulatorias; requiere validación documental si se usa como claim comercial. */
+export function Cofepris() {
+  const cofeprisItems = [
+    {
+      icon: CheckCircle2,
+      badge: "Al día",
+      title: "Higiene y limpieza",
+      description: "Checklist diario, semanal y mensual",
+      metric: "98%",
+    },
+    {
+      icon: AlertCircle,
+      badge: "Cumplimiento",
+      title: "Control de plagas",
+      description: "Registro de fumigaciones",
+      metric: "Ene 15",
+    },
+    {
+      icon: FileText,
+      badge: "Listo",
+      title: "Inventario alimentario",
+      description: "Tracking de caducidades",
+      metric: "0",
+    },
+    {
+      icon: CheckCircle2,
+      badge: "Verificado",
+      title: "Exportación auditorías",
+      description: "CSV, XLSX y filtros personalizados",
+      metric: "✓",
+    },
+  ]
+
+  return (
+    <section id="cofepris" className="py-20 md:py-32 relative overflow-hidden bg-background">
+      <div className="absolute inset-0 bg-gradient-to-br from-success/5 to-transparent" />
+
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-success/10 border border-success/20 mb-6">
+            <CheckCircle2 className="w-4 h-4 text-success" />
+            <span className="text-sm font-medium text-success">Cumplimiento Sanitario</span>
+          </div>
+
+          <h3 className="text-lg font-semibold text-muted-foreground mb-3">
+            <TypingText text="Panel sanitario configurable" />
+          </h3>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
+            <TypingText text="Panel de cumplimiento sanitario integrado" />
+          </h2>
+          <p className="text-lg text-muted-foreground text-pretty">
+            Diseñado alineado a requerimientos de manejo y tracking de alimentos
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {cofeprisItems.map((item, index) => {
+            const Icon = item.icon
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.45, delay: index * 0.12 }}
+                whileHover={{ scale: 1.05, y: -5 }}
+              >
+                <Card className="p-4 border-2 border-success/20 hover:border-success/40 transition-colors h-full bg-card/80 backdrop-blur-sm">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-success" />
+                    </div>
+                    <Badge className="bg-success text-success-foreground text-xs">{item.badge}</Badge>
+                  </div>
+                  <h3 className="font-bold text-sm text-foreground mb-1">
+                    <TypingText text={item.title} />
+                  </h3>
+                  <p className="text-xs text-muted-foreground mb-2">{item.description}</p>
+                  <div className="text-lg font-bold text-success">{item.metric}</div>
+                </Card>
+              </motion.div>
+            )
+          })}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-12 max-w-4xl mx-auto text-center space-y-6"
+        >
+          <div className="text-left bg-muted/30 rounded-xl p-6 border border-border">
+            <h4 className="font-bold text-foreground mb-4">
+              <TypingText text="Marcos regulatorios soportados:" />
+            </h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li>
+                <span className="font-semibold text-foreground">México:</span> alineado a NOM-251-SSA1-2009,
+                NOM-093-SSA1-1994 y el Reglamento de Control Sanitario de Productos y Servicios (COFEPRIS).
+              </li>
+              <li>
+                <span className="font-semibold text-foreground">Estados Unidos:</span> basado en las recomendaciones del
+                FDA Food Code adoptadas por departamentos de salud (CDC/FDA).
+              </li>
+              <li>
+                <span className="font-semibold text-foreground">Brasil:</span> basado en la RDC 216/2004 de ANVISA y
+                guías de boas práticas para serviços de alimentação.
+              </li>
+            </ul>
+          </div>
+
+          <p className="text-sm text-muted-foreground italic">
+            Importante: Xoco Suite se diseña alineado a estos marcos de buenas prácticas, pero no es un organismo
+            certificador ni sustituye inspecciones oficiales o certificaciones externas.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  )
+}

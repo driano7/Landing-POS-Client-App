@@ -1,0 +1,63 @@
+"use client"
+
+/*
+ * Titular y titularidad: Donovan Riaño.
+ * Este archivo forma parte del código reusable contractual del proyecto.
+ * Cualquier cesión, sublicencia o reutilización externa requiere acuerdo escrito firmado por Donovan Riaño.
+ */
+
+import { Moon, Sun } from "lucide-react"
+import { useTheme } from "@/terceros/components/theme-provider"
+import { motion, AnimatePresence } from "framer-motion"
+import { useEffect, useState } from "react"
+
+/* Interacción distintiva de UI: el switch de tema anima el icono y depende del estado global del theme provider. */
+export function ThemeToggle() {
+  const { theme, resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const handleToggleTheme = () => {
+    const currentTheme = resolvedTheme ?? theme ?? "dark"
+    const nextTheme = currentTheme === "light" ? "dark" : "light"
+    setTheme(nextTheme)
+  }
+
+  return (
+    <motion.button
+      onClick={handleToggleTheme}
+      disabled={!mounted}
+      className="relative w-10 h-10 rounded-full flex items-center justify-center overflow-hidden backdrop-blur-sm bg-white/20 border border-white/30 hover:border-white/50 transition-colors"
+      whileTap={{ scale: 0.9 }}
+      whileHover={{ scale: 1.05 }}
+      aria-label="Toggle theme"
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        {(resolvedTheme ?? theme) === "light" ? (
+          <motion.div
+            key="sun"
+            initial={{ rotate: -90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: 90, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Sun className="w-5 h-5 text-amber-500" />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="moon"
+            initial={{ rotate: 90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: -90, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Moon className="w-5 h-5 text-blue-300" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.button>
+  )
+}

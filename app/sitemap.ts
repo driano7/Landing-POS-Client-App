@@ -1,8 +1,10 @@
+/* Adaptador de infraestructura SEO global para el sitio de Donovan Riaño.
+ * Expone rutas derivadas de contenido y configuración aprobada.
+ */
 import type { MetadataRoute } from "next"
-import { seoConfig } from "@/lib/seo/config"
-import { buildCanonicalUrl } from "@/lib/seo/url"
-import { listSeoRoutes } from "@/lib/seo/content"
-
+import { seoConfig } from "@/agency/lib/seo/config"
+import { buildCanonicalUrl } from "@/agency/lib/seo/url"
+import { listSeoRoutes } from "@/agency/lib/seo/content"
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { services, blogPosts, caseStudies } = await listSeoRoutes()
 
@@ -45,4 +47,3 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ]
 }
-
