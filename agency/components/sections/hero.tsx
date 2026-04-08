@@ -26,7 +26,7 @@ const heroCopy = {
     pills: ["Sitio web profesional", "App cliente", "POS + métricas", "Pagos con Blokko.io"],
     cta: "Agenda demo por WhatsApp",
     secondary: "Ver planes",
-    footer: "4 planes claros: Starter, $499, $899 y $1,499 MXN/mes.",
+    footer: "4 planes claros: Starter $249, Emprende $549, Escala $999 y Cadena $1,499 MXN/mes.",
   },
   en: {
     badge: "Made for Latin American restaurants",
@@ -37,7 +37,7 @@ const heroCopy = {
     pills: ["Professional website", "Client app", "POS + analytics", "Payments with Blokko.io"],
     cta: "Book a WhatsApp demo",
     secondary: "See plans",
-    footer: "4 clear plans: Starter, $499, $899 and $1,499 MXN/month.",
+    footer: "4 clear plans: Starter $249, Emprende $549, Escala $999 and Cadena $1,499 MXN/month.",
   },
   pt: {
     badge: "Feito para restaurantes latino-americanos",
@@ -48,7 +48,7 @@ const heroCopy = {
     pills: ["Site profissional", "App do cliente", "PDV + métricas", "Pagamentos com Blokko.io"],
     cta: "Agendar demo pelo WhatsApp",
     secondary: "Ver planos",
-    footer: "4 planos claros: Starter, $499, $899 e $1,499 MXN/mês.",
+    footer: "4 planos claros: Starter $249, Emprende $549, Escala $999 e Cadena $1,499 MXN/mês.",
   },
   fr: {
     badge: "Conçu pour les restaurants d’Amérique latine",
@@ -59,7 +59,7 @@ const heroCopy = {
     pills: ["Site web pro", "App client", "POS + métriques", "Paiements avec Blokko.io"],
     cta: "Réserver une démo WhatsApp",
     secondary: "Voir les offres",
-    footer: "4 offres claires: Starter, $499, $899 et $1,499 MXN/mois.",
+    footer: "4 offres claires: Starter $249, Emprende $549, Escala $999 et Cadena $1,499 MXN/mois.",
   },
 } as const
 

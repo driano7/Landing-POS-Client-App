@@ -23,8 +23,16 @@ const copyByLocale = {
     bullets: [
       "Evitas pagar 3 o 4 softwares distintos para POS, pedidos, sitio web, BI y pagos.",
       "Tienes todo en un solo lugar, con una vista unificada del negocio.",
-      "Tus datos se protegen con cifrado y buenas prácticas tipo GDPR. 🔒",
-      "Incluye panel sanitario y operación offline con sincronización al volver internet.",
+      {
+        before: "Tus datos se protegen con cifrado y buenas prácticas tipo GDPR. ",
+        linkText: "Si quieres saber más, revisa datos y privacidad.",
+        href: "/app-cliente#datos-privacidad",
+      },
+      {
+        before: "Incluye panel sanitario y ",
+        underline: "operación offline con sincronización al volver internet",
+        after: ".",
+      },
     ],
     cta: "Ver planes y precios",
   },
@@ -34,8 +42,16 @@ const copyByLocale = {
     bullets: [
       "Avoid paying for 3 or 4 separate tools for POS, orders, website, BI, and payments.",
       "Keep everything in one place with a unified view of the business.",
-      "Protect your data with encryption and GDPR-style best practices. 🔒",
-      "Includes a sanitary panel and offline operation with sync when internet returns.",
+      {
+        before: "Protect your data with encryption and GDPR-style best practices. ",
+        linkText: "If you want to learn more, check data and privacy.",
+        href: "/app-cliente#datos-privacidad",
+      },
+      {
+        before: "Includes a sanitary panel and ",
+        underline: "offline operation with sync when internet returns",
+        after: ".",
+      },
     ],
     cta: "See plans and pricing",
   },
@@ -45,8 +61,16 @@ const copyByLocale = {
     bullets: [
       "Evite pagar por 3 ou 4 softwares diferentes para PDV, pedidos, site, BI e pagamentos.",
       "Tenha tudo em um só lugar, com uma visão unificada do negócio.",
-      "Seus dados são protegidos com criptografia e boas práticas tipo GDPR. 🔒",
-      "Inclui painel sanitário e operação offline com sincronização quando a internet voltar.",
+      {
+        before: "Seus dados são protegidos com criptografia e boas práticas tipo GDPR. ",
+        linkText: "Se quiser saber mais, veja dados e privacidade.",
+        href: "/app-cliente#datos-privacidad",
+      },
+      {
+        before: "Inclui painel sanitário e ",
+        underline: "operação offline com sincronização quando a internet voltar",
+        after: ".",
+      },
     ],
     cta: "Ver planos e preços",
   },
@@ -56,8 +80,16 @@ const copyByLocale = {
     bullets: [
       "Évitez de payer 3 ou 4 logiciels séparés pour le POS, les commandes, le site, la BI et les paiements.",
       "Tout est au même endroit, avec une vue unifiée de l’activité.",
-      "Vos données sont protégées par chiffrement et bonnes pratiques type GDPR. 🔒",
-      "Inclut un panneau sanitaire et un fonctionnement hors ligne avec synchronisation au retour d’internet.",
+      {
+        before: "Vos données sont protégées par chiffrement et bonnes pratiques type GDPR. ",
+        linkText: "Si vous voulez en savoir plus, consultez données et confidentialité.",
+        href: "/app-cliente#datos-privacidad",
+      },
+      {
+        before: "Inclut un panneau sanitaire et ",
+        underline: "un fonctionnement hors ligne avec synchronisation au retour d’internet",
+        after: ".",
+      },
     ],
     cta: "Voir les offres",
   },
@@ -99,7 +131,29 @@ export function WhyComplete() {
               {copy.bullets.map((bullet, index) => (
                 <li key={index} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                  <p className="text-sm md:text-base text-foreground/90">{bullet}</p>
+                  <p className="text-sm md:text-base text-foreground/90">
+                    {typeof bullet === "string" ? (
+                      bullet
+                    ) : "href" in bullet ? (
+                      <>
+                        {bullet.before}
+                        <Link
+                          href={bullet.href}
+                          className="font-semibold text-primary underline underline-offset-4 decoration-primary/60 hover:decoration-primary"
+                        >
+                          {bullet.linkText}
+                        </Link>
+                      </>
+                    ) : (
+                      <>
+                        {bullet.before}
+                        <span className="font-semibold underline underline-offset-4 decoration-primary/60">
+                          {bullet.underline}
+                        </span>
+                        {bullet.after}
+                      </>
+                    )}
+                  </p>
                 </li>
               ))}
             </ul>

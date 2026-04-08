@@ -6,6 +6,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Smartphone, ShieldCheck, LockKeyhole, ArrowRight } from "lucide-react"
+import { useEffect, useState } from "react"
 
 import { Navigation } from "@/agency/components/sections/navigation"
 import { Footer } from "@/agency/components/sections/footer"
@@ -113,6 +114,18 @@ const copyByLocale = {
 export default function AppClientePage() {
   const { locale } = useLocale()
   const copy = copyByLocale[locale]
+  const [highlightPrivacy, setHighlightPrivacy] = useState(false)
+
+  useEffect(() => {
+    const shouldHighlight = window.location.hash === "#datos-privacidad"
+    if (!shouldHighlight) {
+      return
+    }
+
+    setHighlightPrivacy(true)
+    const timeout = window.setTimeout(() => setHighlightPrivacy(false), 1800)
+    return () => window.clearTimeout(timeout)
+  }, [])
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -180,33 +193,59 @@ export default function AppClientePage() {
           transition={{ duration: 0.35 }}
         >
           <div>
-            <div className="flex items-center gap-2 mb-4">
+            <div id="datos-privacidad" className="flex items-center gap-2 mb-4 scroll-mt-24">
               <ShieldCheck className="h-5 w-5 text-primary" />
               <h2 className="text-xl md:text-2xl font-bold">{copy.dataTitle}</h2>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
-              <Card className="p-5 border border-border bg-card/85 hover:border-primary/35 transition-colors">
-                <div className="flex items-center gap-2 mb-2">
-                  <LockKeyhole className="h-4 w-4 text-primary" />
-                  <h3 className="text-base font-semibold">Cifrado AES-GCM</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  AES-GCM actúa como una bóveda digital para cada mensaje. Cada dato se sella con una clave única antes
-                  de enviarse, y solo el receptor con la clave correcta puede abrirlo. Es comunicación cifrada de grado
-                  militar para que nadie más pueda leer la información.
-                </p>
-              </Card>
-              <Card className="p-5 border border-border bg-card/85 hover:border-primary/35 transition-colors">
-                <div className="flex items-center gap-2 mb-2">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
-                  <h3 className="text-base font-semibold">Principios tipo GDPR</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Los principios tipo GDPR son prácticas usadas en Europa para el manejo ético de datos de usuarios.
-                  Esto implica pedir consentimiento claro, usar la información solo para fines legítimos, dar
-                  transparencia sobre su uso y facilitar el control de datos por parte del cliente.
-                </p>
-              </Card>
+              <motion.div
+                animate={
+                  highlightPrivacy
+                    ? { scale: [1, 1.03, 1], y: [0, -4, 0] }
+                    : { scale: 1, y: 0 }
+                }
+                transition={{ duration: 0.9, ease: "easeOut" }}
+              >
+                <Card
+                  className={`p-5 border bg-card/85 hover:border-primary/35 transition-colors shadow-sm dark:shadow-primary/10 ${
+                    highlightPrivacy ? "border-primary/45 ring-1 ring-primary/20 shadow-[0_0_0_1px_rgba(122,78,46,0.12)]" : "border-border"
+                  }`}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <LockKeyhole className="h-4 w-4 text-primary" />
+                    <h3 className="text-base font-semibold">Cifrado AES-GCM</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    AES-GCM actúa como una bóveda digital para cada mensaje. Cada dato se sella con una clave única antes
+                    de enviarse, y solo el receptor con la clave correcta puede abrirlo. <strong>Es comunicación cifrada
+                    de grado militar para que nadie más pueda leer la información.</strong>
+                  </p>
+                </Card>
+              </motion.div>
+              <motion.div
+                animate={
+                  highlightPrivacy
+                    ? { scale: [1, 1.03, 1], y: [0, -4, 0] }
+                    : { scale: 1, y: 0 }
+                }
+                transition={{ duration: 0.9, ease: "easeOut", delay: 0.08 }}
+              >
+                <Card
+                  className={`p-5 border bg-card/85 hover:border-primary/35 transition-colors shadow-sm dark:shadow-primary/10 ${
+                    highlightPrivacy ? "border-primary/45 ring-1 ring-primary/20 shadow-[0_0_0_1px_rgba(122,78,46,0.12)]" : "border-border"
+                  }`}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    <h3 className="text-base font-semibold">Principios tipo GDPR</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Los principios tipo GDPR son prácticas usadas en Europa para el manejo ético de datos de usuarios.
+                    Esto implica pedir consentimiento claro, usar la información solo para fines legítimos, dar
+                    transparencia sobre su uso y facilitar el control de datos por parte del cliente.
+                  </p>
+                </Card>
+              </motion.div>
             </div>
 
             <div className="mt-6 flex flex-col sm:flex-row gap-3">

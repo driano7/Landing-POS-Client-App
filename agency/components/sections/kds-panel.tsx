@@ -6,11 +6,13 @@
  * Cualquier cesión, sublicencia o reutilización externa requiere acuerdo escrito firmado por Donovan Riaño.
  */
 
-import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import { motion, useReducedMotion } from "framer-motion"
 import { Badge } from "@/agency/components/ui/badge"
 import { Card } from "@/agency/components/ui/card"
 import { useTheme } from "next-themes"
 import { useLocale } from "@/agency/components/locale-provider"
+import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 import {
   ArrowUpRight,
   Clock3,
@@ -41,22 +43,68 @@ const panelVariants = {
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 20, scale: 0.98 },
   show: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
-      duration: 0.38,
+      duration: 0.45,
       ease: [0.22, 1, 0.36, 1],
     },
   },
+}
+
+type Locale = "es" | "en" | "pt" | "fr"
+
+const kdsRhythmSeriesByLocale: Record<Locale, Array<{ label: string; value: number }>> = {
+  es: [
+    { label: "Ene", value: 42 },
+    { label: "Feb", value: 48 },
+    { label: "Mar", value: 45 },
+    { label: "Abr", value: 56 },
+    { label: "May", value: 54 },
+    { label: "Jun", value: 63 },
+    { label: "Jul", value: 60 },
+    { label: "Ago", value: 68 },
+  ],
+  en: [
+    { label: "Jan", value: 42 },
+    { label: "Feb", value: 48 },
+    { label: "Mar", value: 45 },
+    { label: "Apr", value: 56 },
+    { label: "May", value: 54 },
+    { label: "Jun", value: 63 },
+    { label: "Jul", value: 60 },
+    { label: "Aug", value: 68 },
+  ],
+  pt: [
+    { label: "Jan", value: 42 },
+    { label: "Fev", value: 48 },
+    { label: "Mar", value: 45 },
+    { label: "Abr", value: 56 },
+    { label: "Mai", value: 54 },
+    { label: "Jun", value: 63 },
+    { label: "Jul", value: 60 },
+    { label: "Ago", value: 68 },
+  ],
+  fr: [
+    { label: "Jan", value: 42 },
+    { label: "Fév", value: 48 },
+    { label: "Mar", value: 45 },
+    { label: "Avr", value: 56 },
+    { label: "Mai", value: 54 },
+    { label: "Juin", value: 63 },
+    { label: "Juil", value: 60 },
+    { label: "Aoû", value: 68 },
+  ],
 }
 
 const copyByLocale = {
   es: {
     badge: "KDS para cocina conectada",
     overline: "Integración POS + estaciones + expedición",
-    title: "Kitchen Display System: menos papel, más control y mejor ritmo en cocina",
+    title: "Tecnología Kitchen Display System: menos papel, más control y mejor ritmo en cocina",
     description:
       "El KDS reemplaza tickets impresos por pantallas de cocina que reciben la orden en el momento, la reparten por estación y dejan trazabilidad clara de lo que ya salió, lo que sigue y lo que necesita atención.",
     operationHeading: "Qué mejora en operación",
@@ -379,12 +427,161 @@ const copyByLocale = {
   },
 } as const
 
+function AnimatedChartDot({
+  cx,
+  cy,
+  fill,
+  index,
+  shouldReduceMotion,
+}: {
+  cx?: number
+  cy?: number
+  fill?: string
+  index?: number
+  shouldReduceMotion: boolean
+}) {
+  if (cx === undefined || cy === undefined) {
+    return null
+  }
+
+  if (shouldReduceMotion) {
+    return <circle cx={cx} cy={cy} r={4} fill={fill ?? "#D4A017"} />
+  }
+
+  return (
+    <g>
+      <motion.circle
+        cx={cx}
+        cy={cy}
+        r={10}
+        fill={fill ?? "#D4A017"}
+        opacity={0.14}
+        initial={{ scale: 0.4, opacity: 0 }}
+        animate={{ scale: 1, opacity: 0.14 }}
+        transition={{
+          duration: 0.45,
+          delay: (index ?? 0) * 0.06,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        style={{ transformOrigin: `${cx}px ${cy}px` }}
+      />
+      <motion.circle
+        cx={cx}
+        cy={cy}
+        r={4}
+        fill={fill ?? "#D4A017"}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{
+          duration: 0.32,
+          delay: (index ?? 0) * 0.08,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        style={{ transformOrigin: `${cx}px ${cy}px` }}
+      />
+    </g>
+  )
+}
+
+function KdsRhythmChart({ locale, isDark }: { locale: Locale; isDark: boolean }) {
+  const shouldReduceMotion = useReducedMotion()
+  const series = kdsRhythmSeriesByLocale[locale]
+  const [visibleCount, setVisibleCount] = useState(shouldReduceMotion ? series.length : 0)
+
+  useEffect(() => {
+    if (shouldReduceMotion) {
+      setVisibleCount(series.length)
+      return
+    }
+
+    setVisibleCount(0)
+    let index = 0
+    const timer = window.setInterval(() => {
+      index += 1
+      setVisibleCount(index)
+      if (index >= series.length) {
+        window.clearInterval(timer)
+      }
+    }, 110)
+
+    return () => window.clearInterval(timer)
+  }, [series, shouldReduceMotion])
+
+  const chartData = series.slice(0, visibleCount)
+  const strokeColor = isDark ? "#ffd9b0" : "#8d5a3c"
+  const gridColor = isDark ? "rgba(255,255,255,0.12)" : "rgba(141,90,60,0.12)"
+
+  return (
+    <motion.div
+      variants={itemVariants}
+      className={isDark ? "rounded-3xl border border-white/10 bg-black/10 p-4 md:p-5" : "rounded-3xl border border-amber-200/80 bg-white/80 p-4 md:p-5"}
+    >
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className={`text-sm font-semibold ${isDark ? "text-white" : "text-[#4b2f22]"}`}>Ritmo por mes</p>
+          <p className={`text-xs ${isDark ? "text-white/65" : "text-[#6f4a34]/70"}`}>
+            Las métricas ayudan a tomar mejores decisiones; nosotros las hacemos por ti para que la lectura sea
+            simple y accionable.
+          </p>
+        </div>
+        <span
+          className={`rounded-full border px-3 py-1 text-[11px] uppercase tracking-[0.2em] ${
+            isDark ? "border-white/10 bg-white/5 text-white/70" : "border-amber-200 bg-white/80 text-[#7a533c]/70"
+          }`}
+        >
+          métricas
+        </span>
+      </div>
+
+      <div className="mt-4 h-64">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart key={`kds-rhythm-${chartData.length}`} data={chartData} margin={{ top: 10, right: 12, bottom: 0, left: -16 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke={gridColor} vertical={false} />
+            <XAxis
+              dataKey="label"
+              tickLine={false}
+              axisLine={false}
+              tick={{ fill: isDark ? "rgba(255,255,255,0.72)" : "rgba(75,47,34,0.72)", fontSize: 12 }}
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tick={{ fill: isDark ? "rgba(255,255,255,0.72)" : "rgba(75,47,34,0.72)", fontSize: 12 }}
+            />
+            <Tooltip
+              cursor={{ stroke: strokeColor, strokeOpacity: 0.16, strokeDasharray: "4 4" }}
+              contentStyle={{
+                borderRadius: 16,
+                border: `1px solid ${isDark ? "rgba(255,255,255,0.12)" : "rgba(141,90,60,0.12)"}`,
+                background: isDark ? "rgba(34,22,17,0.96)" : "rgba(255,255,255,0.98)",
+                color: isDark ? "#fff" : "#2b1d16",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.18)",
+              }}
+            />
+            <Line
+              type="monotone"
+              dataKey="value"
+              stroke={strokeColor}
+              strokeWidth={3}
+              dot={(dotProps) => <AnimatedChartDot {...dotProps} shouldReduceMotion={!!shouldReduceMotion} />}
+              activeDot={(dotProps) => <AnimatedChartDot {...dotProps} shouldReduceMotion={!!shouldReduceMotion} />}
+              isAnimationActive={!shouldReduceMotion}
+              animationBegin={0}
+              animationDuration={850}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </motion.div>
+  )
+}
+
 export function KdsPanel() {
   const { locale } = useLocale()
   const { resolvedTheme, theme } = useTheme()
   const currentTheme = resolvedTheme ?? theme ?? "dark"
   const isDark = currentTheme === "dark"
-  const copy = copyByLocale[locale]
+  const copy = copyByLocale[locale as Locale]
 
   const shellClassName = isDark
     ? "relative overflow-hidden border border-primary/20 bg-gradient-to-br from-[#1f1510] via-[#2f1f18] to-[#4b2f22] text-white shadow-[0_24px_80px_rgba(46,24,18,0.35)] dark:border-primary/20"
@@ -469,22 +666,20 @@ export function KdsPanel() {
                   <ShieldCheck className={`h-4 w-4 ${isDark ? "text-[#ffd9b0]" : "text-[#8d5a3c]"}`} />
                   {copy.operationHeading}
                 </div>
-                <motion.div variants={panelVariants} className="mt-4 grid gap-3">
+                <motion.div variants={panelVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.35 }} className="mt-4 grid gap-3">
                   {copy.metrics.map((metric, index) => {
                     const Icon = metric.icon
                     return (
                       <motion.a
                         key={metric.title}
                         variants={itemVariants}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.35 }}
                         href={metric.href}
                         target="_blank"
                         rel="noreferrer"
-                        className={metricClassName}
+                        className={`${metricClassName} group`}
                         transition={{ duration: 0.42, delay: index * 0.08 }}
-                        whileHover={{ y: -4 }}
+                        whileHover={{ y: -6, scale: 1.015 }}
+                        whileTap={{ scale: 0.99 }}
                       >
                         <div className="flex items-start gap-3">
                           <div className={iconPillClassName}>
@@ -503,9 +698,11 @@ export function KdsPanel() {
                   })}
                 </motion.div>
               </motion.div>
+
+              <KdsRhythmChart locale={locale as Locale} isDark={isDark} />
             </div>
 
-            <motion.div variants={itemVariants} className={isDark ? "mt-6 rounded-2xl border border-white/10 bg-black/10 p-4" : "mt-6 rounded-2xl border border-amber-200/80 bg-white/75 p-4"}>
+              <motion.div variants={itemVariants} whileHover={{ y: -3 }} className={isDark ? "mt-6 rounded-2xl border border-white/10 bg-black/10 p-4" : "mt-6 rounded-2xl border border-amber-200/80 bg-white/75 p-4"}>
               <div className={`flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.18em] ${isDark ? "text-white/60" : "text-[#7a533c]/70"}`}>
                 <Link2 className="h-3.5 w-3.5" />
                 {copy.sourcesHeading}

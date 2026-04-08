@@ -63,6 +63,7 @@ type PricesCopy = {
   badge: string
   modulesTitle: string
   contractNote: string
+  multiDeviceNote: string
   blokkoBadge: string
   blokkoTitle: string
   blokkoDescription: string
@@ -106,6 +107,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
     badge: "Enfoque LATAM: México, Brasil, Argentina, Perú y más.",
     modulesTitle: "Todo lo que incluye Xoco Suite en un solo plan",
     contractNote: "Todos los planes se contratan por 12 meses al iniciar.",
+    multiDeviceNote: "El acceso desde múltiples dispositivos está incluido en todos los paquetes.",
     blokkoBadge: "Se conecta a cualquier terminal. Blokko es opcional, no obligatorio.",
     blokkoTitle: "Un solo POS, múltiples formas de cobrar, sin dolores de cabeza.",
     blokkoDescription:
@@ -159,30 +161,29 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
     plans: [
       {
         name: "Starter",
-        price: "$199",
+        price: "$249",
         subtitle: "Solo landing básica",
-        support: "WhatsApp en horario comercial",
+        support: "Soporte por WhatsApp de 8 a 2 pm",
         blokkoStatus: "addon",
         blokkoBadge: "Opcional",
         features: [
           { icon: Globe, text: "Landing básica con menú estático o PDF." },
           { icon: Store, text: "POS básico: toma de orden y tickets." },
-          { icon: Smartphone, text: "Acceso desde múltiples dispositivos para ver la landing desde cualquier pantalla." },
           { icon: ShieldCheck, text: "Accesos por rol limitado (admin y caja).", underline: true },
           {
             icon: XCircle,
-            text: "Sin sitio bilingüe (español/inglés), sin App Cliente, sin reservas y sin edición de ticket antes del pago.",
+            text: "Sin sitio bilingüe ni menú en dos idiomas (español/inglés), sin App Cliente, sin reservas y sin edición de ticket antes del pago.",
             underline: true,
           },
-          { icon: QrCode, text: "Sin métricas avanzadas, sin COFEPRIS, sin Machine Learning.", underline: true },
+          { icon: QrCode, text: "Sin métricas avanzadas, sin exportar ni hacer gráficas, sin COFEPRIS, sin Machine Learning.", underline: true },
           { icon: CreditCard, text: "Blokko integrado para tarjetas, SPEI/PIX y cripto (opcional, se adapta mejor para tu negocio)." },
         ],
       },
       {
         name: "Emprende",
-        price: "$499",
+        price: "$549",
         subtitle: "Para restaurantes pequeños (1 sucursal)",
-        support: "WhatsApp con mejor seguimiento",
+        support: "Soporte por WhatsApp de 8 a 6 pm, prioridad media",
         blokkoStatus: "addon",
         blokkoBadge: "Opcional",
         features: [
@@ -191,26 +192,25 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
             icon: Store,
             text: "POS con inventario básico, alertas de stock, edición de ticket antes del pago, división de cuentas y recuperación/recreación de tickets en POS y App Cliente.",
           },
-          { icon: Smartphone, text: "Acceso desde múltiples dispositivos para tu equipo y tus estaciones de trabajo." },
           { icon: ShieldCheck, text: "Roles múltiples: admin, caja y cocina." },
           { icon: QrCode, text: "Reservas y pedidos con QR + lealtad básica con PNG compatible.", underlinePart: "lealtad básica" },
-          { icon: BarChart3, text: "Reportes simples de ventas (sin modelos de Machine Learning).", underlinePart: "(sin modelos de Machine Learning)." },
+          { icon: BarChart3, text: "Reportes simples de ventas (sin exportar ni hacer gráficas ni modelos de Machine Learning).", underlinePart: "(sin exportar ni hacer gráficas ni modelos de Machine Learning)." },
           { icon: CreditCard, text: "Blokko integrado para tarjetas, SPEI/PIX y cripto (opcional, se adapta mejor para tu negocio)." },
         ],
       },
       {
         name: "Escala",
-        price: "$899",
+        price: "$999",
         subtitle: "Para comercios medianos y hasta tres sucursales",
-        support: "WhatsApp con respuesta más prioritaria",
+        support: "Soporte por WhatsApp de 8 a 8 pm, prioridad alta",
         featured: true,
         blokkoStatus: "included",
         blokkoBadge: "Opcional (funciona mejor aquí)",
         features: [
           { icon: Globe, text: "Landing bilingüe (2 idiomas a escoger: español, inglés, francés o portugués) con secciones de eventos, video y galerías." },
-          { icon: Smartphone, text: "Lealtad con Apple/Google Wallet + PNG compartible." },
-          { icon: Smartphone, text: "Acceso desde múltiples dispositivos para operar en más de una terminal o sucursal." },
+          { icon: QrCode, text: "Reservas y pedidos con QR + Lealtad con Apple/Google Wallet + PNG compartible." },
           { icon: BarChart3, text: "Métricas de consumo: visitas, frecuencia y ticket promedio." },
+          { icon: RefreshCw, text: "El software funciona de manera offline y sincroniza al volver internet." },
           {
             icon: Building2,
             text: "Gestión de empleados y hasta 3 sucursales, con edición de ticket antes del pago, división de cuentas y recuperación/recreación de tickets en POS y App Cliente.",
@@ -222,8 +222,8 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
       {
         name: "Cadena",
         price: "$1,499",
-        subtitle: "Para múltiples sucursales y operación por datos",
-        support: "WhatsApp con prioridad alta",
+        subtitle: "Para 3 a 10 sucursales y operación por datos",
+        support: "Soporte por WhatsApp de 8 a 8 pm, prioridad alta",
         blokkoStatus: "included",
         blokkoBadge: "Opcional (funciona mejor aquí)",
         features: [
@@ -232,7 +232,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
             icon: Building2,
             text: "Multi-sucursal completa (3+) con control global, edición de ticket antes del pago, división de cuentas y recuperación/recreación de tickets en POS y App Cliente.",
           },
-          { icon: Smartphone, text: "Acceso desde múltiples dispositivos para varias cajas, tablets y estaciones de cocina." },
+          { icon: RefreshCw, text: "El software funciona de manera offline y sincroniza al volver internet." },
           { icon: QrCode, text: "Operación offline robusta y sincronización automática." },
           { icon: BarChart3, text: "Machine Learning: pronóstico de ventas y proyección de inventario." },
           { icon: ShieldCheck, text: "Panel sanitario completo COFEPRIS/FDA/ANVISA." },
@@ -280,6 +280,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
     badge: "LATAM focus: Mexico, Brazil, Argentina, Peru, and more.",
     modulesTitle: "Everything Xoco Suite includes in a single plan",
     contractNote: "All plans are contracted for 12 months at sign-up.",
+    multiDeviceNote: "Access from multiple devices is included in every package.",
     blokkoBadge: "Connects to any terminal. Blokko is optional, not required.",
     blokkoTitle: "One POS, multiple ways to charge, without headaches.",
     blokkoDescription:
@@ -334,30 +335,29 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
     plans: [
       {
         name: "Starter",
-        price: "$199",
+        price: "$249",
         subtitle: "Basic landing only",
-        support: "WhatsApp during business hours",
+        support: "WhatsApp support from 8 AM to 2 PM",
         blokkoStatus: "addon",
         blokkoBadge: "Optional",
         features: [
           { icon: Globe, text: "Basic landing page with a static menu or PDF." },
           { icon: Store, text: "Basic POS: order taking and receipts." },
-          { icon: Smartphone, text: "Access from multiple devices to view the landing from any screen." },
           { icon: ShieldCheck, text: "Limited role access (admin and cashier).", underline: true },
           {
             icon: XCircle,
-            text: "No Client App, no reservations, and no edit-before-pay.",
+            text: "No bilingual site or two-language menu, no Client App, no reservations, and no edit-before-pay.",
             underline: true,
           },
-          { icon: QrCode, text: "No advanced analytics, no COFEPRIS, no Machine Learning.", underline: true },
+          { icon: QrCode, text: "No advanced analytics, no exporting or charts, no COFEPRIS, no Machine Learning.", underline: true },
           { icon: CreditCard, text: "Blokko integrated for cards, SPEI/PIX, and crypto (optional, fits your business better)." },
         ],
       },
       {
         name: "Emprende",
-        price: "$499",
+        price: "$549",
         subtitle: "For small restaurants (1 location)",
-        support: "WhatsApp with better follow-up",
+        support: "WhatsApp support from 8 AM to 6 PM, medium priority",
         blokkoStatus: "addon",
         blokkoBadge: "Optional",
         features: [
@@ -366,26 +366,25 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
             icon: Store,
             text: "POS with basic inventory, stock alerts, edit-before-pay, bill splitting, and ticket recovery/recreation in POS and Client App.",
           },
-          { icon: Smartphone, text: "Access from multiple devices for your team and workstations." },
           { icon: ShieldCheck, text: "Multiple roles: admin, cashier, and kitchen." },
           { icon: QrCode, text: "QR reservations and orders + basic loyalty with PNG support.", underlinePart: "basic loyalty" },
-          { icon: BarChart3, text: "Simple sales reports (no Machine Learning models).", underlinePart: "(no Machine Learning models)." },
+          { icon: BarChart3, text: "Simple sales reports (no exporting or charts, no Machine Learning models).", underlinePart: "(no exporting or charts, no Machine Learning models)." },
           { icon: CreditCard, text: "Blokko integrated for cards, SPEI/PIX, and crypto (optional, fits your business better)." },
         ],
       },
       {
         name: "Escala",
-        price: "$899",
+        price: "$999",
         subtitle: "For mid-sized operations and up to three locations",
-        support: "WhatsApp with more priority",
+        support: "WhatsApp support from 8 AM to 8 PM, high priority",
         featured: true,
         blokkoStatus: "included",
         blokkoBadge: "Optional (works better here)",
         features: [
           { icon: Globe, text: "Bilingual landing page (choose 2 languages: Spanish, English, French, or Portuguese) with events, video, and galleries." },
-          { icon: Smartphone, text: "Loyalty with Apple/Google Wallet + shareable PNG." },
-          { icon: Smartphone, text: "Access from multiple devices to run more than one terminal or location." },
+          { icon: QrCode, text: "Reservations and orders with QR + Loyalty with Apple/Google Wallet + shareable PNG." },
           { icon: BarChart3, text: "Consumption metrics: visits, frequency, and average ticket." },
+          { icon: RefreshCw, text: "The software works offline and syncs when internet returns." },
           {
             icon: Building2,
             text: "Employee management and up to 3 locations, with edit-before-pay, bill splitting, and ticket recovery/recreation in POS and Client App.",
@@ -397,8 +396,8 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
       {
         name: "Cadena",
         price: "$1,499",
-        subtitle: "For multiple locations and data-driven operations",
-        support: "WhatsApp with high priority",
+        subtitle: "For 3 to 10 locations and data-driven operations",
+        support: "WhatsApp support from 8 AM to 8 PM, high priority",
         blokkoStatus: "included",
         blokkoBadge: "Optional (works better here)",
         features: [
@@ -407,7 +406,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
             icon: Building2,
             text: "Complete multi-location (3+) control with edit-before-pay, bill splitting, and ticket recovery/recreation in POS and Client App.",
           },
-          { icon: Smartphone, text: "Access from multiple devices for several registers, tablets, and kitchen stations." },
+          { icon: RefreshCw, text: "The software works offline and syncs when internet returns." },
           { icon: QrCode, text: "Robust offline operation and automatic sync." },
           { icon: BarChart3, text: "Machine Learning: sales forecasting and inventory projection." },
           { icon: ShieldCheck, text: "Full sanitary panel COFEPRIS/FDA/ANVISA." },
@@ -455,6 +454,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
     badge: "Foco LATAM: México, Brasil, Argentina, Peru e mais.",
     modulesTitle: "Tudo o que o Xoco Suite inclui em um único plano",
     contractNote: "Todos os planos são contratados por 12 meses no início.",
+    multiDeviceNote: "O acesso por múltiplos dispositivos está incluído em todos os pacotes.",
     blokkoBadge: "Conecta com qualquer terminal. Blokko é opcional, não obrigatório.",
     blokkoTitle: "Um único PDV, várias formas de cobrar, sem dor de cabeça.",
     blokkoDescription:
@@ -509,30 +509,29 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
     plans: [
       {
         name: "Starter",
-        price: "$199",
+        price: "$249",
         subtitle: "Apenas landing básica",
-        support: "WhatsApp em horário comercial",
+        support: "Suporte por WhatsApp das 8h às 14h",
         blokkoStatus: "addon",
         blokkoBadge: "Opcional",
         features: [
           { icon: Globe, text: "Landing page básica com menu estático ou PDF." },
           { icon: Store, text: "PDV básico: tomada de pedidos e tickets." },
-          { icon: Smartphone, text: "Acesso por múltiplos dispositivos para visualizar a landing em qualquer tela." },
           { icon: ShieldCheck, text: "Acessos por papel limitados (admin e caixa).", underline: true },
           {
             icon: XCircle,
-            text: "Sem App do cliente, sem reservas e sem edição de ticket antes do pagamento.",
+            text: "Sem site bilíngue nem menu em dois idiomas, sem App do cliente, sem reservas e sem edição de ticket antes do pagamento.",
             underline: true,
           },
-          { icon: QrCode, text: "Sem métricas avançadas, sem COFEPRIS, sem Machine Learning.", underline: true },
+          { icon: QrCode, text: "Sem métricas avançadas, sem exportar nem fazer gráficas, sem COFEPRIS, sem Machine Learning.", underline: true },
           { icon: CreditCard, text: "Blokko integrado para cartões, SPEI/PIX e cripto (opcional, se adapta melhor ao seu negócio)." },
         ],
       },
       {
         name: "Emprende",
-        price: "$499",
+        price: "$549",
         subtitle: "Para restaurantes pequenos (1 unidade)",
-        support: "WhatsApp com melhor acompanhamento",
+        support: "Suporte por WhatsApp das 8h às 18h, prioridade média",
         blokkoStatus: "addon",
         blokkoBadge: "Opcional",
         features: [
@@ -541,26 +540,25 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
             icon: Store,
             text: "PDV com inventário básico, alertas de estoque, edição de ticket antes do pagamento, divisão de contas e recuperação/recriação de tickets no PDV e no App do cliente.",
           },
-          { icon: Smartphone, text: "Acesso por múltiplos dispositivos para sua equipe e estações de trabalho." },
           { icon: ShieldCheck, text: "Múltiplos papéis: admin, caixa e cozinha." },
           { icon: QrCode, text: "Reservas e pedidos com QR + fidelidade básica com suporte PNG.", underlinePart: "fidelidade básica" },
-          { icon: BarChart3, text: "Relatórios simples de vendas (sem modelos de Machine Learning).", underlinePart: "(sem modelos de Machine Learning)." },
+          { icon: BarChart3, text: "Relatórios simples de vendas (sem exportar nem fazer gráficas nem modelos de Machine Learning).", underlinePart: "(sem exportar nem fazer gráficas nem modelos de Machine Learning)." },
           { icon: CreditCard, text: "Blokko integrado para cartões, SPEI/PIX e cripto (opcional, se adapta melhor ao seu negócio)." },
         ],
       },
       {
         name: "Escala",
-        price: "$899",
+        price: "$999",
         subtitle: "Para operações médias e até três unidades",
-        support: "WhatsApp com mais prioridade",
+        support: "Suporte por WhatsApp das 8h às 20h, prioridade alta",
         featured: true,
         blokkoStatus: "included",
         blokkoBadge: "Opcional (funciona melhor aqui)",
         features: [
           { icon: Globe, text: "Landing bilíngue (2 idiomas à escolha: espanhol, inglês, francês ou português) com seções de eventos, vídeo e galerias." },
-          { icon: Smartphone, text: "Fidelidade com Apple/Google Wallet + PNG compartilhável." },
-          { icon: Smartphone, text: "Acesso por múltiplos dispositivos para operar mais de um terminal ou unidade." },
+          { icon: QrCode, text: "Reservas e pedidos com QR + Fidelidade com Apple/Google Wallet + PNG compartilhável." },
           { icon: BarChart3, text: "Métricas de consumo: visitas, frequência e ticket médio." },
+          { icon: RefreshCw, text: "O software funciona de maneira offline e sincroniza quando a internet voltar." },
           {
             icon: Building2,
             text: "Gestão de funcionários e até 3 unidades, com edição de ticket antes do pagamento, divisão de contas e recuperação/recriação de tickets no PDV e no App do cliente.",
@@ -572,8 +570,8 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
       {
         name: "Cadena",
         price: "$1,499",
-        subtitle: "Para várias unidades e operação orientada por dados",
-        support: "WhatsApp com prioridade alta",
+        subtitle: "Para 3 a 10 unidades e operação orientada por dados",
+        support: "Suporte por WhatsApp das 8h às 20h, prioridade alta",
         blokkoStatus: "included",
         blokkoBadge: "Opcional (funciona melhor aqui)",
         features: [
@@ -582,7 +580,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
             icon: Building2,
             text: "Controle multiunidade completo (3+) com controle global, edição de ticket antes do pagamento, divisão de contas e recuperação/recriação de tickets no PDV e no App do cliente.",
           },
-          { icon: Smartphone, text: "Acesso por múltiplos dispositivos para várias caixas, tablets e estações de cozinha." },
+          { icon: RefreshCw, text: "O software funciona de maneira offline e sincroniza quando a internet voltar." },
           { icon: QrCode, text: "Operação offline robusta e sincronização automática." },
           { icon: BarChart3, text: "Machine Learning: previsão de vendas e projeção de estoque." },
           { icon: ShieldCheck, text: "Painel sanitário completo COFEPRIS/FDA/ANVISA." },
@@ -630,6 +628,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
     badge: "Focus LATAM: Mexique, Brésil, Argentine, Pérou et plus.",
     modulesTitle: "Tout ce que Xoco Suite inclut dans une seule offre",
     contractNote: "Toutes les offres sont souscrites pour 12 mois au départ.",
+    multiDeviceNote: "L'accès depuis plusieurs appareils est inclus dans tous les forfaits.",
     blokkoBadge: "Se connecte à n’importe quel terminal. Blokko est optionnel, pas obligatoire.",
     blokkoTitle: "Un seul POS, plusieurs façons d'encaisser, sans prise de tête.",
     blokkoDescription:
@@ -684,30 +683,29 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
     plans: [
       {
         name: "Starter",
-        price: "$199",
+        price: "$249",
         subtitle: "Landing basique seulement",
-        support: "WhatsApp pendant les heures ouvrables",
+        support: "Support WhatsApp de 8 h à 14 h",
         blokkoStatus: "addon",
         blokkoBadge: "Optionnel",
         features: [
           { icon: Globe, text: "Page d'accueil basique avec menu statique ou PDF." },
           { icon: Store, text: "POS basique: prise de commande et tickets." },
-          { icon: Smartphone, text: "Accès depuis plusieurs appareils pour afficher la landing sur n'importe quel écran." },
           { icon: ShieldCheck, text: "Accès par rôle limité (admin et caisse).", underline: true },
           {
             icon: XCircle,
-            text: "Pas d'App client, pas de réservations et pas d'édition du ticket avant paiement.",
+            text: "Pas de site bilingue ni de menu en deux langues, pas d'App client, pas de réservations et pas d'édition du ticket avant paiement.",
             underline: true,
           },
-          { icon: QrCode, text: "Pas d'analyses avancées, pas de COFEPRIS, pas de Machine Learning.", underline: true },
+          { icon: QrCode, text: "Pas d'analyses avancées, pas d'export ni de graphiques, pas de COFEPRIS, pas de Machine Learning.", underline: true },
           { icon: CreditCard, text: "Blokko intégré pour cartes, SPEI/PIX et crypto (optionnel, mieux adapté à votre activité)." },
         ],
       },
       {
         name: "Emprende",
-        price: "$499",
+        price: "$549",
         subtitle: "Pour petits restaurants (1 site)",
-        support: "WhatsApp avec meilleur suivi",
+        support: "Support WhatsApp de 8 h à 18 h, priorité moyenne",
         blokkoStatus: "addon",
         blokkoBadge: "Optionnel",
         features: [
@@ -716,26 +714,25 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
             icon: Store,
             text: "POS avec inventaire de base, alertes de stock, édition du ticket avant paiement, division d'addition et récupération/recréation des tickets dans le POS et l'App client.",
           },
-          { icon: Smartphone, text: "Accès depuis plusieurs appareils pour votre équipe et vos postes de travail." },
           { icon: ShieldCheck, text: "Rôles multiples: admin, caisse et cuisine." },
           { icon: QrCode, text: "Réservations et commandes par QR + fidélité de base avec support PNG.", underlinePart: "fidélité de base" },
-          { icon: BarChart3, text: "Rapports de ventes simples (sans modèles de Machine Learning).", underlinePart: "(sans modèles de Machine Learning)." },
+          { icon: BarChart3, text: "Rapports de ventes simples (sans export ni graphiques ni modèles de Machine Learning).", underlinePart: "(sans export ni graphiques ni modèles de Machine Learning)." },
           { icon: CreditCard, text: "Blokko intégré pour cartes, SPEI/PIX et crypto (optionnel, mieux adapté à votre activité)." },
         ],
       },
       {
         name: "Escala",
-        price: "$899",
+        price: "$999",
         subtitle: "Pour opérations moyennes et jusqu'à trois sites",
-        support: "WhatsApp avec plus de priorité",
+        support: "Support WhatsApp de 8 h à 20 h, priorité élevée",
         featured: true,
         blokkoStatus: "included",
         blokkoBadge: "Optionnel (fonctionne mieux ici)",
         features: [
           { icon: Globe, text: "Landing bilingue (2 langues au choix: espagnol, anglais, français ou portugais) avec sections événements, vidéo et galeries." },
-          { icon: Smartphone, text: "Fidélité avec Apple/Google Wallet + PNG partageable." },
-          { icon: Smartphone, text: "Accès depuis plusieurs appareils pour opérer plusieurs terminaux ou sites." },
+          { icon: QrCode, text: "Réservations et commandes par QR + Fidélité avec Apple/Google Wallet + PNG partageable." },
           { icon: BarChart3, text: "Métriques de consommation: visites, fréquence et ticket moyen." },
+          { icon: RefreshCw, text: "Le logiciel fonctionne hors ligne et se synchronise au retour d’internet." },
           {
             icon: Building2,
             text: "Gestion des employés et jusqu'à 3 sites, avec édition du ticket avant paiement, division d'addition et récupération/recréation des tickets dans le POS et l'App client.",
@@ -747,8 +744,8 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
       {
         name: "Cadena",
         price: "$1,499",
-        subtitle: "Pour plusieurs sites et une opération guidée par les données",
-        support: "WhatsApp avec priorité élevée",
+        subtitle: "Pour 3 à 10 sites et une opération guidée par les données",
+        support: "Support WhatsApp de 8 h à 20 h, priorité élevée",
         blokkoStatus: "included",
         blokkoBadge: "Optionnel (fonctionne mieux ici)",
         features: [
@@ -757,7 +754,7 @@ const pricesCopyByLocale: Record<"es" | "en" | "pt" | "fr", PricesCopy> = {
             icon: Building2,
             text: "Contrôle multi-sites complet (3+) avec contrôle global, édition du ticket avant paiement, division d'addition et récupération/recréation des tickets dans le POS et l'App client.",
           },
-          { icon: Smartphone, text: "Accès depuis plusieurs appareils pour plusieurs caisses, tablettes et postes de cuisine." },
+          { icon: RefreshCw, text: "Le logiciel fonctionne hors ligne et se synchronise au retour d’internet." },
           { icon: QrCode, text: "Fonctionnement hors ligne robuste et synchronisation automatique." },
           { icon: BarChart3, text: "Machine Learning: prévision des ventes et projection des stocks." },
           { icon: ShieldCheck, text: "Panneau sanitaire complet COFEPRIS/FDA/ANVISA." },
@@ -858,6 +855,9 @@ export default function PricesPage() {
         <Card className="mb-5 border border-primary/35 bg-primary/10 p-3 md:p-4">
           <p className="text-center text-sm md:text-base font-medium text-foreground">{copy.contractNote}</p>
         </Card>
+        <p className="mb-5 text-center text-sm md:text-base text-muted-foreground">
+          {copy.multiDeviceNote}
+        </p>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {copy.plans.map((plan, index) => (
             <motion.div
@@ -871,7 +871,7 @@ export default function PricesPage() {
               <Card
                 className={`h-full p-6 border-2 bg-card/80 backdrop-blur-sm transition-all ${
                   plan.featured
-                    ? "border-primary/60 shadow-[0_18px_42px_rgba(122,78,46,0.24)] dark:shadow-xl dark:shadow-primary/20"
+                    ? "relative overflow-hidden border-primary/70 bg-gradient-to-b from-primary/15 via-card to-background shadow-[0_22px_52px_rgba(122,78,46,0.28)] ring-1 ring-primary/25 scale-[1.02] dark:border-primary/80 dark:from-primary/25 dark:via-[#211813] dark:to-[#17110e] dark:shadow-[0_28px_70px_rgba(0,0,0,0.55)] dark:ring-primary/40"
                     : "border-border"
                 } ${
                   plan.blokkoStatus === "included"
@@ -881,9 +881,15 @@ export default function PricesPage() {
                       : ""
                 }`}
               >
+                {plan.featured && (
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/25 via-primary/10 to-transparent dark:from-primary/35 dark:via-primary/15 dark:to-transparent" />
+                )}
+                <div className="relative z-10">
                 <div className="mb-4 flex flex-wrap gap-2">
                   {plan.featured ? (
-                    <Badge className="border-primary/40 bg-primary/10 text-primary">Más elegido</Badge>
+                    <Badge className="border-primary/60 bg-primary/20 px-3 py-1 font-semibold text-primary-foreground shadow-sm dark:border-primary/70 dark:bg-primary/30">
+                      Más elegido
+                    </Badge>
                   ) : (
                     <Badge className="border-border bg-muted text-muted-foreground">{plan.subtitle}</Badge>
                   )}
@@ -968,6 +974,7 @@ export default function PricesPage() {
                     className={`w-full font-semibold ${plan.featured ? "ring-2 ring-primary/30" : ""}`}
                   />
                 </div>
+                </div>
               </Card>
             </motion.div>
           ))}
@@ -1034,30 +1041,88 @@ export default function PricesPage() {
       <section className="container mx-auto px-4 lg:px-8 py-8">
         <Card className="p-6 md:p-8 border border-amber-500/30 bg-amber-500/10">
           <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">{copy.operationalCostsTitle}</h3>
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="rounded-xl border border-border bg-card/70 p-4">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.08,
+                  delayChildren: 0.06,
+                },
+              },
+            }}
+            className="grid gap-4 md:grid-cols-3"
+          >
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 16, scale: 0.98 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              whileHover={{ y: -4, scale: 1.01 }}
+              className="rounded-xl border border-border bg-card/70 p-4 transition-shadow hover:shadow-md"
+            >
               <p className="text-sm font-semibold flex items-center gap-2">
                 <RefreshCw className="w-4 h-4 text-primary" />
                 {copy.operationalCosts.updatesLabel}
               </p>
               <p className="mt-2 text-sm text-muted-foreground">{copy.operationalCosts.updatesText}</p>
-            </div>
-            <div className="rounded-xl border border-border bg-card/70 p-4">
+            </motion.div>
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 16, scale: 0.98 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              whileHover={{ y: -4, scale: 1.01 }}
+              className="rounded-xl border border-border bg-card/70 p-4 transition-shadow hover:shadow-md"
+            >
               <p className="text-sm font-semibold flex items-center gap-2">
                 <Wrench className="w-4 h-4 text-primary" />
                 {copy.operationalCosts.trainingOnsiteLabel}
               </p>
               <p className="mt-2 text-sm text-muted-foreground">{copy.operationalCosts.trainingOnsiteText}</p>
-            </div>
-            <div className="rounded-xl border border-border bg-card/70 p-4">
+            </motion.div>
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 16, scale: 0.98 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              whileHover={{ y: -4, scale: 1.01 }}
+              className="rounded-xl border border-border bg-card/70 p-4 transition-shadow hover:shadow-md"
+            >
               <p className="text-sm font-semibold flex items-center gap-2">
                 <MessageCircle className="w-4 h-4 text-primary" />
                 {copy.operationalCosts.trainingVirtualLabel}
               </p>
               <p className="mt-2 text-sm text-muted-foreground">{copy.operationalCosts.trainingVirtualText}</p>
-            </div>
-          </div>
-          <p className="mt-4 text-sm text-muted-foreground">{copy.operationalCosts.paymentNote}</p>
+            </motion.div>
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.35, delay: 0.18 }}
+            className="mt-4 text-sm text-muted-foreground"
+          >
+            {copy.operationalCosts.paymentNote}
+          </motion.p>
         </Card>
       </section>
 

@@ -30,7 +30,7 @@ const copyByLocale = {
     plans: [
       { name: "Starter", price: "$199", subtitle: "Para probar" },
       { name: "Emprende", price: "$499", subtitle: "1 sucursal" },
-      { name: "Escala", price: "$899", subtitle: "Más operación" },
+      { name: "Escala", price: "$899", subtitle: "Más operación", featured: true },
       { name: "Cadena", price: "$1,499", subtitle: "3+ sucursales" },
     ],
   },
@@ -45,7 +45,7 @@ const copyByLocale = {
     plans: [
       { name: "Starter", price: "$199", subtitle: "To test" },
       { name: "Emprende", price: "$499", subtitle: "1 location" },
-      { name: "Escala", price: "$899", subtitle: "More operations" },
+      { name: "Escala", price: "$899", subtitle: "More operations", featured: true },
       { name: "Cadena", price: "$1,499", subtitle: "3+ locations" },
     ],
   },
@@ -60,7 +60,7 @@ const copyByLocale = {
     plans: [
       { name: "Starter", price: "$199", subtitle: "Para testar" },
       { name: "Emprende", price: "$499", subtitle: "1 unidade" },
-      { name: "Escala", price: "$899", subtitle: "Mais operação" },
+      { name: "Escala", price: "$899", subtitle: "Mais operação", featured: true },
       { name: "Cadena", price: "$1,499", subtitle: "3+ unidades" },
     ],
   },
@@ -75,7 +75,7 @@ const copyByLocale = {
     plans: [
       { name: "Starter", price: "$199", subtitle: "Pour tester" },
       { name: "Emprende", price: "$499", subtitle: "1 site" },
-      { name: "Escala", price: "$899", subtitle: "Plus d’opérations" },
+      { name: "Escala", price: "$899", subtitle: "Plus d’opérations", featured: true },
       { name: "Cadena", price: "$1,499", subtitle: "3+ sites" },
     ],
   },
@@ -109,13 +109,31 @@ export function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.38, delay: index * 0.12 }}
-              whileHover={{ y: -4 }}
+              whileHover={plan.featured ? { y: -7, scale: 1.02 } : { y: -4 }}
             >
-              <Card className="p-4 text-center border border-border hover:border-primary/40 hover:shadow-md transition-all">
-                <p className="text-sm font-medium text-muted-foreground">{plan.name}</p>
-                <p className="text-2xl md:text-3xl font-bold text-foreground mt-1">{plan.price}</p>
-                <p className="text-xs text-muted-foreground mt-1">{plan.subtitle}</p>
-                <p className="text-[11px] text-muted-foreground">MXN/mes</p>
+              <Card
+                className={`relative overflow-hidden p-4 text-center border transition-all ${
+                  plan.featured
+                    ? "border-2 border-primary/60 bg-gradient-to-b from-primary/12 via-card to-card shadow-[0_18px_45px_rgba(122,78,46,0.18)] ring-1 ring-primary/20 dark:border-primary/70 dark:from-primary/25 dark:via-[#221b17] dark:to-[#18120f] dark:shadow-[0_22px_60px_rgba(0,0,0,0.5)] dark:ring-primary/35"
+                    : "border-border hover:border-primary/40 hover:shadow-md dark:hover:border-primary/30 dark:hover:shadow-[0_14px_36px_rgba(0,0,0,0.28)]"
+                }`}
+              >
+                {plan.featured && (
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-primary/20 via-primary/8 to-transparent dark:from-primary/30 dark:via-primary/12 dark:to-transparent" />
+                )}
+                <div className="relative z-10">
+                  {plan.featured ? (
+                    <span className="mb-2 inline-flex items-center rounded-full border border-primary/50 bg-primary/15 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-primary dark:border-primary/60 dark:bg-primary/25 dark:text-primary-foreground">
+                      Más elegido
+                    </span>
+                  ) : (
+                    <p className="text-sm font-medium text-muted-foreground">{plan.name}</p>
+                  )}
+                  {plan.featured && <p className="text-sm font-medium text-foreground">{plan.name}</p>}
+                  <p className="text-2xl md:text-3xl font-bold text-foreground mt-1">{plan.price}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{plan.subtitle}</p>
+                  <p className="text-[11px] text-muted-foreground">MXN/mes</p>
+                </div>
               </Card>
             </motion.div>
           ))}
@@ -123,7 +141,7 @@ export function Pricing() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
           <Button asChild className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground rounded-xl font-semibold">
-          <Link href="/prices">
+            <Link href="/prices">
               {copy.cta} <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </Button>

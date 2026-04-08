@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server"
 
-import { isLocale } from "@/lib/site-content"
+import { isLocale } from "@/agency/lib/site-content"
 
 function detectLocale(acceptLanguage: string | null | undefined) {
   const header = acceptLanguage ?? ""
